@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:evently_app/features/start/presentation/views/widgets/language_switch_row.dart';
 import 'package:evently_app/features/start/presentation/views/widgets/theme_switch_row.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,11 @@ class StartViewBody extends StatelessWidget {
             height: 28,
           ),
           CustomElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(
+                OnboardingView.routeName,
+              );
+            },
             buttonTitle: AppText.startButton.tr(),
           )
         ],
