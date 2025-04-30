@@ -1,9 +1,8 @@
 abstract final class AppText {
-  static const String appName = "Evently";
-  static const String startTitle = "Personalize Your Experience";
-  static const String startBody =
-      "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.";
-  static const String language = "Language";
-  static const String theme = "Theme";
-  static const String startButton = "Let’s Start";
+  static const String appName = "appName";
+  static const String startTitle = "startTitle";
+  static const String startBody = "startBody";
+  static const String language = "language";
+  static const String theme = "theme";
+  static const String startButton = "startButton";
 }
