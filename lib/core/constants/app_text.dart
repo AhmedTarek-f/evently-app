@@ -1,5 +1,5 @@
 abstract final class AppText {
-  static const String appName = "appName";
+  static const String appName = "Evently";
   static const String startTitle = "startTitle";
   static const String startBody = "startBody";
   static const String language = "language";
@@ -14,4 +14,12 @@ abstract final class AppText {
       "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.";
   static const String onBoardingSubTitle3 =
       "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.";
+  static const String email = "Email";
+  static const String password = "Password";
+  static const String forgetPassword = "Forget Password?";
+  static const String login = "Login";
+  static const String dontHaveAccount = "Don’t Have Account ? ";
+  static const String createAccount = "Create Account";
+  static const String or = " Or";
+  static const String loginWithGoogle = "Login With Google";
 }
