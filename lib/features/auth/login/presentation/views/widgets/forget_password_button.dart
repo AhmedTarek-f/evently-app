@@ -1,4 +1,5 @@
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/auth/forget_password/presentation/views/forget_password_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +11,11 @@ class ForgetPasswordButton extends StatelessWidget {
     return Align(
       alignment: AlignmentDirectional.centerEnd,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            ForgetPasswordView.routeName,
+          );
+        },
         highlightColor:
             Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
         splashColor:
