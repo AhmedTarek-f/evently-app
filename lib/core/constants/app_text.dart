@@ -25,4 +25,6 @@ abstract final class AppText {
   static const String name = "Name";
   static const String rePassword = "Re Password";
   static const String alreadyHaveAccount = "Already Have Account ? ";
+  static const String resetPassword = "Reset Password";
+  static const String forgetPasswordTitle = "Forget Password";
 }
