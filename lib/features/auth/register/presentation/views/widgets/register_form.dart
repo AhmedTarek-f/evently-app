@@ -22,6 +22,10 @@ class RegisterForm extends StatelessWidget {
                 AppIcons.user,
                 width: 56.r,
                 height: 56.r,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.tertiary,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
@@ -35,6 +39,10 @@ class RegisterForm extends StatelessWidget {
                 AppIcons.email,
                 width: 56.r,
                 height: 56.r,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.tertiary,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
@@ -48,6 +56,10 @@ class RegisterForm extends StatelessWidget {
                 AppIcons.passwordLock,
                 width: 56.r,
                 height: 56.r,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.tertiary,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             suffixIcon: IconButton(
@@ -69,6 +81,10 @@ class RegisterForm extends StatelessWidget {
                 AppIcons.passwordLock,
                 width: 56.r,
                 height: 56.r,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.tertiary,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             suffixIcon: IconButton(
