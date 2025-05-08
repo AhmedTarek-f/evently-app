@@ -10,18 +10,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LanguageSwitchRow extends StatelessWidget {
   const LanguageSwitchRow({
     super.key,
+    this.isLanguageTextVisible = true,
   });
+  final bool isLanguageTextVisible;
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<StartCubit>(context);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: isLanguageTextVisible
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.center,
       children: [
-        Text(
-          AppText.language.tr(),
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
+        Visibility(
+          visible: isLanguageTextVisible,
+          child: Text(
+            AppText.language.tr(),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
         ),
         BlocConsumer<StartCubit, StartState>(
           buildWhen: (previous, current) => current is ChangeLanguageIndexState,

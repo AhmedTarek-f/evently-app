@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
+import 'package:evently_app/core/common_widgets/language_switch_row.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/onboarding/presentation/views/onboarding_view.dart';
-import 'package:evently_app/features/start/presentation/views/widgets/language_switch_row.dart';
 import 'package:evently_app/features/start/presentation/views/widgets/theme_switch_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

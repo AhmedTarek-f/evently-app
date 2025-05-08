@@ -1,4 +1,4 @@
-import 'package:evently_app/core/common_widgets/evently_logo.dart';
+import 'package:evently_app/core/common_widgets/evently_logo_row.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -7,7 +7,7 @@ class OnboardingAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const EventlyLogo(),
+      title: const EventlyLogoRow(),
       elevation: 0,
       surfaceTintColor: Colors.transparent,
     );
