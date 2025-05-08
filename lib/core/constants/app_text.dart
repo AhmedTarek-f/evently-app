@@ -22,4 +22,7 @@ abstract final class AppText {
   static const String createAccount = "Create Account";
   static const String or = " Or";
   static const String loginWithGoogle = "Login With Google";
+  static const String name = "Name";
+  static const String rePassword = "Re Password";
+  static const String alreadyHaveAccount = "Already Have Account ? ";
 }
