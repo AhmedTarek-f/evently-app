@@ -55,6 +55,7 @@ class CustomToggleSwitch extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
           width: 5.r,
         ),
+        backgroundColor: Colors.transparent,
       ),
       onChanged: onIndexChanged,
     );
