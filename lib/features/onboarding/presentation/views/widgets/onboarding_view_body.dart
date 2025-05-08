@@ -16,7 +16,7 @@ class OnboardingViewBody extends StatelessWidget {
       listenWhen: (previous, current) => current is MovingToLoginScreenState,
       listener: (context, state) {
         if (state is MovingToLoginScreenState) {
-          Navigator.pushNamed(
+          Navigator.pushReplacementNamed(
             context,
             LoginView.routeName,
           );
