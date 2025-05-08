@@ -60,10 +60,14 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void moveToNextPage() {
-    onBoardingPageController.nextPage(
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeIn,
-    );
+    if (currentPageIndex == 2) {
+      emit(MovingToLoginScreenState());
+    } else {
+      onBoardingPageController.nextPage(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeIn,
+      );
+    }
   }
 
   void moveToPreviousPage() {
