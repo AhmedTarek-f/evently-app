@@ -11,4 +11,8 @@ abstract final class AppIcons {
       "assets/icons/light_left_circular_arrow.svg";
   static const String lightRightCircularArrow =
       "assets/icons/light_right_circular_arrow.svg";
+  static const String email = "assets/icons/email.svg";
+  static const String passwordLock = "assets/icons/password_lock.svg";
+  static const String user = "assets/icons/user.svg";
+  static const String google = "assets/icons/google.svg";
 }
