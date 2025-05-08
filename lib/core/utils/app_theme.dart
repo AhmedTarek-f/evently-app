@@ -15,6 +15,8 @@ abstract class AppTheme {
         onTertiary: AppColors.red,
         onPrimaryContainer: AppColors.offWhiteBlue,
         onSurface: AppColors.white,
+        primaryFixed: AppColors.offWhiteBlue,
+        surfaceContainer: AppColors.gray,
         brightness: Brightness.light,
       ),
       textTheme: TextTheme(
@@ -33,6 +35,26 @@ abstract class AppTheme {
           fontWeight: FontWeight.w500,
           color: AppColors.black,
         ),
+        bodyLarge: GoogleFonts.inter(
+          fontSize: 16,
+          color: AppColors.gray,
+          fontWeight: FontWeight.w500,
+        ),
+        bodyMedium: GoogleFonts.inter(
+          fontSize: 16,
+          color: AppColors.black,
+          fontWeight: FontWeight.w500,
+        ),
+        titleSmall: GoogleFonts.inter(
+          fontSize: 14,
+          color: AppColors.red,
+          fontWeight: FontWeight.w500,
+        ),
+        labelSmall: GoogleFonts.inter(
+          fontSize: 14,
+          color: AppColors.gray.withValues(alpha: 0.6),
+          fontWeight: FontWeight.w400,
+        ),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.offWhiteBlue,
@@ -49,25 +71,46 @@ abstract class AppTheme {
         tertiary: AppColors.whiteGray,
         onTertiary: AppColors.red,
         onSurface: AppColors.white,
+        primaryFixed: AppColors.overDarkBlue,
+        surfaceContainer: AppColors.blue,
         brightness: Brightness.dark,
       ),
       textTheme: TextTheme(
-        displaySmall: GoogleFonts.jockeyOne(
-          fontSize: 36,
-          fontWeight: FontWeight.w400,
-          color: AppColors.blue,
-        ),
-        titleLarge: GoogleFonts.inter(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: AppColors.blue,
-        ),
-        titleMedium: GoogleFonts.inter(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: AppColors.whiteGray,
-        ),
-      ),
+          displaySmall: GoogleFonts.jockeyOne(
+            fontSize: 36,
+            fontWeight: FontWeight.w400,
+            color: AppColors.blue,
+          ),
+          titleLarge: GoogleFonts.inter(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: AppColors.blue,
+          ),
+          titleMedium: GoogleFonts.inter(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: AppColors.whiteGray,
+          ),
+          bodyLarge: GoogleFonts.inter(
+            fontSize: 16,
+            color: AppColors.whiteGray,
+            fontWeight: FontWeight.w500,
+          ),
+          bodyMedium: GoogleFonts.inter(
+            fontSize: 16,
+            color: AppColors.white,
+            fontWeight: FontWeight.w500,
+          ),
+          titleSmall: GoogleFonts.inter(
+            fontSize: 14,
+            color: AppColors.red,
+            fontWeight: FontWeight.w500,
+          ),
+          labelSmall: GoogleFonts.inter(
+            fontSize: 14,
+            color: AppColors.whiteGray.withValues(alpha: 0.6),
+            fontWeight: FontWeight.w400,
+          )),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.overDarkBlue,
       ));
