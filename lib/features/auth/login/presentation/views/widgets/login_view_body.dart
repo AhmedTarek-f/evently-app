@@ -21,7 +21,7 @@ class LoginViewBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-            RSizedBox(height: 12),
+            RSizedBox(height: 32),
             EventlyLogoColumn(),
             RSizedBox(height: 24),
             LoginForm(),
