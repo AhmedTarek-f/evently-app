@@ -1,4 +1,5 @@
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/auth/register/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +16,11 @@ class CreateAccountRow extends StatelessWidget {
           style: TextTheme.of(context).titleMedium,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed(
+              RegisterView.routeName,
+            );
+          },
           highlightColor:
               Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
           splashColor:
