@@ -6,7 +6,10 @@ import 'package:evently_app/features/auth/login/presentation/views/widgets/googl
 import 'package:evently_app/features/auth/login/presentation/views/widgets/login_button.dart';
 import 'package:evently_app/features/auth/login/presentation/views/widgets/login_form.dart';
 import 'package:evently_app/features/auth/login/presentation/views/widgets/or_divider.dart';
+import 'package:evently_app/features/auth/login/presentation/views_model/login_cubit.dart';
+import 'package:evently_app/features/auth/login/presentation/views_model/login_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -14,30 +17,36 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: RPadding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16,
-        ),
-        child: Column(
-          children: [
-            RSizedBox(height: 32),
-            EventlyLogoColumn(),
-            RSizedBox(height: 24),
-            LoginForm(),
-            RSizedBox(height: 14),
-            ForgetPasswordButton(),
-            RSizedBox(height: 22),
-            LoginButton(),
-            RSizedBox(height: 22),
-            CreateAccountRow(),
-            RSizedBox(height: 22),
-            OrDivider(),
-            RSizedBox(height: 24),
-            GoogleButton(),
-            RSizedBox(height: 24),
-            LanguageSwitchRow(isLanguageTextVisible: false),
-          ],
+    return BlocListener<LoginCubit, LoginState>(
+      listenWhen: (previous, current) => current is FormValidationSuccessState,
+      listener: (context, state) {
+        if (state is FormValidationSuccessState) {}
+      },
+      child: const SingleChildScrollView(
+        child: RPadding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+          child: Column(
+            children: [
+              RSizedBox(height: 32),
+              EventlyLogoColumn(),
+              RSizedBox(height: 24),
+              LoginForm(),
+              RSizedBox(height: 14),
+              ForgetPasswordButton(),
+              RSizedBox(height: 22),
+              LoginButton(),
+              RSizedBox(height: 22),
+              CreateAccountRow(),
+              RSizedBox(height: 22),
+              OrDivider(),
+              RSizedBox(height: 24),
+              GoogleButton(),
+              RSizedBox(height: 24),
+              LanguageSwitchRow(isLanguageTextVisible: false),
+            ],
+          ),
         ),
       ),
     );
