@@ -1,4 +1,5 @@
 import 'package:evently_app/features/auth/forget_password/presentation/views/forget_password_view.dart';
+import 'package:evently_app/features/auth/forget_password/presentation/views_model/forget_password_cubit.dart';
 import 'package:evently_app/features/auth/login/presentation/views/login_view.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_cubit.dart';
 import 'package:evently_app/features/auth/register/presentation/views/register_view.dart';
@@ -24,6 +25,9 @@ abstract class AppRouter {
           create: (context) => RegisterCubit(),
           child: const RegisterView(),
         ),
-    ForgetPasswordView.routeName: (_) => const ForgetPasswordView(),
+    ForgetPasswordView.routeName: (_) => BlocProvider<ForgetPasswordCubit>(
+          create: (context) => ForgetPasswordCubit(),
+          child: const ForgetPasswordView(),
+        ),
   };
 }
