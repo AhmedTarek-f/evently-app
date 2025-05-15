@@ -27,4 +27,20 @@ abstract final class AppText {
   static const String alreadyHaveAccount = "Already Have Account ? ";
   static const String resetPassword = "Reset Password";
   static const String forgetPasswordTitle = "Forget Password";
+  static const String userNameValidation = "User name field is required";
+  static const String emailValidation1 = "Email field is required";
+  static const String emailValidation2 = "Enter a valid email";
+  static const String passwordValidation1 = "Password is required";
+  static const String passwordValidation2 = "Password cannot contain spaces";
+  static const String passwordValidation3 =
+      "Password must be at least 8 characters long";
+  static const String passwordValidation4 =
+      "Password must contain at least one number";
+  static const String passwordValidation5 =
+      "Password must not exceed 20 characters";
+  static const String passwordConfirmationValidation1 =
+      "Password confirmation is required";
+  static const String passwordConfirmationValidation2 =
+      "Password cannot contain spaces";
+  static const String passwordConfirmationValidation3 = "Passwords don't match";
 }
