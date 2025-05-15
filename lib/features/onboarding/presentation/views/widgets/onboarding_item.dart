@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,7 @@ class OnboardingItem extends StatelessWidget {
           ),
         ),
         Text(
-          onboardingData.title,
+          onboardingData.title.tr(),
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const RSizedBox(
@@ -28,7 +29,7 @@ class OnboardingItem extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            onboardingData.subTitle,
+            onboardingData.subTitle.tr(),
             style: Theme.of(context).textTheme.titleMedium,
             maxLines: 8,
             textAlign: TextAlign.justify,

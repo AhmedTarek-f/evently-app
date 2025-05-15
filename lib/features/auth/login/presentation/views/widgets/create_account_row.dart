@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/auth/register/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class CreateAccountRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          AppText.dontHaveAccount,
+          AppText.dontHaveAccount.tr(),
           style: TextTheme.of(context).titleMedium,
         ),
         InkWell(
@@ -29,7 +30,7 @@ class CreateAccountRow extends StatelessWidget {
           child: RPadding(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
             child: Text(
-              AppText.createAccount,
+              AppText.createAccount.tr(),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontStyle: FontStyle.italic,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/auth/forget_password/presentation/views/forget_password_view.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class ForgetPasswordButton extends StatelessWidget {
         child: RPadding(
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
           child: Text(
-            AppText.forgetPassword,
+            AppText.forgetPassword.tr(),
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.w700,

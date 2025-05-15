@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,12 +58,12 @@ class CustomTextFormField extends StatelessWidget {
           maxHeight: 56.r,
         ),
         contentPadding: contentPadding ?? REdgeInsets.all(16),
-        labelText: labelText,
+        labelText: labelText.tr(),
         labelStyle: labelStyle ?? Theme.of(context).textTheme.bodyLarge,
         filled: true,
         fillColor: Theme.of(context).colorScheme.primaryFixed,
         hintStyle: hintStyle ?? Theme.of(context).textTheme.labelSmall,
-        hintText: hintText,
+        hintText: hintText?.tr(),
         focusedBorder: buildOutlinedBorder(
           context: context,
         ),

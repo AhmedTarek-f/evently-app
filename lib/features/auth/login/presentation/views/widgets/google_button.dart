@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
@@ -22,7 +23,7 @@ class GoogleButton extends StatelessWidget {
           SvgPicture.asset(AppIcons.google),
           const RSizedBox(width: 10),
           Text(
-            AppText.loginWithGoogle,
+            AppText.loginWithGoogle.tr(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
