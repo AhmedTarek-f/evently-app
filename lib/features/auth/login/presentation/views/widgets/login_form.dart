@@ -16,9 +16,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<LoginCubit>(context);
     return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) =>
-          current is EnableAutoValidateModeState ||
-          current is ChangeObscureState,
+      buildWhen: (previous, current) => current is EnableAutoValidateModeState,
       builder: (context, state) => Form(
         key: controller.loginFormKey,
         autovalidateMode: controller.autoValidateMode,
@@ -44,37 +42,40 @@ class LoginForm extends StatelessWidget {
               validator: (value) => Validations.emailValidation(value),
             ),
             const RSizedBox(height: 16),
-            CustomTextFormField(
-              labelText: AppText.password,
-              controller: controller.passwordController,
-              textInputAction: TextInputAction.done,
-              obscureText: controller.isObscure,
-              keyboardType: TextInputType.visiblePassword,
-              prefixIcon: RPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: SvgPicture.asset(
-                  AppIcons.passwordLock,
-                  width: 56.r,
-                  height: 56.r,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.tertiary,
-                    BlendMode.srcIn,
+            BlocBuilder<LoginCubit, LoginState>(
+              buildWhen: (previous, current) => current is ChangeObscureState,
+              builder: (context, state) => CustomTextFormField(
+                labelText: AppText.password,
+                controller: controller.passwordController,
+                textInputAction: TextInputAction.done,
+                obscureText: controller.isObscure,
+                keyboardType: TextInputType.visiblePassword,
+                prefixIcon: RPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SvgPicture.asset(
+                    AppIcons.passwordLock,
+                    width: 56.r,
+                    height: 56.r,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.tertiary,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
-              ),
-              suffixIcon: IconButton(
-                onPressed: () {
-                  controller.toggleObscure();
-                },
-                icon: Icon(
-                  controller.isObscure
-                      ? Icons.visibility_off
-                      : Icons.visibility,
-                  size: 20,
-                  color: Theme.of(context).colorScheme.tertiary,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    controller.toggleObscure();
+                  },
+                  icon: Icon(
+                    controller.isObscure
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
                 ),
+                validator: (value) => Validations.validatePassword(value),
               ),
-              validator: (value) => Validations.validatePassword(value),
             ),
           ],
         ),
