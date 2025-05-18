@@ -11,8 +11,8 @@ class CreateAccountButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<RegisterCubit>(context);
     return CustomElevatedButton(
-      onPressed: () {
-        controller.createAccount();
+      onPressed: () async {
+        await controller.createAccount();
       },
       buttonTitle: AppText.createAccount,
     );
