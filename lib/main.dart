@@ -3,6 +3,7 @@ import 'package:evently_app/core/cache/shared_preferences_helper.dart';
 import 'package:evently_app/evently_app.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:evently_app/firebase_options.dart';
+import 'package:evently_app/my_bloc_observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,7 @@ void main() async {
   );
   await SharedPreferencesHelper.init();
   await EasyLocalization.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   FlutterNativeSplash.remove();
   runApp(
     BlocProvider<StartCubit>(
