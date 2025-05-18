@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/utils/app_router.dart';
 import 'package:evently_app/core/utils/app_theme.dart';
-import 'package:evently_app/features/start/presentation/views/start_view.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_state.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,7 @@ class EventlyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           routes: AppRouter.routes,
-          initialRoute: StartView.routeName,
+          initialRoute: controller.redirectedScreen,
         ),
       ),
     );
