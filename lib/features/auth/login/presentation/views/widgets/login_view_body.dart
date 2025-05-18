@@ -1,5 +1,9 @@
 import 'package:evently_app/core/common_widgets/evently_logo_column.dart';
 import 'package:evently_app/core/common_widgets/language_switch_row.dart';
+import 'package:evently_app/core/constants/app_images.dart';
+import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/core/utils/loaders/full_screen_loader.dart';
+import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/auth/login/presentation/views/widgets/create_account_row.dart';
 import 'package:evently_app/features/auth/login/presentation/views/widgets/forget_password_button.dart';
 import 'package:evently_app/features/auth/login/presentation/views/widgets/google_button.dart';
@@ -8,6 +12,7 @@ import 'package:evently_app/features/auth/login/presentation/views/widgets/login
 import 'package:evently_app/features/auth/login/presentation/views/widgets/or_divider.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_cubit.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_state.dart';
+import 'package:evently_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,9 +23,31 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listenWhen: (previous, current) => current is FormValidationSuccessState,
+      listenWhen: (previous, current) =>
+          current is LoginLoadingState ||
+          current is LoginFailureState ||
+          current is LoginSuccessState,
       listener: (context, state) {
-        if (state is FormValidationSuccessState) {}
+        if (state is LoginLoadingState) {
+          FullScreenLoader.openLoadingDialog(
+            text: AppText.loggingYouIn,
+            animation: AppImages.loadingAnimation,
+            context: context,
+          );
+        } else if (state is LoginFailureState) {
+          FullScreenLoader.stopLoading(context: context);
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        } else if (state is LoginSuccessState) {
+          FullScreenLoader.stopLoading(context: context);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const HomeView(),
+            ),
+          );
+        }
       },
       child: const SingleChildScrollView(
         child: RPadding(

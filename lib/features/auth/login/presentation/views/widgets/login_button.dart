@@ -11,8 +11,8 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<LoginCubit>(context);
     return CustomElevatedButton(
-      onPressed: () {
-        controller.login();
+      onPressed: () async {
+        await controller.login();
       },
       buttonTitle: AppText.login,
     );
