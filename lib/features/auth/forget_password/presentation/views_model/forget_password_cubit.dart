@@ -1,3 +1,4 @@
+import 'package:evently_app/features/auth/forget_password/data/repositories/forget_password_repository.dart';
 import 'package:evently_app/features/auth/forget_password/presentation/views_model/forget_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   late final TextEditingController emailController;
   late final GlobalKey<FormState> forgetPasswordFormKey;
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  bool isLoading = false;
 
   void onInit() {
     forgetPasswordFormKey = GlobalKey<FormState>();
@@ -21,9 +23,27 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     emit(EnableAutoValidateModeState());
   }
 
-  void resetPassword() {
+  Future<void> resetPassword() async {
     if (forgetPasswordFormKey.currentState!.validate()) {
-      emit(FormValidationSuccessState());
+      isLoading = true;
+      emit(SendResetPasswordLoadingState());
+      var result = await ForgetPasswordRepository.sendPasswordResetEmail(
+        email: emailController.text,
+      );
+      result.fold(
+        (failure) {
+          isLoading = false;
+          emit(
+            SendResetPasswordFailureState(
+              errorMessage: failure.errorMessage,
+            ),
+          );
+        },
+        (sentReset) {
+          isLoading = false;
+          emit(SendResetPasswordSuccessState());
+        },
+      );
     } else {
       enableAutoValidateMode();
     }

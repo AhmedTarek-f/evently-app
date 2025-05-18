@@ -16,7 +16,6 @@ class ForgetPasswordEmailField extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<ForgetPasswordCubit>(context);
     return BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
-      buildWhen: (previous, current) => current is EnableAutoValidateModeState,
       builder: (context, state) => Form(
         key: controller.forgetPasswordFormKey,
         autovalidateMode: controller.autoValidateMode,
@@ -38,6 +37,7 @@ class ForgetPasswordEmailField extends StatelessWidget {
             ),
           ),
           validator: (value) => Validations.emailValidation(value),
+          enabled: !controller.isLoading,
         ),
       ),
     );
