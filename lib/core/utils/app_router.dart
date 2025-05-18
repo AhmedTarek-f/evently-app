@@ -6,6 +6,8 @@ import 'package:evently_app/features/auth/register/presentation/views/register_v
 import 'package:evently_app/features/auth/register/presentation/views_model/register_cubit.dart';
 import 'package:evently_app/features/auth/verify_email/presentation/views/verify_email_view.dart';
 import 'package:evently_app/features/auth/verify_email/presentation/views_model/verify_email_cubit.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views/evently_bottom_navigation_view.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:evently_app/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:evently_app/features/onboarding/presentation/views_model/onboarding_cubit.dart';
 import 'package:evently_app/features/start/presentation/views/start_view.dart';
@@ -34,6 +36,11 @@ abstract class AppRouter {
     VerifyEmailView.routeName: (_) => BlocProvider<VerifyEmailCubit>(
           create: (context) => VerifyEmailCubit(),
           child: const VerifyEmailView(),
+        ),
+    EventlyBottomNavigationView.routeName: (_) =>
+        BlocProvider<EventlyBottomNavigationCubit>(
+          create: (context) => EventlyBottomNavigationCubit(),
+          child: const EventlyBottomNavigationView(),
         ),
   };
 }
