@@ -153,6 +153,8 @@ abstract final class AppText {
       'The custom token corresponds to a different audience.';
   static const String captchaCheckFailed =
       'The reCAPTCHA response is invalid. Please try again.';
+  static const String googleLoginCanceled =
+      "Login with google has been canceled";
   static const String unknownErrorMessage =
       "An unknown error has occurred with the following message:";
 }
