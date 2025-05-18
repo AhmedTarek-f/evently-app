@@ -12,14 +12,18 @@ class OnboardingViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = BlocProvider.of<OnboardingCubit>(context);
     return BlocListener<OnboardingCubit, OnboardingState>(
       listenWhen: (previous, current) => current is MovingToLoginScreenState,
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is MovingToLoginScreenState) {
-          Navigator.pushReplacementNamed(
-            context,
-            LoginView.routeName,
-          );
+          await controller.finishedOnboardingFirstTime();
+          if (context.mounted) {
+            Navigator.pushReplacementNamed(
+              context,
+              LoginView.routeName,
+            );
+          }
         }
       },
       child: const RPadding(
