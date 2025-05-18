@@ -61,6 +61,12 @@ abstract final class AppText {
   static const String processingYourInformation =
       "We are processing your information...";
 
+  // Evently Bottom Navigation Bar
+  static const String home = "Home";
+  static const String map = "Map";
+  static const String favorite = "Favorite";
+  static const String profile = "Profile";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
