@@ -1,6 +1,7 @@
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/features/onboarding/presentation/views_model/onboarding_cubit.dart';
 import 'package:evently_app/features/onboarding/presentation/views_model/onboarding_state.dart';
+import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,7 @@ class OnboardingPageNavigationDots extends StatelessWidget {
     final controller = BlocProvider.of<OnboardingCubit>(context);
     final bool isDarkMode =
         Theme.of(context).colorScheme.brightness == Brightness.dark;
+    final startController = BlocProvider.of<StartCubit>(context);
     return RPadding(
       padding: const EdgeInsets.only(bottom: 13.4),
       child: Row(
@@ -31,8 +33,12 @@ class OnboardingPageNavigationDots extends StatelessWidget {
                     onTap: () => controller.moveToPreviousPage(),
                     child: SvgPicture.asset(
                       isDarkMode
-                          ? AppIcons.darkLeftCircularArrow
-                          : AppIcons.lightLeftCircularArrow,
+                          ? startController.isArLanguage
+                              ? AppIcons.darkRightCircularArrow
+                              : AppIcons.darkLeftCircularArrow
+                          : startController.isArLanguage
+                              ? AppIcons.lightRightCircularArrow
+                              : AppIcons.lightLeftCircularArrow,
                     ),
                   ),
           ),
@@ -54,8 +60,12 @@ class OnboardingPageNavigationDots extends StatelessWidget {
             onTap: () => controller.moveToNextPage(),
             child: SvgPicture.asset(
               isDarkMode
-                  ? AppIcons.darkRightCircularArrow
-                  : AppIcons.lightRightCircularArrow,
+                  ? startController.isArLanguage
+                      ? AppIcons.darkLeftCircularArrow
+                      : AppIcons.darkRightCircularArrow
+                  : startController.isArLanguage
+                      ? AppIcons.lightLeftCircularArrow
+                      : AppIcons.lightRightCircularArrow,
             ),
           ),
         ],
