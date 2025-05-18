@@ -61,6 +61,11 @@ abstract class AppTheme {
         color: AppColors.black2,
         fontWeight: FontWeight.w400,
       ),
+      headlineMedium: GoogleFonts.inter(
+        fontSize: 24,
+        color: AppColors.black,
+        fontWeight: FontWeight.w400,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.offWhiteBlue,
@@ -124,6 +129,11 @@ abstract class AppTheme {
       headlineSmall: GoogleFonts.inter(
         fontSize: 22,
         color: AppColors.blue,
+        fontWeight: FontWeight.w400,
+      ),
+      headlineMedium: GoogleFonts.inter(
+        fontSize: 24,
+        color: AppColors.whiteGray,
         fontWeight: FontWeight.w400,
       ),
     ),
