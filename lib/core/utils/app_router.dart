@@ -4,6 +4,8 @@ import 'package:evently_app/features/auth/login/presentation/views/login_view.da
 import 'package:evently_app/features/auth/login/presentation/views_model/login_cubit.dart';
 import 'package:evently_app/features/auth/register/presentation/views/register_view.dart';
 import 'package:evently_app/features/auth/register/presentation/views_model/register_cubit.dart';
+import 'package:evently_app/features/auth/verify_email/presentation/views/verify_email_view.dart';
+import 'package:evently_app/features/auth/verify_email/presentation/views_model/verify_email_cubit.dart';
 import 'package:evently_app/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:evently_app/features/onboarding/presentation/views_model/onboarding_cubit.dart';
 import 'package:evently_app/features/start/presentation/views/start_view.dart';
@@ -28,6 +30,10 @@ abstract class AppRouter {
     ForgetPasswordView.routeName: (_) => BlocProvider<ForgetPasswordCubit>(
           create: (context) => ForgetPasswordCubit(),
           child: const ForgetPasswordView(),
+        ),
+    VerifyEmailView.routeName: (_) => BlocProvider<VerifyEmailCubit>(
+          create: (context) => VerifyEmailCubit(),
+          child: const VerifyEmailView(),
         ),
   };
 }
