@@ -1,5 +1,7 @@
+import 'package:evently_app/core/cache/shared_preferences_helper.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/core/constants/const_keys.dart';
 import 'package:evently_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:evently_app/features/onboarding/presentation/views_model/onboarding_state.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +76,13 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     onBoardingPageController.previousPage(
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeOut,
+    );
+  }
+
+  Future<void> finishedOnboardingFirstTime() async {
+    await SharedPreferencesHelper.saveBool(
+      key: ConstKeys.isHomeScreen,
+      value: true,
     );
   }
 
