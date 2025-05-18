@@ -9,15 +9,20 @@ abstract class SignInWithGoogleService {
   static final _auth = FirebaseAuth.instance;
   static Future<Either<Failure, UserCredential>> signInWithGoogle() async {
     try {
+      late final OAuthCredential credential;
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
       final GoogleSignInAuthentication? googleAuth =
           await userAccount?.authentication;
 
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
+      try {
+        credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+      } catch (e) {
+        throw "Login with google has been canceled";
+      }
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
       return right(userCredential);
@@ -26,6 +31,12 @@ abstract class SignInWithGoogleService {
         return left(FirebaseErrors.firebaseAuth(e));
       } else if (e is FirebaseException) {
         return left(FirebaseErrors.firebaseExceptions(e));
+      } else if (e == "Login with google has been canceled") {
+        return left(
+          const FirebaseErrors(
+            errorMessage: AppText.googleLoginCanceled,
+          ),
+        );
       }
       return left(
         FirebaseErrors(
