@@ -12,7 +12,9 @@ import 'package:evently_app/features/auth/login/presentation/views/widgets/login
 import 'package:evently_app/features/auth/login/presentation/views/widgets/or_divider.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_cubit.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_state.dart';
+import 'package:evently_app/features/auth/verify_email/presentation/views/verify_email_view.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views/evently_bottom_navigation_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,9 +44,15 @@ class LoginViewBody extends StatelessWidget {
           );
         } else if (state is LoginSuccessState) {
           FullScreenLoader.stopLoading(context: context);
-          Navigator.of(context).pushReplacementNamed(
-            EventlyBottomNavigationView.routeName,
-          );
+          if (FirebaseAuth.instance.currentUser!.emailVerified) {
+            Navigator.of(context).pushReplacementNamed(
+              EventlyBottomNavigationView.routeName,
+            );
+          } else {
+            Navigator.of(context).pushReplacementNamed(
+              VerifyEmailView.routeName,
+            );
+          }
         }
       },
       child: const SingleChildScrollView(
