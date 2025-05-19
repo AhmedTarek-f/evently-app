@@ -40,4 +40,6 @@ abstract final class AppIcons {
       "assets/icons/inactive_profile_dark.svg";
   static const String inactiveProfileLight =
       "assets/icons/inactive_profile_light.svg";
+  static const String dropDown = "assets/icons/drop_down.svg";
+  static const String logout = "assets/icons/logout.svg";
 }
