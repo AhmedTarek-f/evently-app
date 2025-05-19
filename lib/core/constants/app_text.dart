@@ -62,10 +62,22 @@ abstract final class AppText {
       "We are processing your information...";
 
   // Evently Bottom Navigation Bar
+
   static const String home = "Home";
   static const String map = "Map";
   static const String favorite = "Favorite";
   static const String profile = "Profile";
+
+  // Profile
+
+  static const String light = "Light";
+  static const String dark = "Dark";
+  static const String arabic = "Arabic";
+  static const String english = "English";
+  static const String loggingYouOut = "Logging you out...";
+  static const String logout = "logout";
+  static const String languageCapital = "Language";
+  static const String themeCapital = "Theme";
 
   // Firebase Exceptions
   static const String emailAlreadyInUse =
