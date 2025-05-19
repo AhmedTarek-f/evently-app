@@ -51,6 +51,7 @@ dependencies:
   another_flushbar: ^1.12.30
   iconsax_flutter: ^1.0.0
   equatable: ^2.0.7
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:
