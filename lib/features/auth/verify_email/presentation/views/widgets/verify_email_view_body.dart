@@ -8,7 +8,7 @@ import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/auth/verify_email/presentation/views_model/verify_email_cubit.dart';
 import 'package:evently_app/features/auth/verify_email/presentation/views_model/verify_email_state.dart';
-import 'package:evently_app/features/home/presentation/views/home_view.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views/evently_bottom_navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,11 +51,9 @@ class VerifyEmailViewBody extends StatelessWidget {
                   title: AppText.yourAccountSuccessfullyCreated,
                   subTitle: AppText.yourAccountSuccessfullyCreatedMessage,
                   onPressed: () async {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                        builder: (context) => const HomeView(),
-                      ),
-                      (route) => false,
+                    Navigator.pushReplacementNamed(
+                      context,
+                      EventlyBottomNavigationView.routeName,
                     );
                   }),
             ),
