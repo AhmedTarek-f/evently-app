@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_drop_down_button_form_field.dart';
+import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +18,7 @@ class LanguageAndThemeColumn extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Language",
+            AppText.languageCapital.tr(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Theme.of(context).colorScheme.secondary,
                 ),
@@ -32,7 +34,7 @@ class LanguageAndThemeColumn extends StatelessWidget {
           ),
           const RSizedBox(height: 16),
           Text(
-            "Theme",
+            AppText.themeCapital.tr(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Theme.of(context).colorScheme.secondary,
                 ),

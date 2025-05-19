@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
+import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +39,7 @@ class LogoutButton extends StatelessWidget {
             ),
             const RSizedBox(width: 8),
             Text(
-              "Logout",
+              AppText.logout.tr(),
               style: GoogleFonts.inter(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w400,
