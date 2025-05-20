@@ -1,3 +1,4 @@
+import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views/widgets/evently_bottom_navigation_bar.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views/widgets/evently_floating_action_button.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
@@ -14,18 +15,30 @@ class EventlyBottomNavigationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<EventlyBottomNavigationCubit>(context);
-    return BlocBuilder<StartCubit, StartState>(
-      buildWhen: (previous, current) =>
-          current is ChangeLanguageIndexState ||
-          current is ChangeThemeIndexState,
-      builder: (context, state) => Scaffold(
-        bottomNavigationBar: const EventlyBottomNavigationBar(),
-        floatingActionButton: const EventlyFloatingActionButton(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        body: BlocBuilder<EventlyBottomNavigationCubit,
-            EventlyBottomNavigationState>(
-          builder: (context, state) =>
-              controller.eventlyNavigationList[state.tapIndex],
+    return BlocListener<EventlyBottomNavigationCubit,
+        EventlyBottomNavigationState>(
+      listener: (context, state) {
+        if (state is FetchUserDataFailureState) {
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        }
+      },
+      child: BlocBuilder<StartCubit, StartState>(
+        buildWhen: (previous, current) =>
+            current is ChangeLanguageIndexState ||
+            current is ChangeThemeIndexState,
+        builder: (context, state) => Scaffold(
+          bottomNavigationBar: const EventlyBottomNavigationBar(),
+          floatingActionButton: const EventlyFloatingActionButton(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          body: BlocBuilder<EventlyBottomNavigationCubit,
+              EventlyBottomNavigationState>(
+            builder: (context, state) =>
+                controller.eventlyNavigationList[state.tapIndex],
+          ),
         ),
       ),
     );
