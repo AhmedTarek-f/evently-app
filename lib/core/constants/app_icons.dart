@@ -42,4 +42,7 @@ abstract final class AppIcons {
       "assets/icons/inactive_profile_light.svg";
   static const String dropDown = "assets/icons/drop_down.svg";
   static const String logout = "assets/icons/logout.svg";
+  static const String gender = "assets/icons/gender.svg";
+  static const String maleGender = "assets/icons/male_gender.svg";
+  static const String femaleGender = "assets/icons/female_gender.svg";
 }
