@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
+import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
 import 'package:evently_app/features/auth/login/data/repositories/login_repository.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_state.dart';
+import 'package:evently_app/features/auth/register/data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +49,10 @@ class LoginCubit extends Cubit<LoginState> {
             errorMessage: failure.errorMessage,
           ),
         ),
-        (loginSuccess) => emit(LoginSuccessState()),
+        (loginSuccess) async {
+          await getUserData();
+          emit(LoginSuccessState());
+        },
       );
     } else {
       enableAutoValidateMode();
@@ -64,7 +69,37 @@ class LoginCubit extends Cubit<LoginState> {
           errorMessage: failure.errorMessage,
         ),
       ),
-      (loginSuccess) => emit(LoginSuccessState()),
+      (googleUserCredential) async {
+        var currentUserResult = await FireStoreServices.addUser(
+          userData: UserModel(
+            id: googleUserCredential.user?.uid ?? "",
+            userName: googleUserCredential.user?.displayName ?? "",
+            email: googleUserCredential.user?.email ?? "",
+            gender: "",
+            photoUrl: googleUserCredential.user?.photoURL,
+          ),
+        );
+
+        currentUserResult.fold(
+          (failure) => LoginFailureState(
+            errorMessage: failure.errorMessage,
+          ),
+          (userData) => FireStoreServices.currentUserData = userData,
+        );
+        emit(LoginSuccessState());
+      },
+    );
+  }
+
+  Future<void> getUserData() async {
+    var result = await LoginRepository.getUserData();
+    result.fold(
+      (failure) => emit(
+        LoginFailureState(
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (userData) => FireStoreServices.currentUserData = userData,
     );
   }
 
