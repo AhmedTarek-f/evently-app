@@ -10,6 +10,8 @@ abstract final class AppImages {
   static const String eventlyLogo = "assets/images/evently_logo.png";
   static const String forgetPassword = "assets/images/forget_password.png";
   static const String routeLogo = "assets/images/route_logo.jpg";
+  static const String femaleUser = "assets/images/female_user.jpg";
+  static const String maleUser = "assets/images/male_user.jpg";
   static const String deliveredEmailIllustration =
       "assets/images/receives_email.png";
 
