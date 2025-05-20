@@ -45,4 +45,6 @@ abstract final class AppIcons {
   static const String gender = "assets/icons/gender.svg";
   static const String maleGender = "assets/icons/male_gender.svg";
   static const String femaleGender = "assets/icons/female_gender.svg";
+  static const String search = "assets/icons/search.svg";
+  static const String favoriteFilled = "assets/icons/favorite_filled.svg";
 }
