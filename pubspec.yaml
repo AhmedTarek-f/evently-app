@@ -80,6 +80,8 @@ flutter:
   assets:
     - assets/splash/
     - assets/images/
+    - assets/images/events/dark/
+    - assets/images/events/light/
     - assets/icons/
     - assets/translations/
     - assets/animations/
