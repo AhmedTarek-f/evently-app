@@ -23,13 +23,13 @@ abstract class FireStoreServices {
     try {
       await getUserCollection().doc(userData.id).set(userData);
       return right(userData);
-    } catch (e) {
-      if (e is FirebaseException) {
-        return left(FirebaseErrors.firebaseExceptions(e));
+    } catch (error) {
+      if (error is FirebaseException) {
+        return left(FirebaseErrors.firebaseExceptions(error));
       }
       return left(
         FirebaseErrors(
-          errorMessage: "${AppText.unknownErrorMessage} ${e.toString()}",
+          errorMessage: "${AppText.unknownErrorMessage} ${error.toString()}",
         ),
       );
     }
@@ -42,13 +42,13 @@ abstract class FireStoreServices {
       final snapshot = await getUserCollection().doc(userId).get();
       final UserModel userData = snapshot.data() ?? UserModel.empty();
       return right(userData);
-    } catch (e) {
-      if (e is FirebaseException) {
-        return left(FirebaseErrors.firebaseExceptions(e));
+    } catch (error) {
+      if (error is FirebaseException) {
+        return left(FirebaseErrors.firebaseExceptions(error));
       }
       return left(
         FirebaseErrors(
-          errorMessage: "${AppText.unknownErrorMessage} ${e.toString()}",
+          errorMessage: "${AppText.unknownErrorMessage} ${error.toString()}",
         ),
       );
     }
