@@ -30,6 +30,7 @@ class EventlyBottomNavigationView extends StatelessWidget {
             current is ChangeLanguageIndexState ||
             current is ChangeThemeIndexState,
         builder: (context, state) => Scaffold(
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: const EventlyBottomNavigationBar(),
           floatingActionButton: const EventlyFloatingActionButton(),
           floatingActionButtonLocation:
