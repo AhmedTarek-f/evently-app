@@ -25,7 +25,7 @@ class VerifyEmailViewBody extends StatelessWidget {
           current is SendEmailVerificationFailureState ||
           current is SendEmailVerificationSuccessState ||
           current is EmailVerifiedState,
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is SendEmailVerificationFailureState) {
           Loaders.showErrorMessage(
             message: state.errorMessage,
@@ -43,22 +43,25 @@ class VerifyEmailViewBody extends StatelessWidget {
             context: context,
           );
         } else if (state is EmailVerifiedState) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => SuccessScreen(
-                  isAnimation: true,
-                  image: AppImages.successfullyRegisterAnimation,
-                  title: AppText.yourAccountSuccessfullyCreated,
-                  subTitle: AppText.yourAccountSuccessfullyCreatedMessage,
-                  onPressed: () async {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      EventlyBottomNavigationView.routeName,
-                    );
-                  }),
-            ),
-            (route) => false,
-          );
+          await controller.getUserData();
+          if (context.mounted) {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => SuccessScreen(
+                    isAnimation: true,
+                    image: AppImages.successfullyRegisterAnimation,
+                    title: AppText.yourAccountSuccessfullyCreated,
+                    subTitle: AppText.yourAccountSuccessfullyCreatedMessage,
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        EventlyBottomNavigationView.routeName,
+                      );
+                    }),
+              ),
+              (route) => false,
+            );
+          }
         }
       },
       child: SingleChildScrollView(
