@@ -6,7 +6,7 @@ import 'package:evently_app/core/utils/errors/firebase_errors.dart';
 import 'package:evently_app/features/auth/register/data/models/user_model.dart';
 
 abstract class FireStoreServices {
-  static late UserModel? currentUserData;
+  static UserModel? currentUserData;
   static final _db = FirebaseFirestore.instance;
 
   static CollectionReference<UserModel> getUserCollection() {
