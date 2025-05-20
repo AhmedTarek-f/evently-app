@@ -83,6 +83,9 @@ abstract final class AppText {
   static const String languageCapital = "Language";
   static const String themeCapital = "Theme";
 
+  // Favorite
+  static const String searchForEvent = "Search for Event";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
