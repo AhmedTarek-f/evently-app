@@ -1,5 +1,5 @@
 import 'package:evently_app/core/constants/app_colors.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +16,7 @@ class UserProfileDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              FirebaseAuth.instance.currentUser?.displayName ?? "Ahmed Tarek",
+              FireStoreServices.currentUserData?.userName ?? "",
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: AppColors.white,
                     fontWeight: FontWeight.w700,
@@ -26,7 +26,7 @@ class UserProfileDetails extends StatelessWidget {
             ),
             const RSizedBox(height: 10),
             Text(
-              FirebaseAuth.instance.currentUser?.email ?? "",
+              FireStoreServices.currentUserData?.email ?? "",
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.white,
                   ),
