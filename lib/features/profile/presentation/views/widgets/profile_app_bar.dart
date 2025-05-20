@@ -1,5 +1,7 @@
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_images.dart';
+import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
 import 'package:evently_app/features/profile/presentation/views/widgets/user_profile_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,11 +39,32 @@ class ProfileAppBar extends StatelessWidget {
                   topLeft: Radius.circular(24.r),
                   topRight: Radius.circular(1000.r),
                 ),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    AppImages.routeLogo,
-                  ),
-                ),
+              ),
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: FireStoreServices.currentUserData?.photoUrl != null &&
+                        FireStoreServices.currentUserData?.photoUrl?.trim() !=
+                            ""
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(1000.r),
+                        child: Image.network(
+                          FireStoreServices.currentUserData!.photoUrl!,
+                          width: 92.r,
+                          fit: BoxFit.contain,
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(1000.r),
+                        child: Image.asset(
+                          FireStoreServices.currentUserData!.gender
+                                      ?.toLowerCase() ==
+                                  AppText.male.toLowerCase()
+                              ? AppImages.maleUser
+                              : AppImages.femaleUser,
+                          width: 92.r,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
               ),
             ),
             const RSizedBox(width: 16),
