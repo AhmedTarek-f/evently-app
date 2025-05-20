@@ -23,11 +23,13 @@ abstract final class AppText {
   static const String or = " Or";
   static const String loginWithGoogle = "Login With Google";
   static const String name = "Name";
+  static const String genderHint = "Select your gender";
   static const String rePassword = "Re Password";
   static const String alreadyHaveAccount = "Already Have Account ? ";
   static const String resetPassword = "Reset Password";
   static const String forgetPasswordTitle = "Forget Password";
   static const String userNameValidation = "User name field is required";
+  static const String genderValidation = "Gender field is required";
   static const String emailValidation1 = "Email field is required";
   static const String emailValidation2 = "Enter a valid email";
   static const String passwordValidation1 = "Password is required";
@@ -60,6 +62,8 @@ abstract final class AppText {
   static const String loggingYouIn = "Logging you in...";
   static const String processingYourInformation =
       "We are processing your information...";
+  static const String male = "Male";
+  static const String female = "Female";
 
   // Evently Bottom Navigation Bar
 
@@ -173,6 +177,22 @@ abstract final class AppText {
       'The reCAPTCHA response is invalid. Please try again.';
   static const String googleLoginCanceled =
       "Login with google has been canceled";
+  // FireStore-related errors
+  static const String permissionDenied =
+      "You do not have permission to access this resource.";
+  static const String unavailable = "The service is currently unavailable.";
+  static const String notFound = "The requested document was not found.";
+  static const String alreadyExists = "The document already exists.";
+  static const String resourceExhausted =
+      "Quota exceeded or resource exhausted.";
+  static const String cancelled = "The operation was cancelled.";
+  static const String deadlineExceeded =
+      "The deadline for the operation was exceeded.";
+  static const String dataLoss =
+      "Unrecoverable data loss or corruption occurred.";
+  static const String invalidArgument = "Invalid argument provided.";
+  static const String aborted = "The operation was aborted.";
+  static const String outOfRange = "The value provided is out of range.";
   static const String unknownErrorMessage =
       "An unknown error has occurred with the following message:";
 }
