@@ -3,5 +3,14 @@
   "startBody": "اختر السمة واللغة المفضلة لديك للبدء بتجربة مريحة ومصممة خصيصًا لتناسب أسلوبك.",
   "language": "اللغة",
   "theme": "الأضائة",
-  "startButton": "لنبدأ"
+  "startButton": "لنبدأ",
+  "sport": "رياضة",
+  "birthday": "عيد ميلاد",
+  "meeting": "مقابلة",
+  "gaming": "الألعاب",
+  "eating": "الأكل",
+  "holiday": "عطلة",
+  "exhibition": "معرض",
+  "workShop": "ورشة عمل",
+  "bookClub": "نادي الكتاب"
 }

@@ -3,5 +3,14 @@
   "startBody": "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
   "language": "Language",
   "theme": "Theme",
-  "startButton": "Let’s Start"
+  "startButton": "Let’s Start",
+  "sport": "Sport",
+  "birthday": "Birthday",
+  "meeting": "Meeting",
+  "gaming": "Gaming",
+  "eating": "Eating",
+  "holiday": "Holiday",
+  "exhibition": "Exhibition",
+  "workShop": "Work Shop",
+  "bookClub": "Book Club"
 }
