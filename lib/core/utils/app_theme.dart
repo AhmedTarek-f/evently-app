@@ -88,6 +88,51 @@ abstract class AppTheme {
         fontWeight: FontWeight.w700,
       ),
     ),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: AppColors.black,
+      dialBackgroundColor: AppColors.blue,
+      dialHandColor: AppColors.overDarkBlue,
+      dialTextColor: AppColors.white,
+      dayPeriodColor: AppColors.blue,
+      dayPeriodTextColor: AppColors.white,
+      entryModeIconColor: AppColors.white,
+      hourMinuteColor: AppColors.blue,
+      hourMinuteTextColor: AppColors.white,
+      timeSelectorSeparatorColor: const WidgetStatePropertyAll(
+        AppColors.white,
+      ),
+      helpTextStyle: GoogleFonts.inter(
+        fontSize: 16.sp,
+        color: AppColors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      confirmButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      ),
+      cancelButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      ),
+    ),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: AppColors.black,
+      headerHelpStyle: GoogleFonts.inter(
+        fontSize: 16.sp,
+        color: AppColors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      headerForegroundColor: AppColors.white,
+      yearForegroundColor: const WidgetStatePropertyAll(AppColors.white),
+      dayForegroundColor: const WidgetStatePropertyAll(AppColors.white),
+      todayForegroundColor: const WidgetStatePropertyAll(AppColors.white),
+      dividerColor: AppColors.blue,
+      shadowColor: AppColors.blue,
+      confirmButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      ),
+      cancelButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      ),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -177,6 +222,50 @@ abstract class AppTheme {
       selectedLabelStyle: GoogleFonts.inter(
         fontSize: 12.sp,
         fontWeight: FontWeight.w700,
+      ),
+    ),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: AppColors.overDarkBlue,
+      dialBackgroundColor: AppColors.blue,
+      dialHandColor: AppColors.overDarkBlue,
+      dialTextColor: AppColors.white,
+      dayPeriodColor: AppColors.blue,
+      dayPeriodTextColor: AppColors.whiteGray,
+      entryModeIconColor: AppColors.whiteGray,
+      hourMinuteColor: AppColors.blue,
+      hourMinuteTextColor: AppColors.whiteGray,
+      timeSelectorSeparatorColor: const WidgetStatePropertyAll(
+        AppColors.overDarkBlue,
+      ),
+      helpTextStyle: GoogleFonts.inter(
+        fontSize: 16.sp,
+        color: AppColors.whiteGray,
+        fontWeight: FontWeight.w700,
+      ),
+      confirmButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      ),
+      cancelButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      ),
+    ),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: AppColors.overDarkBlue,
+      headerHelpStyle: GoogleFonts.inter(
+        fontSize: 16.sp,
+        color: AppColors.whiteGray,
+        fontWeight: FontWeight.w700,
+      ),
+      headerForegroundColor: AppColors.whiteGray,
+      yearForegroundColor: const WidgetStatePropertyAll(AppColors.white),
+      dayForegroundColor: const WidgetStatePropertyAll(AppColors.white),
+      dividerColor: AppColors.blue,
+      shadowColor: AppColors.blue,
+      confirmButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      ),
+      cancelButtonStyle: const ButtonStyle(
+        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
       ),
     ),
   );
