@@ -48,4 +48,20 @@ abstract class Validations {
     }
     return null;
   }
+
+  static String? eventTitleValidation(String? title) {
+    if (title?.trim() == "" || (title?.isEmpty ?? true) || title == null) {
+      return AppText.eventTitleValidation.tr();
+    }
+    return null;
+  }
+
+  static String? eventDescriptionValidation(String? description) {
+    if (description?.trim() == "" ||
+        (description?.isEmpty ?? true) ||
+        description == null) {
+      return AppText.eventDescriptionValidation.tr();
+    }
+    return null;
+  }
 }
