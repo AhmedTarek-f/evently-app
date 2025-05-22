@@ -86,6 +86,36 @@ abstract final class AppText {
   // Favorite
   static const String searchForEvent = "Search for Event";
 
+  // Create Event
+  static const String createEvent = "Create Event";
+  static const String sport = "sport";
+  static const String birthday = "birthday";
+  static const String meeting = "meeting";
+  static const String gaming = "gaming";
+  static const String eating = "eating";
+  static const String holiday = "holiday";
+  static const String exhibition = "exhibition";
+  static const String workShop = "workShop";
+  static const String bookClub = "bookClub";
+  static const String title = "Title";
+  static const String titleHint = "Event Title";
+  static const String description = "Description";
+  static const String descriptionHint = "Event Description";
+  static const String eventDate = "Event Date";
+  static const String eventDateValidation = "Event date is required";
+  static const String eventTime = "Event Time";
+  static const String eventTimeValidation = "Event time is required";
+  static const String chooseDate = "Choose Date";
+  static const String chooseTime = "Choose Time";
+  static const String location = "Location";
+  static const String chooseEventLocation = "Choose Event Location";
+  static const String addEvent = "Add Event";
+  static const String eventTitleValidation = "Title field is required";
+  static const String eventDescriptionValidation =
+      "Description field is required";
+  static const String addingEventSuccessMessage =
+      "Event has been created successfully";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
