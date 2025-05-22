@@ -47,4 +47,17 @@ abstract final class AppIcons {
   static const String femaleGender = "assets/icons/female_gender.svg";
   static const String search = "assets/icons/search.svg";
   static const String favoriteFilled = "assets/icons/favorite_filled.svg";
+  static const String birthday = "assets/icons/birthday.svg";
+  static const String bookClub = "assets/icons/book_club.svg";
+  static const String eating = "assets/icons/eating.svg";
+  static const String exhibition = "assets/icons/exhibition.svg";
+  static const String gaming = "assets/icons/gaming.svg";
+  static const String holiday = "assets/icons/holiday.svg";
+  static const String meeting = "assets/icons/meeting.svg";
+  static const String sport = "assets/icons/sport.svg";
+  static const String workShop = "assets/icons/workshop.svg";
+  static const String noteEdit = "assets/icons/note_edit.svg";
+  static const String location = "assets/icons/location.svg";
+  static const String calendar = "assets/icons/calendar.svg";
+  static const String clock = "assets/icons/clock.svg";
 }
