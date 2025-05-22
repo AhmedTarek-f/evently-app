@@ -1,4 +1,7 @@
+import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_images.dart';
+import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/create_event/data/models/category_item_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class EventlyMethodsHelper {
@@ -56,4 +59,43 @@ abstract class EventlyMethodsHelper {
       }
     }
   }
+
+  static final List<CategoryItemModel> eventCategoriesList = const [
+    CategoryItemModel(
+      categoryName: AppText.bookClub,
+      categoryIcon: AppIcons.bookClub,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.sport,
+      categoryIcon: AppIcons.sport,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.birthday,
+      categoryIcon: AppIcons.birthday,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.eating,
+      categoryIcon: AppIcons.eating,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.gaming,
+      categoryIcon: AppIcons.gaming,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.meeting,
+      categoryIcon: AppIcons.meeting,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.holiday,
+      categoryIcon: AppIcons.holiday,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.workShop,
+      categoryIcon: AppIcons.workShop,
+    ),
+    CategoryItemModel(
+      categoryName: AppText.exhibition,
+      categoryIcon: AppIcons.exhibition,
+    ),
+  ];
 }
