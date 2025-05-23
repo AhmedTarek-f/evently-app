@@ -19,7 +19,7 @@ abstract class Loaders {
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.white,
             ),
-        textAlign: TextAlign.justify,
+        textAlign: TextAlign.start,
       ),
       icon: Icon(
         Iconsax.warning_2_copy,
@@ -54,7 +54,7 @@ abstract class Loaders {
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.white,
             ),
-        textAlign: TextAlign.justify,
+        textAlign: TextAlign.start,
       ),
       icon: Icon(
         Iconsax.warning_2_copy,
@@ -89,7 +89,7 @@ abstract class Loaders {
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.white,
             ),
-        textAlign: TextAlign.justify,
+        textAlign: TextAlign.start,
       ),
       icon: Icon(
         Iconsax.warning_2_copy,
