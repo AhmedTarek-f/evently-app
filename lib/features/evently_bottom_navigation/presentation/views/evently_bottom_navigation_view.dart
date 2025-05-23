@@ -38,7 +38,7 @@ class EventlyBottomNavigationView extends StatelessWidget {
           body: BlocBuilder<EventlyBottomNavigationCubit,
               EventlyBottomNavigationState>(
             builder: (context, state) =>
-                controller.eventlyNavigationList[state.tapIndex],
+                controller.eventlyNavigationList[controller.currentTapIndex],
           ),
         ),
       ),
