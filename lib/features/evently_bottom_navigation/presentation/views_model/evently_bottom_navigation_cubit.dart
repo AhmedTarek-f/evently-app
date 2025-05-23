@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
-  EventlyBottomNavigationCubit()
-      : super(const EventlyBottomNavigationInitial(tapIndex: 0)) {
+  EventlyBottomNavigationCubit() : super(EventlyBottomNavigationInitial()) {
     fetchUserData();
   }
+  int currentTapIndex = 0;
 
   final List<Widget> eventlyNavigationList = const [
     HomeView(),
@@ -22,21 +22,23 @@ class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
   ];
 
   void changeIndex({required int index}) {
-    emit(ChangeTapState(tapIndex: index));
+    if (currentTapIndex != index) {
+      currentTapIndex = index;
+      emit(ChangeTapState());
+    }
   }
 
   Future<void> fetchUserData() async {
     if (FireStoreServices.currentUserData == null) {
-      emit(const FetchUserDataLoadingState(tapIndex: 0));
+      emit(FetchUserDataLoadingState());
       var userDataResult = await EventlyBottomNavRepository.getUserData();
       userDataResult.fold(
         (failure) => emit(FetchUserDataFailureState(
-          tapIndex: 0,
           errorMessage: failure.errorMessage,
         )),
         (userData) {
           FireStoreServices.currentUserData = userData;
-          emit(const FetchUserDataSuccessState(tapIndex: 0));
+          emit(FetchUserDataSuccessState());
         },
       );
     }
