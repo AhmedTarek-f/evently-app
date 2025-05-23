@@ -1,6 +1,7 @@
 import 'package:evently_app/core/constants/app_colors.dart';
-import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserProfileDetails extends StatelessWidget {
@@ -8,6 +9,8 @@ class UserProfileDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final eventlyController =
+        BlocProvider.of<EventlyBottomNavigationCubit>(context);
     return Expanded(
       child: RPadding(
         padding: const EdgeInsets.only(bottom: 14),
@@ -16,7 +19,7 @@ class UserProfileDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              FireStoreServices.currentUserData?.userName ?? "",
+              eventlyController.currentUserData?.userName ?? "",
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: AppColors.white,
                     fontWeight: FontWeight.w700,
@@ -26,7 +29,7 @@ class UserProfileDetails extends StatelessWidget {
             ),
             const RSizedBox(height: 10),
             Text(
-              FireStoreServices.currentUserData?.email ?? "",
+              eventlyController.currentUserData?.email ?? "",
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: AppColors.white,
                   ),

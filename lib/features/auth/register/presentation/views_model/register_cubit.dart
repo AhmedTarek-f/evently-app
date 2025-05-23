@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
-import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
 import 'package:evently_app/features/auth/register/data/models/user_model.dart';
 import 'package:evently_app/features/auth/register/data/repositories/register_repository.dart';
 import 'package:evently_app/features/auth/register/presentation/views_model/register_state.dart';
@@ -71,7 +70,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           ),
         ),
         (registerSuccess) async {
-          var result = await FireStoreServices.addUser(
+          var result = await RegisterRepository.addUser(
             userData: UserModel(
               id: registerSuccess.user?.uid ?? "",
               userName: userNameController.text,

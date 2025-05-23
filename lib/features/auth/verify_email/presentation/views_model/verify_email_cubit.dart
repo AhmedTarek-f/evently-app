@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
 import 'package:evently_app/features/auth/verify_email/data/repositories/verifiy_email_repository.dart';
 import 'package:evently_app/features/auth/verify_email/presentation/views_model/verify_email_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,17 +64,5 @@ class VerifyEmailCubit extends Cubit<VerifyEmailState> {
     if (currentUser != null && currentUser.emailVerified) {
       emit(EmailVerifiedState());
     }
-  }
-
-  Future<void> getUserData() async {
-    var result = await VerifyEmailRepository.getUserData();
-    result.fold(
-      (failure) => emit(
-        FetchUserDataFailureState(
-          errorMessage: failure.errorMessage,
-        ),
-      ),
-      (userData) => FireStoreServices.currentUserData = userData,
-    );
   }
 }

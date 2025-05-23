@@ -1,9 +1,10 @@
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
-import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:evently_app/features/profile/presentation/views/widgets/user_profile_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -11,6 +12,9 @@ class ProfileAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final eventlyController =
+        BlocProvider.of<EventlyBottomNavigationCubit>(context);
+
     return Container(
       height: 204.h,
       width: ScreenUtil().screenWidth,
@@ -42,13 +46,13 @@ class ProfileAppBar extends StatelessWidget {
               ),
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child: FireStoreServices.currentUserData?.photoUrl != null &&
-                        FireStoreServices.currentUserData?.photoUrl?.trim() !=
+                child: eventlyController.currentUserData?.photoUrl != null &&
+                        eventlyController.currentUserData?.photoUrl?.trim() !=
                             ""
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(1000.r),
                         child: Image.network(
-                          FireStoreServices.currentUserData!.photoUrl!,
+                          eventlyController.currentUserData!.photoUrl!,
                           width: 92.r,
                           fit: BoxFit.contain,
                         ),
@@ -56,7 +60,7 @@ class ProfileAppBar extends StatelessWidget {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(1000.r),
                         child: Image.asset(
-                          FireStoreServices.currentUserData!.gender
+                          eventlyController.currentUserData!.gender
                                       ?.toLowerCase() ==
                                   AppText.male.toLowerCase()
                               ? AppImages.maleUser

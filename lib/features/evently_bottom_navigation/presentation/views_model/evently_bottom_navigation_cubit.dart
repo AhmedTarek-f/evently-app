@@ -1,4 +1,4 @@
-import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
+import 'package:evently_app/features/auth/register/data/models/user_model.dart';
 import 'package:evently_app/features/evently_bottom_navigation/data/repositories/evently_bottom_nav_repository.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_state.dart';
 import 'package:evently_app/features/favorite/presentation/views/favorite_view.dart';
@@ -13,6 +13,7 @@ class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
     fetchUserData();
   }
   int currentTapIndex = 0;
+  UserModel? currentUserData;
 
   final List<Widget> eventlyNavigationList = const [
     HomeView(),
@@ -29,18 +30,16 @@ class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
   }
 
   Future<void> fetchUserData() async {
-    if (FireStoreServices.currentUserData == null) {
-      emit(FetchUserDataLoadingState());
-      var userDataResult = await EventlyBottomNavRepository.getUserData();
-      userDataResult.fold(
-        (failure) => emit(FetchUserDataFailureState(
-          errorMessage: failure.errorMessage,
-        )),
-        (userData) {
-          FireStoreServices.currentUserData = userData;
-          emit(FetchUserDataSuccessState());
-        },
-      );
-    }
+    emit(FetchUserDataLoadingState());
+    var userDataResult = await EventlyBottomNavRepository.getUserData();
+    userDataResult.fold(
+      (failure) => emit(FetchUserDataFailureState(
+        errorMessage: failure.errorMessage,
+      )),
+      (userData) {
+        currentUserData = userData;
+        emit(FetchUserDataSuccessState());
+      },
+    );
   }
 }

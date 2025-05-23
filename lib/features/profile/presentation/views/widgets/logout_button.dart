@@ -3,7 +3,6 @@ import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
-import 'package:evently_app/core/utils/services/firestore_services/firestore_services.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +25,6 @@ class LogoutButton extends StatelessWidget {
       child: CustomElevatedButton(
         isText: false,
         onPressed: () async {
-          FireStoreServices.currentUserData = null;
           await controller.logout();
         },
         backgroundColor: AppColors.red,

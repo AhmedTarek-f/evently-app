@@ -43,7 +43,6 @@ class VerifyEmailViewBody extends StatelessWidget {
             context: context,
           );
         } else if (state is EmailVerifiedState) {
-          await controller.getUserData();
           if (context.mounted) {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
