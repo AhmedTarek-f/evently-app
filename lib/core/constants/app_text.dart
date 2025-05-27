@@ -72,6 +72,16 @@ abstract final class AppText {
   static const String favorite = "Favorite";
   static const String profile = "Profile";
 
+  // Home
+  static const String welcomeBack = "Welcome Back ✨";
+  static const String en = "EN";
+  static const String ar = "Ar";
+  static const String placeRightNow = "Cairo , Egypt";
+  static const String all = "All";
+  static const String emptyEvents = "There are no available events yet!";
+  static const String noAvailable = "There are no available";
+  static const String eventsYet = "events yet!";
+
   // Profile
 
   static const String light = "Light";
