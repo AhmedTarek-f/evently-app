@@ -20,6 +20,7 @@ abstract class AppTheme {
       primaryFixed: AppColors.offWhiteBlue,
       surfaceContainer: AppColors.gray,
       inversePrimary: AppColors.blue,
+      onSecondaryContainer: AppColors.offWhiteBlue,
       brightness: Brightness.light,
     ),
     textTheme: TextTheme(
@@ -68,6 +69,11 @@ abstract class AppTheme {
         color: AppColors.black,
         fontWeight: FontWeight.w400,
       ),
+      labelLarge: GoogleFonts.inter(
+        fontSize: 24.sp,
+        color: AppColors.offWhiteBlue,
+        fontWeight: FontWeight.w700,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.offWhiteBlue,
@@ -106,11 +112,25 @@ abstract class AppTheme {
         color: AppColors.white,
         fontWeight: FontWeight.w700,
       ),
-      confirmButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      confirmButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.white),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
-      cancelButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      cancelButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.white),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     ),
     datePickerTheme: DatePickerThemeData(
@@ -126,11 +146,25 @@ abstract class AppTheme {
       todayForegroundColor: const WidgetStatePropertyAll(AppColors.white),
       dividerColor: AppColors.blue,
       shadowColor: AppColors.blue,
-      confirmButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      confirmButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.white),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
-      cancelButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.white),
+      cancelButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.white),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     ),
   );
@@ -151,6 +185,7 @@ abstract class AppTheme {
       onPrimaryContainer: AppColors.whiteGray,
       surfaceContainer: AppColors.blue,
       inversePrimary: AppColors.overDarkBlue,
+      onSecondaryContainer: AppColors.blue,
       brightness: Brightness.dark,
     ),
     textTheme: TextTheme(
@@ -204,6 +239,11 @@ abstract class AppTheme {
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
       ),
+      labelLarge: GoogleFonts.inter(
+        fontSize: 24.sp,
+        color: AppColors.whiteGray,
+        fontWeight: FontWeight.w700,
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.overDarkBlue,
@@ -242,11 +282,25 @@ abstract class AppTheme {
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
       ),
-      confirmButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      confirmButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.whiteGray,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
-      cancelButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      cancelButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.whiteGray,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     ),
     datePickerTheme: DatePickerThemeData(
@@ -261,11 +315,25 @@ abstract class AppTheme {
       dayForegroundColor: const WidgetStatePropertyAll(AppColors.white),
       dividerColor: AppColors.blue,
       shadowColor: AppColors.blue,
-      confirmButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      confirmButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.whiteGray,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
-      cancelButtonStyle: const ButtonStyle(
-        foregroundColor: WidgetStatePropertyAll(AppColors.whiteGray),
+      cancelButtonStyle: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.inter(
+            fontSize: 14.sp,
+            color: AppColors.whiteGray,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     ),
   );
