@@ -55,9 +55,15 @@ class _HomeViewBodyState extends State<HomeViewBody>
           ],
           body: BlocConsumer<HomeCubit, HomeState>(
             listenWhen: (previous, current) =>
-                current is FetchEventsFailureState,
+                current is FetchEventsFailureState ||
+                current is ToggleFavoriteFailureState,
             listener: (context, state) {
               if (state is FetchEventsFailureState) {
+                Loaders.showErrorMessage(
+                  message: state.errorMessage,
+                  context: context,
+                );
+              } else if (state is ToggleFavoriteFailureState) {
                 Loaders.showErrorMessage(
                   message: state.errorMessage,
                   context: context,
