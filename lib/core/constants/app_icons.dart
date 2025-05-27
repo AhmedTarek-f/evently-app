@@ -60,4 +60,8 @@ abstract final class AppIcons {
   static const String location = "assets/icons/location.svg";
   static const String calendar = "assets/icons/calendar.svg";
   static const String clock = "assets/icons/clock.svg";
+  static const String moon2 = "assets/icons/moon2.svg";
+  static const String sun2 = "assets/icons/sun2.svg";
+  static const String all = "assets/icons/all.svg";
+  static const String favorite = "assets/icons/favorite.svg";
 }
