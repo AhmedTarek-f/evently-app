@@ -76,6 +76,7 @@ class RegisterCubit extends Cubit<RegisterState> {
               userName: userNameController.text,
               email: emailController.text,
               gender: selectedGender!,
+              favoriteEvents: [],
             ),
           );
           result.fold(

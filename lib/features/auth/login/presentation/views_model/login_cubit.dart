@@ -76,6 +76,7 @@ class LoginCubit extends Cubit<LoginState> {
             email: googleUserCredential.user?.email ?? "",
             gender: "",
             photoUrl: googleUserCredential.user?.photoURL,
+            favoriteEvents: [],
           ),
         );
 
