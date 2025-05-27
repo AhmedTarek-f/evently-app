@@ -25,6 +25,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
   String? pickedTime;
   String? locationLang;
   String? locationLat;
+  DateTime? originalPickedDate;
   bool isLoading = false;
 
   void onInit() {
@@ -42,6 +43,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
   }
 
   void formatDate({required DateTime date}) {
+    originalPickedDate = date;
     pickedDate = DateFormat('dd/MM/yyyy').format(date);
     emit(PickingDateState());
   }
@@ -92,7 +94,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             eventCategory: selectedCategoryItem.categoryName,
             eventTitle: eventTitleController.text,
             eventDescription: eventDescriptionController.text,
-            eventDate: pickedDate,
+            eventDate: originalPickedDate,
             eventTime: pickedTime,
             eventLocationLang: locationLang,
             eventLocationLat: locationLat,
