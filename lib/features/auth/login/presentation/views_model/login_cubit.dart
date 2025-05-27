@@ -69,23 +69,29 @@ class LoginCubit extends Cubit<LoginState> {
         ),
       ),
       (googleUserCredential) async {
-        var currentUserResult = await RegisterRepository.addUser(
-          userData: UserModel(
-            id: googleUserCredential.user?.uid ?? "",
-            userName: googleUserCredential.user?.displayName ?? "",
-            email: googleUserCredential.user?.email ?? "",
-            gender: "",
-            photoUrl: googleUserCredential.user?.photoURL,
-            favoriteEvents: [],
-          ),
-        );
+        bool isNewUser =
+            googleUserCredential.additionalUserInfo?.isNewUser ?? false;
+        if (isNewUser) {
+          var currentUserResult = await RegisterRepository.addUser(
+            userData: UserModel(
+              id: googleUserCredential.user?.uid ?? "",
+              userName: googleUserCredential.user?.displayName ?? "",
+              email: googleUserCredential.user?.email ?? "",
+              gender: "",
+              photoUrl: googleUserCredential.user?.photoURL,
+              favoriteEvents: [],
+            ),
+          );
 
-        currentUserResult.fold(
-          (failure) => LoginFailureState(
-            errorMessage: failure.errorMessage,
-          ),
-          (userData) => emit(LoginSuccessState()),
-        );
+          currentUserResult.fold(
+            (failure) => LoginFailureState(
+              errorMessage: failure.errorMessage,
+            ),
+            (userData) => emit(LoginSuccessState()),
+          );
+        } else {
+          emit(LoginSuccessState());
+        }
       },
     );
   }
