@@ -1,14 +1,18 @@
+import 'package:evently_app/features/favorite/presentation/views_model/favorite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class EventCardDate extends StatelessWidget {
-  const EventCardDate({
+class FavoriteEventCardDate extends StatelessWidget {
+  const FavoriteEventCardDate({
     super.key,
     required this.eventDate,
   });
   final DateTime eventDate;
   @override
   Widget build(BuildContext context) {
+    final favoriteController = BlocProvider.of<FavoriteCubit>(context);
+    final List<String> date = favoriteController.getEventDate(date: eventDate);
     return Container(
       padding: REdgeInsets.symmetric(vertical: 4),
       width: 43.w,
@@ -22,12 +26,12 @@ class EventCardDate extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "22",
+            date.first,
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
           Text(
-            "Nov",
+            date.last,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.w700,

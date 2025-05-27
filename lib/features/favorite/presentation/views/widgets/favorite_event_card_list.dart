@@ -1,6 +1,9 @@
-import 'package:evently_app/core/common_widgets/event_card/event_card.dart';
-import 'package:evently_app/features/create_event/data/models/event_model.dart';
+import 'package:evently_app/core/utils/loaders/loaders.dart';
+import 'package:evently_app/features/favorite/presentation/views/widgets/favorite_event_card.dart';
+import 'package:evently_app/features/favorite/presentation/views_model/favorite_cubit.dart';
+import 'package:evently_app/features/favorite/presentation/views_model/favorite_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavoriteEventCardList extends StatelessWidget {
@@ -8,17 +11,30 @@ class FavoriteEventCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (_, index) => EventCard(
-        eventData: EventModel(
-            eventDate: "21 Nov",
-            eventTitle: "Meeting for Updating The Development Method",
-            eventCategory: "meeting"),
+    final controller = BlocProvider.of<FavoriteCubit>(context);
+    return BlocConsumer<FavoriteCubit, FavoriteState>(
+      listenWhen: (previous, current) =>
+          current is DeleteFavoriteEventFailureState,
+      listener: (context, state) {
+        if (state is DeleteFavoriteEventFailureState) {
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        }
+      },
+      buildWhen: (previous, current) =>
+          current is DeleteFavoriteEventLoadingState ||
+          current is DeleteFavoriteEventSuccessState,
+      builder: (context, state) => ListView.separated(
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (_, index) => FavoriteEventCard(
+          eventData: controller.favoriteEvents[index],
+          isFavorite: true,
+        ),
+        separatorBuilder: (_, __) => const RSizedBox(height: 16),
+        itemCount: controller.favoriteEvents.length,
       ),
-      separatorBuilder: (_, __) => const RSizedBox(
-        height: 16,
-      ),
-      itemCount: 20,
     );
   }
 }
