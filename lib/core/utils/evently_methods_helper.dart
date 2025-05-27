@@ -2,9 +2,11 @@ import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/create_event/data/models/category_item_model.dart';
+import 'package:evently_app/features/create_event/data/models/event_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class EventlyMethodsHelper {
+  static List<EventModel> allEvents = [];
   static String getEventCategoryImage({
     required String eventCategory,
     required BuildContext context,
