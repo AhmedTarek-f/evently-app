@@ -95,6 +95,9 @@ abstract final class AppText {
 
   // Favorite
   static const String searchForEvent = "Search for Event";
+  static const String favoriteEventsEmpty = "There are no favorite events yet!";
+  static const String inValidEventSearch =
+      "There are no events with the specified event title";
 
   // Create Event
   static const String createEvent = "Create Event";
