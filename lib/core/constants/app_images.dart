@@ -55,4 +55,6 @@ abstract final class AppImages {
       "assets/animations/loading_animation.json";
   static const String successfullyRegisterAnimation =
       "assets/animations/success_register.json";
+  static const String emptyEvents = "assets/animations/empty_events.json";
+  static const String heartAnimation = "assets/animations/heart_animation.json";
 }
