@@ -1,5 +1,6 @@
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/core/utils/evently_methods_helper.dart';
 import 'package:evently_app/core/utils/loaders/full_screen_loader.dart';
 import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/auth/login/presentation/views/login_view.dart';
@@ -32,6 +33,7 @@ class ProfileViewBody extends StatelessWidget {
             context: context,
           );
         } else if (state is LogoutSuccessState) {
+          EventlyMethodsHelper.allEvents.clear();
           FullScreenLoader.stopLoading(context: context);
           Navigator.of(context).pushReplacementNamed(
             LoginView.routeName,
