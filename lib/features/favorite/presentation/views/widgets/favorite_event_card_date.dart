@@ -1,13 +1,12 @@
-import 'package:evently_app/features/create_event/data/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EventCardDate extends StatelessWidget {
   const EventCardDate({
     super.key,
-    required this.eventData,
+    required this.eventDate,
   });
-  final EventModel eventData;
+  final DateTime eventDate;
   @override
   Widget build(BuildContext context) {
     return Container(

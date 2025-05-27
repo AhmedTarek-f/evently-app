@@ -8,14 +8,17 @@ class EventCardTitleAndFavoriteRow extends StatelessWidget {
   const EventCardTitleAndFavoriteRow({
     super.key,
     required this.eventData,
+    required this.isFavorite,
+    this.onFavoritePressed,
   });
 
   final EventModel eventData;
-
+  final bool isFavorite;
+  final void Function()? onFavoritePressed;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: REdgeInsets.all(4),
+      padding: REdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryFixed,
         borderRadius: BorderRadius.circular(
@@ -38,9 +41,9 @@ class EventCardTitleAndFavoriteRow extends StatelessWidget {
           ),
           const RSizedBox(width: 4),
           IconButton(
-            onPressed: () {},
+            onPressed: onFavoritePressed,
             icon: SvgPicture.asset(
-              AppIcons.favoriteFilled,
+              isFavorite ? AppIcons.favoriteFilled : AppIcons.favorite,
             ),
           ),
         ],
