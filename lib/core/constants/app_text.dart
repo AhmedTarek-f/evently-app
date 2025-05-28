@@ -129,6 +129,15 @@ abstract final class AppText {
   static const String addingEventSuccessMessage =
       "Event has been created successfully";
 
+  // map
+  static const String locationException1 = "Location Service UnEnabled";
+  static const String locationException2 = "Location Permission Denied Forever";
+  static const String locationException3 = "Location Permission Not Granted";
+  static const String locationException4 =
+      "Something went wrong, please provide your location and give your permission";
+  static const String locationException5 =
+      "Location permission denied forever - please open app settings";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
