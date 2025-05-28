@@ -1,6 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/common_widgets/shimmer/shimmer_effect.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/choose_event_location/presentation/views/choose_event_location_view.dart';
+import 'package:evently_app/features/choose_event_location/presentation/views_model/choose_event_location_cubit.dart';
+import 'package:evently_app/features/create_event/presentation/views_model/create_event_cubit.dart';
+import 'package:evently_app/features/create_event/presentation/views_model/create_event_state.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +18,7 @@ class LocationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final startController = BlocProvider.of<StartCubit>(context);
+    final createEventController = BlocProvider.of<CreateEventCubit>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,7 +38,23 @@ class LocationSection extends StatelessWidget {
             ),
           ),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider<ChooseEventLocationCubit>(
+                        create: (context) => ChooseEventLocationCubit(context),
+                      ),
+                      BlocProvider.value(
+                        value: createEventController,
+                      ),
+                    ],
+                    child: const ChooseEventLocationView(),
+                  ),
+                ),
+              );
+            },
             child: RPadding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -60,13 +82,31 @@ class LocationSection extends StatelessWidget {
                   ),
                   const RSizedBox(width: 8),
                   Expanded(
-                    child: Text(
-                      AppText.chooseEventLocation.tr(),
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    child: BlocBuilder<CreateEventCubit, CreateEventState>(
+                      buildWhen: (previous, current) =>
+                          current is SelectEventLocationLoadingState ||
+                          current is SelectEventLocationSuccessState,
+                      builder: (context, state) =>
+                          state is SelectEventLocationLoadingState
+                              ? ShimmerEffect(
+                                  width: ScreenUtil().screenWidth,
+                                  height: 16.h,
+                                )
+                              : Text(
+                                  createEventController.locationLat == null
+                                      ? AppText.chooseEventLocation.tr()
+                                      : "${createEventController.country} , ${createEventController.city}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                     ),
                   ),
                   const RSizedBox(width: 8),
