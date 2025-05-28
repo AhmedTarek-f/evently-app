@@ -23,7 +23,8 @@ class CreateEventViewBody extends StatelessWidget {
           current is PickingDateValidationState ||
           current is PickingTimeValidationState ||
           current is CreateEventFailureState ||
-          current is CreateEventSuccessState,
+          current is CreateEventSuccessState ||
+          current is EventLocationValidationState,
       listener: (context, state) {
         if (state is PickingDateValidationState) {
           Loaders.showErrorMessage(
@@ -33,6 +34,11 @@ class CreateEventViewBody extends StatelessWidget {
         } else if (state is PickingTimeValidationState) {
           Loaders.showErrorMessage(
             message: AppText.eventTimeValidation,
+            context: context,
+          );
+        } else if (state is EventLocationValidationState) {
+          Loaders.showErrorMessage(
+            message: AppText.eventLocationValidation,
             context: context,
           );
         } else if (state is CreateEventFailureState) {
