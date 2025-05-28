@@ -58,6 +58,7 @@ dependencies:
   connectivity_plus: ^6.1.4
   location: ^8.0.0
   google_maps_flutter: ^2.12.2
+  geocoding: ^4.0.0
 
 dev_dependencies:
   flutter_test:
