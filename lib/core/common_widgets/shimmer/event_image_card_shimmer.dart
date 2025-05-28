@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EventImageCardShimmer extends StatelessWidget {
-  const EventImageCardShimmer({super.key});
-
+  const EventImageCardShimmer({
+    super.key,
+    this.width,
+    this.height,
+  });
+  final double? width, height;
   @override
   Widget build(BuildContext context) {
     return ShimmerEffect(
-      width: ScreenUtil().screenWidth,
-      height: 203.h,
+      width: width ?? ScreenUtil().screenWidth,
+      height: height ?? 203.h,
       radius: 16.r,
     );
   }
