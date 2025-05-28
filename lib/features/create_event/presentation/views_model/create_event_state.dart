@@ -22,3 +22,14 @@ final class CreateEventFailureState extends CreateEventState {
   CreateEventFailureState({required this.errorMessage});
   final String errorMessage;
 }
+
+final class SelectEventLocationSuccessState extends CreateEventState {}
+
+final class SelectEventLocationLoadingState extends CreateEventState {}
+
+final class SelectEventLocationFailureState extends CreateEventState {
+  SelectEventLocationFailureState({required this.errorMessage});
+  final String errorMessage;
+}
+
+final class EventLocationValidationState extends CreateEventState {}
