@@ -12,6 +12,7 @@ abstract final class AppImages {
   static const String routeLogo = "assets/images/route_logo.jpg";
   static const String femaleUser = "assets/images/female_user.jpg";
   static const String maleUser = "assets/images/male_user.jpg";
+  static const String mapMarker = "assets/images/custom_marker.png";
   static const String deliveredEmailIllustration =
       "assets/images/receives_email.png";
 
