@@ -14,6 +14,7 @@ class MapFloatingActionButton extends StatelessWidget {
     return RPadding(
       padding: const EdgeInsets.only(top: 16),
       child: FloatingActionButton(
+        heroTag: "mapFloatingActionButton",
         onPressed: () async {
           await controller.animateCameraToMyLocation();
         },
