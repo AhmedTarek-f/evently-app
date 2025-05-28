@@ -6,6 +6,7 @@ import 'package:evently_app/features/create_event/presentation/views_model/creat
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
@@ -23,8 +24,10 @@ class CreateEventCubit extends Cubit<CreateEventState> {
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? pickedDate;
   String? pickedTime;
-  String? locationLang;
+  String? locationLong;
   String? locationLat;
+  String? country;
+  String? city;
   DateTime? originalPickedDate;
   bool isLoading = false;
 
@@ -77,12 +80,37 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     emit(EnableAutoValidateModeState());
   }
 
+  Future<void> selectEventLocation({required LatLng? eventLocation}) async {
+    if (eventLocation != null) {
+      emit(SelectEventLocationLoadingState());
+      var result = await CreateEventRepository.getEventLocationName(
+        eventLocation: eventLocation,
+      );
+      result.fold(
+        (failure) => emit(
+          SelectEventLocationFailureState(
+            errorMessage: failure.errorMessage,
+          ),
+        ),
+        (locationName) {
+          locationLat = eventLocation.latitude.toStringAsFixed(3);
+          locationLong = eventLocation.longitude.toStringAsFixed(3);
+          country = locationName.first.country;
+          city = locationName.first.locality;
+          emit(SelectEventLocationSuccessState());
+        },
+      );
+    }
+  }
+
   Future<void> addEvent() async {
     if (createEventFormKey.currentState!.validate()) {
       if (pickedDate == null) {
         emit(PickingDateValidationState());
       } else if (pickedTime == null) {
         emit(PickingTimeValidationState());
+      } else if (locationLat == null || locationLong == null) {
+        emit(EventLocationValidationState());
       } else {
         isLoading = true;
         emit(CreateEventLoadingState());
@@ -96,7 +124,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             eventDescription: eventDescriptionController.text,
             eventDate: originalPickedDate,
             eventTime: pickedTime,
-            eventLocationLang: locationLang,
+            eventLocationLang: locationLong,
             eventLocationLat: locationLat,
           ),
         );
