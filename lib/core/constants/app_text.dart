@@ -118,6 +118,7 @@ abstract final class AppText {
   static const String eventDateValidation = "Event date is required";
   static const String eventTime = "Event Time";
   static const String eventTimeValidation = "Event time is required";
+  static const String eventLocationValidation = "Event location is required";
   static const String chooseDate = "Choose Date";
   static const String chooseTime = "Choose Time";
   static const String location = "Location";
@@ -137,6 +138,8 @@ abstract final class AppText {
       "Something went wrong, please provide your location and give your permission";
   static const String locationException5 =
       "Location permission denied forever - please open app settings";
+  static const String tapOnLocationToSelect = "Tap on Location To Select";
+  static const String eventLocation = "Event Location";
 
   // Firebase Exceptions
   static const String emailAlreadyInUse =
