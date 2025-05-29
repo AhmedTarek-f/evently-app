@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
 import 'package:evently_app/core/utils/errors/firebase_errors.dart';
 import 'package:evently_app/features/create_event/data/models/event_model.dart';
+import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -54,6 +56,13 @@ abstract class CreateEventRemoteData {
       );
       return right(placeMarks);
     } catch (error) {
+      if (error is PlatformException) {
+        return left(
+          FirebaseErrors(
+            errorMessage: AppText.networkRequestFailed.tr(),
+          ),
+        );
+      }
       return left(
         FirebaseErrors(
           errorMessage: "${AppText.unknownErrorMessage} ${error.toString()}",
