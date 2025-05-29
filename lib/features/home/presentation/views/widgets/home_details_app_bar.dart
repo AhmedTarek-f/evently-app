@@ -6,6 +6,7 @@ import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_state.dart';
 import 'package:evently_app/features/home/presentation/views/widgets/home_event_categories_tap_bar.dart';
+import 'package:evently_app/features/home/presentation/views/widgets/home_user_location.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -145,39 +146,7 @@ class HomeDetailsAppBar extends StatelessWidget {
                       ],
                     ),
                     const RSizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(
-                          startController.isDarkMode
-                              ? AppIcons.inactiveMapDark
-                              : AppIcons.inactiveMapLight,
-                          width: 24.r,
-                          height: 24.r,
-                          fit: BoxFit.cover,
-                        ),
-                        const RSizedBox(width: 4),
-                        Flexible(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              AppText.placeRightNow,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ),
-                        const RSizedBox(width: 72),
-                      ],
-                    ),
+                    const HomeUserLocation(),
                   ],
                 ),
               ),
