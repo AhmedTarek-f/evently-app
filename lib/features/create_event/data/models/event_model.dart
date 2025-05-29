@@ -11,6 +11,8 @@ class EventModel {
     this.eventTime,
     this.eventLocationLat,
     this.eventLocationLang,
+    this.eventCountry,
+    this.eventCity,
   });
   final String? eventCreatorId;
   String? eventId;
@@ -21,6 +23,8 @@ class EventModel {
   String? eventTime;
   String? eventLocationLat;
   String? eventLocationLang;
+  String? eventCountry;
+  String? eventCity;
 
   static EventModel empty() => EventModel();
 
@@ -35,6 +39,8 @@ class EventModel {
       "EventTime": eventTime ?? "",
       "EventLocationLat": eventLocationLat ?? "0",
       "EventLocationLang": eventLocationLang ?? "0",
+      "EventCountry": eventCountry ?? "",
+      "EventCity": eventCity ?? "",
     };
   }
 
@@ -52,6 +58,8 @@ class EventModel {
         eventTime: data["EventTime"] as String?,
         eventLocationLat: data["EventLocationLat"] as String?,
         eventLocationLang: data["EventLocationLang"] as String?,
+        eventCountry: data["EventCountry"] as String?,
+        eventCity: data["EventCity"] as String?,
       );
     } else {
       return empty();
