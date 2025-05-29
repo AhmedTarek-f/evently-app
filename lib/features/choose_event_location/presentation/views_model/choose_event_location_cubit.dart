@@ -81,23 +81,25 @@ class ChooseEventLocationCubit extends Cubit<ChooseEventLocationState> {
       ),
       (locationData) => myLocation = locationData,
     );
-    final LatLng newPosition = LatLng(
-      myLocation?.latitude! ?? 0,
-      myLocation?.longitude! ?? 0,
-    );
-    selectedLocation = newPosition;
-    CameraPosition cameraPosition =
-        CameraPosition(target: newPosition, zoom: 17);
-    googleMapController!
-        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-    markers.add(
-      Marker(
-        markerId: const MarkerId("event_marker"),
-        icon: customIcon,
-        position: newPosition,
-      ),
-    );
-    emit(MyLocationMarkerChangeState());
+    if (myLocation != null) {
+      final LatLng newPosition = LatLng(
+        myLocation!.latitude!,
+        myLocation!.longitude!,
+      );
+      selectedLocation = newPosition;
+      CameraPosition cameraPosition =
+          CameraPosition(target: newPosition, zoom: 17);
+      googleMapController!
+          .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      markers.add(
+        Marker(
+          markerId: const MarkerId("event_marker"),
+          icon: customIcon,
+          position: newPosition,
+        ),
+      );
+      emit(MyLocationMarkerChangeState());
+    }
   }
 
   @override
