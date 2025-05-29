@@ -17,8 +17,22 @@ class EventlyBottomNavigationView extends StatelessWidget {
     final controller = BlocProvider.of<EventlyBottomNavigationCubit>(context);
     return BlocListener<EventlyBottomNavigationCubit,
         EventlyBottomNavigationState>(
+      listenWhen: (previous, current) =>
+          current is FetchUserDataFailureState ||
+          current is GetLocationDataFailureState ||
+          current is FetchUserLocationFailureState,
       listener: (context, state) {
         if (state is FetchUserDataFailureState) {
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        } else if (state is GetLocationDataFailureState) {
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        } else if (state is FetchUserLocationFailureState) {
           Loaders.showErrorMessage(
             message: state.errorMessage,
             context: context,
