@@ -7,13 +7,22 @@ import 'package:evently_app/features/map/presentation/views/map_view.dart';
 import 'package:evently_app/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
   EventlyBottomNavigationCubit() : super(EventlyBottomNavigationInitial()) {
-    fetchUserData();
+    onInit();
   }
   int currentTapIndex = 0;
   UserModel? currentUserData;
+  LocationData? userLocation;
+  String? userCountry;
+  String? userCity;
+
+  void onInit() {
+    fetchUserData();
+  }
 
   final List<Widget> eventlyNavigationList = const [
     HomeView(),
@@ -31,6 +40,8 @@ class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
 
   Future<void> fetchUserData() async {
     emit(FetchUserDataLoadingState());
+    await getUserLocation();
+    await fetchUserLocation();
     var userDataResult = await EventlyBottomNavRepository.getUserData();
     userDataResult.fold(
       (failure) => emit(FetchUserDataFailureState(
@@ -41,5 +52,41 @@ class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
         emit(FetchUserDataSuccessState());
       },
     );
+  }
+
+  Future<void> getUserLocation() async {
+    var result = await EventlyBottomNavRepository.getLocation();
+    result.fold(
+      (failure) => emit(
+        GetLocationDataFailureState(
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (locationData) => userLocation = locationData,
+    );
+  }
+
+  Future<void> fetchUserLocation() async {
+    if (userLocation != null) {
+      emit(FetchUserLocationLoadingState());
+      var result = await EventlyBottomNavRepository.fetchUserLocationName(
+        eventLocation: LatLng(
+          userLocation!.latitude!,
+          userLocation!.longitude!,
+        ),
+      );
+      result.fold(
+        (failure) => emit(
+          FetchUserLocationFailureState(
+            errorMessage: failure.errorMessage,
+          ),
+        ),
+        (locationName) {
+          userCountry = locationName.first.country;
+          userCity = locationName.first.locality;
+          emit(FetchUserLocationSuccessState());
+        },
+      );
+    }
   }
 }
