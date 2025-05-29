@@ -1,4 +1,3 @@
-import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/map/presentation/views/widgets/events_horizontal_list.dart';
 import 'package:evently_app/features/map/presentation/views_model/map_cubit.dart';
 import 'package:evently_app/features/map/presentation/views_model/map_state.dart';
@@ -13,16 +12,7 @@ class MapViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<MapCubit>(context);
-    return BlocConsumer<MapCubit, MapState>(
-      listenWhen: (previous, current) => current is GetLocationDataFailureState,
-      listener: (context, state) {
-        if (state is GetLocationDataFailureState) {
-          Loaders.showErrorMessage(
-            message: state.errorMessage,
-            context: context,
-          );
-        }
-      },
+    return BlocBuilder<MapCubit, MapState>(
       builder: (context, state) => Stack(
         children: [
           GoogleMap(
@@ -32,7 +22,7 @@ class MapViewBody extends StatelessWidget {
             initialCameraPosition: controller.initialCameraPosition,
             onMapCreated: (mapController) async {
               controller.googleMapController = mapController;
-              await controller.updateMyCamera();
+              await controller.animateCameraToMyLocation();
             },
             markers: controller.markers,
           ),
