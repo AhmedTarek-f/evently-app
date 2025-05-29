@@ -1,5 +1,7 @@
 import 'package:evently_app/core/constants/app_images.dart';
-import 'package:evently_app/features/map/data/repositories/map_repository.dart';
+import 'package:evently_app/core/utils/evently_methods_helper.dart';
+import 'package:evently_app/features/create_event/data/models/event_model.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:evently_app/features/map/presentation/views_model/map_state.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +31,11 @@ class MapCubit extends Cubit<MapState> {
       target: LatLng(29.973807, 31.275680),
       zoom: 11,
     );
+    myLocation =
+        BlocProvider.of<EventlyBottomNavigationCubit>(_context).userLocation;
     if (BlocProvider.of<StartCubit>(_context).isDarkMode) await initMapStyle();
     await loadCustomIcon();
-    // setInitMarkers();
+    addingEventsMarkers();
   }
 
   Future<void> loadCustomIcon() async {
@@ -59,19 +63,12 @@ class MapCubit extends Cubit<MapState> {
     emit(AddingMarkerState());
   }
 
-  Future<void> updateMyCamera() async {
-    var result = await MapRepository.getLocation();
-    result.fold(
-      (failure) => emit(
-        GetLocationDataFailureState(
-          errorMessage: failure.errorMessage,
-        ),
-      ),
-      (locationData) => myLocation = locationData,
-    );
+  Future<void> animateCameraToEventLocation({
+    required EventModel eventData,
+  }) async {
     final LatLng newPosition = LatLng(
-      myLocation?.latitude! ?? 0,
-      myLocation?.longitude! ?? 0,
+      double.parse(eventData.eventLocationLat ?? "0"),
+      double.parse(eventData.eventLocationLang ?? "0"),
     );
     CameraPosition cameraPosition =
         CameraPosition(target: newPosition, zoom: 17);
@@ -79,42 +76,61 @@ class MapCubit extends Cubit<MapState> {
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
     markers.add(
       Marker(
-        markerId: const MarkerId("event_marker"),
+        markerId: MarkerId("event_marker${eventData.eventId}"),
         icon: customIcon,
         position: newPosition,
+        infoWindow: InfoWindow(title: eventData.eventTitle),
       ),
     );
-    emit(MyLocationMarkerChangeState());
+  }
+
+  void addingEventsMarkers() {
+    EventlyMethodsHelper.allEvents
+        .map(
+          (event) => markers.add(
+            Marker(
+              markerId: MarkerId("event_marker${event.eventId}"),
+              icon: customIcon,
+              position: LatLng(
+                double.parse(
+                  event.eventLocationLat ?? "0",
+                ),
+                double.parse(
+                  event.eventLocationLang ?? "0",
+                ),
+              ),
+              infoWindow: InfoWindow(title: event.eventTitle),
+            ),
+          ),
+        )
+        .toList();
   }
 
   Future<void> animateCameraToMyLocation() async {
     if (myLocation == null) {
-      var result = await MapRepository.getLocation();
-      result.fold(
-        (failure) => emit(
-          GetLocationDataFailureState(
-            errorMessage: failure.errorMessage,
-          ),
+      final eventlyController =
+          BlocProvider.of<EventlyBottomNavigationCubit>(_context);
+      await eventlyController.getUserLocation();
+      myLocation = eventlyController.userLocation;
+    }
+    if (myLocation != null) {
+      final LatLng newPosition = LatLng(
+        myLocation!.latitude!,
+        myLocation!.longitude!,
+      );
+      CameraPosition cameraPosition =
+          CameraPosition(target: newPosition, zoom: 17);
+      googleMapController!
+          .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      markers.add(
+        Marker(
+          markerId: const MarkerId("my_location"),
+          icon: customIcon,
+          position: newPosition,
+          infoWindow: const InfoWindow(title: "My Location"),
         ),
-        (locationData) => myLocation = locationData,
       );
     }
-    final LatLng newPosition = LatLng(
-      myLocation?.latitude! ?? 0,
-      myLocation?.longitude! ?? 0,
-    );
-    CameraPosition cameraPosition =
-        CameraPosition(target: newPosition, zoom: 17);
-    googleMapController!
-        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-    markers.add(
-      Marker(
-        markerId: const MarkerId("event_marker"),
-        icon: customIcon,
-        position: newPosition,
-      ),
-    );
-    emit(MyLocationMarkerChangeState());
   }
 
   @override
