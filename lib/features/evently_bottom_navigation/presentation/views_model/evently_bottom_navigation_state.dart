@@ -13,3 +13,19 @@ final class FetchUserDataFailureState extends EventlyBottomNavigationState {
   FetchUserDataFailureState({required this.errorMessage});
   final String errorMessage;
 }
+
+final class FetchUserLocationSuccessState
+    extends EventlyBottomNavigationState {}
+
+final class FetchUserLocationLoadingState
+    extends EventlyBottomNavigationState {}
+
+final class FetchUserLocationFailureState extends EventlyBottomNavigationState {
+  FetchUserLocationFailureState({required this.errorMessage});
+  final String errorMessage;
+}
+
+final class GetLocationDataFailureState extends EventlyBottomNavigationInitial {
+  GetLocationDataFailureState({required this.errorMessage});
+  final String errorMessage;
+}
