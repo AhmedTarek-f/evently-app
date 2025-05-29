@@ -85,7 +85,8 @@ class LocationSection extends StatelessWidget {
                     child: BlocBuilder<CreateEventCubit, CreateEventState>(
                       buildWhen: (previous, current) =>
                           current is SelectEventLocationLoadingState ||
-                          current is SelectEventLocationSuccessState,
+                          current is SelectEventLocationSuccessState ||
+                          current is SelectEventLocationFailureState,
                       builder: (context, state) =>
                           state is SelectEventLocationLoadingState
                               ? ShimmerEffect(
