@@ -109,7 +109,9 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         emit(PickingDateValidationState());
       } else if (pickedTime == null) {
         emit(PickingTimeValidationState());
-      } else if (locationLat == null || locationLong == null) {
+      } else if (country == null ||
+          locationLat == null ||
+          locationLong == null) {
         emit(EventLocationValidationState());
       } else {
         isLoading = true;
@@ -126,6 +128,8 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             eventTime: pickedTime,
             eventLocationLang: locationLong,
             eventLocationLat: locationLat,
+            eventCountry: country,
+            eventCity: city,
           ),
         );
         result.fold(
