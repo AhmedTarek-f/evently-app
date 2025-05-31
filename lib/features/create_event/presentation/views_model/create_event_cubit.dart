@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
 
 class CreateEventCubit extends Cubit<CreateEventState> {
   CreateEventCubit() : super(CreateEventInitial()) {
@@ -20,7 +19,6 @@ class CreateEventCubit extends Cubit<CreateEventState> {
   late final TextEditingController eventTitleController;
   late final TextEditingController eventDescriptionController;
   late final GlobalKey<FormState> createEventFormKey;
-  late final Uuid uniqueIdCreator;
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? pickedDate;
   String? pickedTime;
@@ -35,7 +33,6 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     createEventFormKey = GlobalKey<FormState>();
     eventTitleController = TextEditingController();
     eventDescriptionController = TextEditingController();
-    uniqueIdCreator = const Uuid();
   }
 
   void changeSelectedCategory({required CategoryItemModel categoryItem}) {
@@ -116,16 +113,21 @@ class CreateEventCubit extends Cubit<CreateEventState> {
       } else {
         isLoading = true;
         emit(CreateEventLoadingState());
-        final String eventId = uniqueIdCreator.v4();
+        final originalPickedTime = parseTimeOfDay(pickedTime!);
+        final originalPickedDateWithTime = DateTime(
+          originalPickedDate!.year,
+          originalPickedDate!.month,
+          originalPickedDate!.day,
+          originalPickedTime.hour,
+          originalPickedTime.minute,
+        );
         var result = await CreateEventRepository.createEvent(
           eventData: EventModel(
             eventCreatorId: FirebaseAuth.instance.currentUser?.uid,
-            eventId: eventId,
             eventCategory: selectedCategoryItem.categoryName,
             eventTitle: eventTitleController.text,
             eventDescription: eventDescriptionController.text,
-            eventDate: originalPickedDate,
-            eventTime: pickedTime,
+            eventDate: originalPickedDateWithTime,
             eventLocationLang: locationLong,
             eventLocationLat: locationLat,
             eventCountry: country,
