@@ -33,7 +33,9 @@ abstract class CreateEventRemoteData {
           errorMessage: AppText.networkRequestFailed,
         ));
       }
-      await _getEventsCollection().doc(eventData.eventId).set(eventData);
+      final eventDoc = _getEventsCollection().doc();
+      eventData.eventId = eventDoc.id;
+      await eventDoc.set(eventData);
       return right(null);
     } catch (error) {
       if (error is FirebaseException) {
