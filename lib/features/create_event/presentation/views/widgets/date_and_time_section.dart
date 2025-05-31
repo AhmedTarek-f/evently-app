@@ -29,7 +29,7 @@ class DateAndTimeSection extends StatelessWidget {
               final DateTime? date = await showDatePicker(
                 context: context,
                 firstDate: DateTime.now(),
-                lastDate: DateTime(2060),
+                lastDate: DateTime.now().add(const Duration(days: 365)),
                 initialDate: controller.pickedDate != null
                     ? controller.parseDate(controller.pickedDate!)
                     : null,
