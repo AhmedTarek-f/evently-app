@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:evently_app/core/common_widgets/shimmer/event_image_card_shimmer.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/utils/evently_methods_helper.dart';
@@ -19,9 +17,6 @@ class EventHorizontalItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         controller.animateCameraToEventLocation(eventData: eventData);
-      },
-      onDoubleTap: () {
-        log(eventData.eventTitle!);
       },
       child: Container(
         height: 94.h,
