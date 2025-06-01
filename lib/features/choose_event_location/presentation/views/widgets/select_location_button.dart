@@ -12,7 +12,9 @@ class SelectLocationButton extends StatelessWidget {
     final controller = BlocProvider.of<ChooseEventLocationCubit>(context);
     return GestureDetector(
       onTap: () {
-        controller.selectEventLocation();
+        controller.isEditEvent == true
+            ? controller.selectEventLocationEdit()
+            : controller.selectEventLocation();
       },
       child: Container(
         alignment: Alignment.center,
