@@ -1,5 +1,7 @@
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/edit_event/presentation/views/edit_event_view.dart';
+import 'package:evently_app/features/edit_event/presentation/views_model/edit_event_cubit.dart';
 import 'package:evently_app/features/event_details/presentation/views_model/event_details_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,16 @@ class EventDetailsAppBar extends StatelessWidget
       actions: controller.eventData.eventCreatorId == userId
           ? [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider<EditEventCubit>(
+                        create: (context) => EditEventCubit(controller),
+                        child: const EditEventView(),
+                      ),
+                    ),
+                  );
+                },
                 icon: SvgPicture.asset(
                   AppIcons.edit,
                   width: 24.r,
