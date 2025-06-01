@@ -1,13 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_drop_down_button_form_field.dart';
+import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
+import 'package:evently_app/core/constants/app_colors.dart';
+import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class LanguageAndThemeColumn extends StatelessWidget {
-  const LanguageAndThemeColumn({super.key});
+class UserProfileOptions extends StatelessWidget {
+  const UserProfileOptions({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +21,62 @@ class LanguageAndThemeColumn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            AppText.languageCapital.tr(),
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.secondary,
+          CustomElevatedButton(
+            onPressed: () {},
+            buttonTitle: "",
+            isText: false,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SvgPicture.asset(
+                  AppIcons.crownStar,
+                  width: 24.r,
+                  height: 24.r,
+                  fit: BoxFit.cover,
                 ),
+                const RSizedBox(width: 8),
+                Text(
+                  AppText.createdEvents,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.white,
+                      ),
+                )
+              ],
+            ),
+          ),
+          const RSizedBox(height: 8),
+          CustomElevatedButton(
+            onPressed: () {},
+            buttonTitle: "",
+            isText: false,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SvgPicture.asset(
+                  AppIcons.group,
+                  width: 24.r,
+                  height: 24.r,
+                  fit: BoxFit.cover,
+                ),
+                const RSizedBox(width: 8),
+                Text(
+                  AppText.eventsParticipatedIn,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.white,
+                      ),
+                )
+              ],
+            ),
           ),
           const RSizedBox(height: 16),
+          Text(
+            AppText.languageCapital.tr(),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+          const RSizedBox(height: 8),
           CustomDropDownButtonFormField(
             dropDownItemsList: controller.languages,
             initialValue: controller.currentLanguage,
@@ -32,14 +85,15 @@ class LanguageAndThemeColumn extends StatelessWidget {
               languageValue: language,
             ),
           ),
-          const RSizedBox(height: 16),
+          const RSizedBox(height: 8),
           Text(
             AppText.themeCapital.tr(),
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.w700,
                 ),
           ),
-          const RSizedBox(height: 16),
+          const RSizedBox(height: 8),
           CustomDropDownButtonFormField(
             dropDownItemsList: controller.theme,
             initialValue: controller.currentTheme,
