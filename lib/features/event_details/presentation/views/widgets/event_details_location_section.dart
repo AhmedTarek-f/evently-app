@@ -1,8 +1,6 @@
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/features/create_event/data/models/event_model.dart';
-import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,7 +9,6 @@ class EventDetailsLocationSection extends StatelessWidget {
   final EventModel eventData;
   @override
   Widget build(BuildContext context) {
-    final startController = BlocProvider.of<StartCubit>(context);
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryFixed,
