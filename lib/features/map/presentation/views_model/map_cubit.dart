@@ -67,7 +67,7 @@ class MapCubit extends Cubit<MapState> {
   }) async {
     final LatLng newPosition = LatLng(
       double.parse(eventData.eventLocationLat ?? "0"),
-      double.parse(eventData.eventLocationLang ?? "0"),
+      double.parse(eventData.eventLocationLong ?? "0"),
     );
     CameraPosition cameraPosition =
         CameraPosition(target: newPosition, zoom: 17);
@@ -95,7 +95,7 @@ class MapCubit extends Cubit<MapState> {
                   event.eventLocationLat ?? "0",
                 ),
                 double.parse(
-                  event.eventLocationLang ?? "0",
+                  event.eventLocationLong ?? "0",
                 ),
               ),
               infoWindow: InfoWindow(title: event.eventTitle),

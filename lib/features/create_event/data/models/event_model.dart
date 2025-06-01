@@ -9,7 +9,7 @@ class EventModel {
     this.eventDescription,
     this.eventDate,
     this.eventLocationLat,
-    this.eventLocationLang,
+    this.eventLocationLong,
     this.eventCountry,
     this.eventCity,
     this.participateUsers,
@@ -21,7 +21,7 @@ class EventModel {
   String? eventDescription;
   DateTime? eventDate;
   String? eventLocationLat;
-  String? eventLocationLang;
+  String? eventLocationLong;
   String? eventCountry;
   String? eventCity;
   List<String>? participateUsers;
@@ -37,7 +37,7 @@ class EventModel {
       "EventDescription": eventDescription ?? "",
       "EventDate": eventDate != null ? Timestamp.fromDate(eventDate!) : null,
       "EventLocationLat": eventLocationLat ?? "0",
-      "EventLocationLang": eventLocationLang ?? "0",
+      "EventLocationLong": eventLocationLong ?? "0",
       "EventCountry": eventCountry ?? "",
       "EventCity": eventCity ?? "",
       "ParticipateUsers": participateUsers ?? <String>[],
@@ -56,7 +56,7 @@ class EventModel {
         eventDescription: data["EventDescription"] as String?,
         eventDate: (data["EventDate"] as Timestamp?)?.toDate(),
         eventLocationLat: data["EventLocationLat"] as String?,
-        eventLocationLang: data["EventLocationLang"] as String?,
+        eventLocationLong: data["EventLocationLong"] as String?,
         eventCountry: data["EventCountry"] as String?,
         eventCity: data["EventCity"] as String?,
         participateUsers: data["ParticipateUsers"] != null

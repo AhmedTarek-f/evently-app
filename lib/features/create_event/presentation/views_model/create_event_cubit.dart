@@ -128,7 +128,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
             eventTitle: eventTitleController.text,
             eventDescription: eventDescriptionController.text,
             eventDate: originalPickedDateWithTime,
-            eventLocationLang: locationLong,
+            eventLocationLong: locationLong,
             eventLocationLat: locationLat,
             eventCountry: country,
             eventCity: city,
