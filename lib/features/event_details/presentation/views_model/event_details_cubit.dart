@@ -25,7 +25,7 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
   }
 
   final BuildContext _context;
-  final EventModel eventData;
+  EventModel eventData;
   final UserModel _currentUserData;
   late CameraPosition initialCameraPosition;
   GoogleMapController? googleMapController;
@@ -72,12 +72,12 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
     emit(MapStyleLoadState());
   }
 
-  Future<void> animateCameraToEventLocation({
+  void animateCameraToEventLocation({
     required EventModel eventData,
-  }) async {
+  }) {
     final LatLng newPosition = LatLng(
       double.parse(eventData.eventLocationLat ?? "0"),
-      double.parse(eventData.eventLocationLang ?? "0"),
+      double.parse(eventData.eventLocationLong ?? "0"),
     );
     CameraPosition cameraPosition =
         CameraPosition(target: newPosition, zoom: 15);
@@ -187,6 +187,10 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
         );
       },
     );
+  }
+
+  void applyEdit() {
+    emit(EventDetailsEditedState());
   }
 
   @override
