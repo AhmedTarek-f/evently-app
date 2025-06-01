@@ -74,11 +74,21 @@ abstract class AppTheme {
         color: AppColors.offWhiteBlue,
         fontWeight: FontWeight.w700,
       ),
+      labelMedium: GoogleFonts.inter(
+        fontSize: 24.sp,
+        color: AppColors.blue,
+        fontWeight: FontWeight.w500,
+      ),
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       backgroundColor: AppColors.offWhiteBlue,
       centerTitle: true,
       scrolledUnderElevation: 0,
+      titleTextStyle: GoogleFonts.inter(
+        fontSize: 22.sp,
+        color: AppColors.blue,
+        fontWeight: FontWeight.w400,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
@@ -244,11 +254,21 @@ abstract class AppTheme {
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
       ),
+      labelMedium: GoogleFonts.inter(
+        fontSize: 24.sp,
+        color: AppColors.blue,
+        fontWeight: FontWeight.w500,
+      ),
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       backgroundColor: AppColors.overDarkBlue,
       centerTitle: true,
       scrolledUnderElevation: 0,
+      titleTextStyle: GoogleFonts.inter(
+        fontSize: 22.sp,
+        color: AppColors.blue,
+        fontWeight: FontWeight.w400,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
