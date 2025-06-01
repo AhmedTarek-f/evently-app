@@ -16,3 +16,5 @@ final class GetLocationDataFailureState extends ChooseEventLocationState {
 final class MyLocationMarkerChangeState extends ChooseEventLocationState {}
 
 final class SelectEventLocationState extends ChooseEventLocationState {}
+
+final class SelectEventLocationEditState extends ChooseEventLocationState {}
