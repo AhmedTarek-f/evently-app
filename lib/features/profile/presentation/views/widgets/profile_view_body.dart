@@ -4,9 +4,10 @@ import 'package:evently_app/core/utils/evently_methods_helper.dart';
 import 'package:evently_app/core/utils/loaders/full_screen_loader.dart';
 import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/auth/login/presentation/views/login_view.dart';
-import 'package:evently_app/features/profile/presentation/views/widgets/language_and_theme_column.dart';
+import 'package:evently_app/features/profile/presentation/views/widgets/delete_account_button.dart';
 import 'package:evently_app/features/profile/presentation/views/widgets/logout_button.dart';
 import 'package:evently_app/features/profile/presentation/views/widgets/profile_app_bar.dart';
+import 'package:evently_app/features/profile/presentation/views/widgets/user_profile_options.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_state.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +46,9 @@ class ProfileViewBody extends StatelessWidget {
         children: [
           ProfileAppBar(),
           RSizedBox(height: 24),
-          LanguageAndThemeColumn(),
+          UserProfileOptions(),
           Spacer(),
+          DeleteAccountButton(),
           LogoutButton()
         ],
       ),
