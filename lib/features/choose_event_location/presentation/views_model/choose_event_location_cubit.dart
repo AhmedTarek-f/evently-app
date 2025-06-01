@@ -11,18 +11,21 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class ChooseEventLocationCubit extends Cubit<ChooseEventLocationState> {
-  ChooseEventLocationCubit(BuildContext context)
+  ChooseEventLocationCubit(BuildContext context,
+      [bool? isFromEdit, LatLng? eventLocation])
       : _context = context,
+        isEditEvent = isFromEdit,
+        selectedLocation = eventLocation,
         super(ChooseEventLocationInitial()) {
     onInit();
   }
   final BuildContext _context;
+  final bool? isEditEvent;
   late CameraPosition initialCameraPosition;
   GoogleMapController? googleMapController;
   late BitmapDescriptor customIcon;
   LocationData? myLocation;
   String? nightMapStyle;
-  bool isFirstCall = true;
   Set<Marker> markers = {};
   LatLng? selectedLocation;
 
@@ -69,6 +72,25 @@ class ChooseEventLocationCubit extends Cubit<ChooseEventLocationState> {
 
   void selectEventLocation() {
     emit(SelectEventLocationState());
+  }
+
+  void selectEventLocationEdit() {
+    emit(SelectEventLocationEditState());
+  }
+
+  void animateCameraToEventLocation() {
+    CameraPosition cameraPosition =
+        CameraPosition(target: selectedLocation!, zoom: 17);
+    googleMapController!
+        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    markers.add(
+      Marker(
+        markerId: const MarkerId("event_marker"),
+        icon: customIcon,
+        position: selectedLocation!,
+      ),
+    );
+    emit(MyLocationMarkerChangeState());
   }
 
   Future<void> animateCameraToMyLocation() async {
