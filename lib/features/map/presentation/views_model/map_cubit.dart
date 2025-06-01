@@ -23,7 +23,6 @@ class MapCubit extends Cubit<MapState> {
   late BitmapDescriptor customIcon;
   LocationData? myLocation;
   String? nightMapStyle;
-  bool isFirstCall = true;
   Set<Marker> markers = {};
 
   void onInit() async {
