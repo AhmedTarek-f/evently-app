@@ -27,4 +27,12 @@ abstract class EventDetailsRepository {
       eventId: eventId,
     );
   }
+
+  static Future<Either<Failure, void>> deleteEvent({
+    required String eventId,
+  }) async {
+    return await EventDetailsRemoteData.deleteEvent(
+      eventId: eventId,
+    );
+  }
 }

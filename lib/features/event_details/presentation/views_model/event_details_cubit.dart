@@ -119,9 +119,11 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
       ),
     );
     participateUsersDataResult.fold(
-      (failure) => emit(FetchParticipateUsersFailureState(
-        errorMessage: failure.errorMessage,
-      )),
+      (failure) => emit(
+        FetchParticipateUsersFailureState(
+          errorMessage: failure.errorMessage,
+        ),
+      ),
       (participatingMembers) {
         participatingMembersData = participatingMembers;
         emit(FetchParticipateUsersSuccessState());
@@ -191,6 +193,23 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
 
   void applyEdit() {
     emit(EventDetailsEditedState());
+  }
+
+  Future<void> deleteEvent() async {
+    emit(DeleteEventLoadingState());
+    var result = await EventDetailsRepository.deleteEvent(
+      eventId: eventData.eventId ?? "",
+    );
+    result.fold(
+      (failure) => emit(
+        DeleteEventFailureState(
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (deleted) {
+        emit(DeleteEventSuccessState());
+      },
+    );
   }
 
   @override

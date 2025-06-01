@@ -99,4 +99,30 @@ abstract class EventDetailsRemoteData {
       );
     }
   }
+
+  static Future<Either<Failure, void>> deleteEvent({
+    required String eventId,
+  }) async {
+    try {
+      final List<ConnectivityResult> connectivityResult =
+          await (Connectivity().checkConnectivity());
+
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        return left(const FirebaseErrors(
+          errorMessage: AppText.networkRequestFailed,
+        ));
+      }
+      await _getEventsCollection().doc(eventId).delete();
+      return right(null);
+    } catch (error) {
+      if (error is FirebaseException) {
+        return left(FirebaseErrors.firebaseExceptions(error));
+      }
+      return left(
+        FirebaseErrors(
+          errorMessage: "${AppText.unknownErrorMessage} ${error.toString()}",
+        ),
+      );
+    }
+  }
 }
