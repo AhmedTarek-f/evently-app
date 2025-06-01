@@ -41,41 +41,45 @@ class EventDetailsViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: RPadding(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              EventDetailsCategoryImage(
-                eventCategory: controller.eventData.eventCategory,
-              ),
-              const RSizedBox(height: 16),
-              RPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Text(
-                  controller.eventData.eventTitle ?? "",
-                  style: Theme.of(context).textTheme.labelMedium,
-                  maxLines: 3,
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.ellipsis,
+          child: BlocBuilder<EventDetailsCubit, EventDetailsState>(
+            buildWhen: (previous, current) =>
+                current is EventDetailsEditedState,
+            builder: (context, state) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                EventDetailsCategoryImage(
+                  eventCategory: controller.eventData.eventCategory,
                 ),
-              ),
-              const RSizedBox(height: 16),
-              EventDetailsDateTimeSection(eventData: controller.eventData),
-              const RSizedBox(height: 16),
-              EventDetailsLocationSection(eventData: controller.eventData),
-              const RSizedBox(height: 16),
-              EventDetailsLocationMap(
-                eventData: controller.eventData,
-              ),
-              const RSizedBox(height: 16),
-              EventDetailsDescriptionSection(
-                description: controller.eventData.eventDescription,
-              ),
-              const RSizedBox(height: 16),
-              const EventCreatorSection(),
-              const RSizedBox(height: 16),
-              const EventParticipateSection(),
-              const JoinTheEventButton(),
-            ],
+                const RSizedBox(height: 16),
+                RPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    controller.eventData.eventTitle ?? "",
+                    style: Theme.of(context).textTheme.labelMedium,
+                    maxLines: 3,
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const RSizedBox(height: 16),
+                EventDetailsDateTimeSection(eventData: controller.eventData),
+                const RSizedBox(height: 16),
+                EventDetailsLocationSection(eventData: controller.eventData),
+                const RSizedBox(height: 16),
+                EventDetailsLocationMap(
+                  eventData: controller.eventData,
+                ),
+                const RSizedBox(height: 16),
+                EventDetailsDescriptionSection(
+                  description: controller.eventData.eventDescription,
+                ),
+                const RSizedBox(height: 16),
+                const EventCreatorSection(),
+                const RSizedBox(height: 16),
+                const EventParticipateSection(),
+                const JoinTheEventButton(),
+              ],
+            ),
           ),
         ),
       ),
