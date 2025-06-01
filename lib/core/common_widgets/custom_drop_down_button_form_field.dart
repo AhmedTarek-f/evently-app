@@ -34,8 +34,9 @@ class CustomDropDownButtonFormField extends StatelessWidget {
     return DropdownButtonFormField2<String>(
       value: initialValue,
       isExpanded: true,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: Theme.of(context).colorScheme.primary,
+            fontWeight: FontWeight.w700,
           ),
       decoration: InputDecoration(
         prefixIconConstraints: BoxConstraints(
