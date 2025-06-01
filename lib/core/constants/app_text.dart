@@ -169,6 +169,9 @@ abstract final class AppText {
       "Event has been edited successfully";
   static const String updateEvent = "Update Event";
 
+  //Created Events
+  static const String createdEventsEmpty = "There are no created events yet!";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
