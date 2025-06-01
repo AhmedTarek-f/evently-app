@@ -67,4 +67,7 @@ abstract final class AppIcons {
   static const String delete = "assets/icons/delete.svg";
   static const String edit = "assets/icons/edit.svg";
   static const String copy = "assets/icons/copy.svg";
+  static const String profileDelete = "assets/icons/profile_delete.svg";
+  static const String crownStar = "assets/icons/crown_star.svg";
+  static const String group = "assets/icons/group.svg";
 }
