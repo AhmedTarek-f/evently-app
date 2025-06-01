@@ -12,6 +12,7 @@ class EventModel {
     this.eventLocationLang,
     this.eventCountry,
     this.eventCity,
+    this.participateUsers,
   });
   final String? eventCreatorId;
   String? eventId;
@@ -23,6 +24,7 @@ class EventModel {
   String? eventLocationLang;
   String? eventCountry;
   String? eventCity;
+  List<String>? participateUsers;
 
   static EventModel empty() => EventModel();
 
@@ -38,6 +40,7 @@ class EventModel {
       "EventLocationLang": eventLocationLang ?? "0",
       "EventCountry": eventCountry ?? "",
       "EventCity": eventCity ?? "",
+      "ParticipateUsers": participateUsers ?? <String>[],
     };
   }
 
@@ -56,6 +59,9 @@ class EventModel {
         eventLocationLang: data["EventLocationLang"] as String?,
         eventCountry: data["EventCountry"] as String?,
         eventCity: data["EventCity"] as String?,
+        participateUsers: data["ParticipateUsers"] != null
+            ? List<String>.from(data["ParticipateUsers"])
+            : [],
       );
     } else {
       return empty();
