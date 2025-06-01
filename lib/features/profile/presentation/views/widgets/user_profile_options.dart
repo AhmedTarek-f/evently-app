@@ -4,6 +4,9 @@ import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/created_events/presentation/views/created_events_view.dart';
+import 'package:evently_app/features/created_events/presentation/views_model/created_events_cubit.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,13 +19,31 @@ class UserProfileOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<ProfileCubit>(context);
+    final eventlyController =
+        BlocProvider.of<EventlyBottomNavigationCubit>(context);
     return RPadding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider<CreatedEventsCubit>(
+                        create: (context) => CreatedEventsCubit(),
+                      ),
+                      BlocProvider<EventlyBottomNavigationCubit>.value(
+                        value: eventlyController,
+                      ),
+                    ],
+                    child: const CreatedEventsView(),
+                  ),
+                ),
+              );
+            },
             buttonTitle: "",
             isText: false,
             child: Row(
