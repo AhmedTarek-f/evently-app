@@ -64,4 +64,7 @@ abstract final class AppIcons {
   static const String sun2 = "assets/icons/sun2.svg";
   static const String all = "assets/icons/all.svg";
   static const String favorite = "assets/icons/favorite.svg";
+  static const String delete = "assets/icons/delete.svg";
+  static const String edit = "assets/icons/edit.svg";
+  static const String copy = "assets/icons/copy.svg";
 }
