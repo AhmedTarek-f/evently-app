@@ -154,6 +154,12 @@ abstract final class AppText {
   static const String joinTheEvent = "Join The Event";
   static const String cancelParticipation = "Cancel Participation";
 
+  //Edit Event
+  static const String editEvent = "Edit Event";
+  static const String editingEventSuccessMessage =
+      "Event has been edited successfully";
+  static const String updateEvent = "Update Event";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
