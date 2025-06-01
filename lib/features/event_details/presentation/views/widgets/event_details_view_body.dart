@@ -1,3 +1,4 @@
+import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/loaders/loaders.dart';
 import 'package:evently_app/features/event_details/presentation/views/widgets/event_creator_section.dart';
 import 'package:evently_app/features/event_details/presentation/views/widgets/event_details_category_image.dart';
@@ -35,6 +36,20 @@ class EventDetailsViewBody extends StatelessWidget {
           Loaders.showErrorMessage(
             message: state.errorMessage,
             context: context,
+          );
+        } else if (state is DeleteEventFailureState) {
+          Navigator.of(context).pop();
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        } else if (state is DeleteEventSuccessState) {
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Loaders.showSuccessMessage(
+            message: AppText.deleteEventSuccessMessage,
+            context: context,
+            secondsDuration: 2,
           );
         }
       },
