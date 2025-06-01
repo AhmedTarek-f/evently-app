@@ -1,5 +1,5 @@
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
-import 'package:evently_app/core/common_widgets/loading_circle.dart';
+import 'package:evently_app/core/common_widgets/loading_button.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/auth/forget_password/presentation/views_model/forget_password_cubit.dart';
 import 'package:evently_app/features/auth/forget_password/presentation/views_model/forget_password_state.dart';
@@ -17,12 +17,7 @@ class ResetPasswordButton extends StatelessWidget {
           current is SendResetPasswordLoadingState ||
           current is SendResetPasswordFailureState,
       builder: (context, state) => controller.isLoading
-          ? CustomElevatedButton(
-              onPressed: () {},
-              buttonTitle: "",
-              isText: false,
-              child: const LoadingCircle(),
-            )
+          ? const LoadingButton()
           : CustomElevatedButton(
               onPressed: () async {
                 await controller.resetPassword();

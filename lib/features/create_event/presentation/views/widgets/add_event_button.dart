@@ -1,5 +1,5 @@
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
-import 'package:evently_app/core/common_widgets/loading_circle.dart';
+import 'package:evently_app/core/common_widgets/loading_button.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/create_event/presentation/views_model/create_event_cubit.dart';
 import 'package:evently_app/features/create_event/presentation/views_model/create_event_state.dart';
@@ -17,12 +17,7 @@ class AddEventButton extends StatelessWidget {
           current is CreateEventFailureState ||
           current is CreateEventLoadingState,
       builder: (context, state) => controller.isLoading
-          ? CustomElevatedButton(
-              onPressed: () {},
-              buttonTitle: "",
-              isText: false,
-              child: const LoadingCircle(),
-            )
+          ? const LoadingButton()
           : CustomElevatedButton(
               onPressed: () async {
                 await controller.addEvent();
