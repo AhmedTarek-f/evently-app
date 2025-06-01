@@ -153,6 +153,12 @@ abstract final class AppText {
   static const String emailCopiedToClipBoard = "Email copied to clipboard";
   static const String joinTheEvent = "Join The Event";
   static const String cancelParticipation = "Cancel Participation";
+  static const String deleteEventMessage =
+      "Are you sure that you want to delete this event: ";
+  static const String cancel = "Cancel";
+  static const String delete = "Delete";
+  static const String deleteEventSuccessMessage =
+      "Event has been deleted successfully";
 
   //Edit Event
   static const String editEvent = "Edit Event";
