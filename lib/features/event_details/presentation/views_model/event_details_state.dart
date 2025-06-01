@@ -38,3 +38,12 @@ final class ToggleParticipateInOutEventFailureState extends EventDetailsState {
 }
 
 final class EventDetailsEditedState extends EventDetailsState {}
+
+final class DeleteEventSuccessState extends EventDetailsState {}
+
+final class DeleteEventLoadingState extends EventDetailsState {}
+
+final class DeleteEventFailureState extends EventDetailsState {
+  DeleteEventFailureState({required this.errorMessage});
+  final String errorMessage;
+}
