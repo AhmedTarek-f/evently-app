@@ -89,9 +89,12 @@ abstract final class AppText {
   static const String arabic = "Arabic";
   static const String english = "English";
   static const String loggingYouOut = "Logging you out...";
-  static const String logout = "logout";
+  static const String logout = "Logout";
+  static const String deleteAccount = "Delete Account";
   static const String languageCapital = "Language";
   static const String themeCapital = "Theme";
+  static const String createdEvents = "Created Events";
+  static const String eventsParticipatedIn = "Events Participated In";
 
   // Favorite
   static const String searchForEvent = "Search for Event";
