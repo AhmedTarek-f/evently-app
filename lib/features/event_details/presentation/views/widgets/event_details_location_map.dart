@@ -43,8 +43,9 @@ class EventDetailsLocationMap extends StatelessWidget {
             initialCameraPosition: controller.initialCameraPosition,
             onMapCreated: (mapController) async {
               controller.googleMapController = mapController;
-              await controller.animateCameraToEventLocation(
-                  eventData: eventData);
+              controller.animateCameraToEventLocation(
+                eventData: eventData,
+              );
             },
             markers: controller.markers,
           ),
