@@ -3,6 +3,7 @@ import 'package:evently_app/features/choose_event_location/presentation/views/wi
 import 'package:evently_app/features/choose_event_location/presentation/views_model/choose_event_location_cubit.dart';
 import 'package:evently_app/features/choose_event_location/presentation/views_model/choose_event_location_state.dart';
 import 'package:evently_app/features/create_event/presentation/views_model/create_event_cubit.dart';
+import 'package:evently_app/features/edit_event/presentation/views_model/edit_event_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,11 +15,11 @@ class ChooseEventLocationViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<ChooseEventLocationCubit>(context);
-    final createEventController = BlocProvider.of<CreateEventCubit>(context);
     return BlocConsumer<ChooseEventLocationCubit, ChooseEventLocationState>(
       listenWhen: (previous, current) =>
           current is GetLocationDataFailureState ||
-          current is SelectEventLocationState,
+          current is SelectEventLocationState ||
+          current is SelectEventLocationEditState,
       listener: (context, state) {
         if (state is GetLocationDataFailureState) {
           Loaders.showErrorMessage(
@@ -26,7 +27,15 @@ class ChooseEventLocationViewBody extends StatelessWidget {
             context: context,
           );
         } else if (state is SelectEventLocationState) {
+          final createEventController =
+              BlocProvider.of<CreateEventCubit>(context);
           createEventController.selectEventLocation(
+            eventLocation: controller.selectedLocation,
+          );
+          Navigator.of(context).pop();
+        } else if (state is SelectEventLocationEditState) {
+          final editEventController = BlocProvider.of<EditEventCubit>(context);
+          editEventController.selectEventLocation(
             eventLocation: controller.selectedLocation,
           );
           Navigator.of(context).pop();
@@ -41,7 +50,9 @@ class ChooseEventLocationViewBody extends StatelessWidget {
             initialCameraPosition: controller.initialCameraPosition,
             onMapCreated: (mapController) async {
               controller.googleMapController = mapController;
-              await controller.animateCameraToMyLocation();
+              controller.isEditEvent == true
+                  ? controller.animateCameraToEventLocation()
+                  : await controller.animateCameraToMyLocation();
             },
             onTap: (newEventLocation) => controller.changeSelectedLocation(
               eventLocation: newEventLocation,
