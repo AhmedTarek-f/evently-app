@@ -141,6 +141,19 @@ abstract final class AppText {
   static const String tapOnLocationToSelect = "Tap on Location To Select";
   static const String eventLocation = "Event Location";
 
+  // Event Details
+  static const String eventDetails = "Event Details";
+  static const String eventCreator = "Event Creator";
+  static const String participatingMembers = "Participating Members";
+  static const String participatingMembersEmpty =
+      "There are no participating members yet";
+  static const String userName = "User name:";
+  static const String userEmail = "Email:";
+  static const String back = "back";
+  static const String emailCopiedToClipBoard = "Email copied to clipboard";
+  static const String joinTheEvent = "Join The Event";
+  static const String cancelParticipation = "Cancel Participation";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
