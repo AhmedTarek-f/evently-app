@@ -39,6 +39,24 @@ class ProfileViewBody extends StatelessWidget {
           Navigator.of(context).pushReplacementNamed(
             LoginView.routeName,
           );
+        } else if (state is DeleteAccountLoadingState) {
+          FullScreenLoader.openLoadingDialog(
+            text: AppText.processing,
+            animation: AppImages.loadingAnimation,
+            context: context,
+          );
+        } else if (state is DeleteAccountFailureState) {
+          FullScreenLoader.stopLoading(context: context);
+          Loaders.showErrorMessage(
+            message: state.errorMessage,
+            context: context,
+          );
+        } else if (state is DeleteAccountSuccessState) {
+          EventlyMethodsHelper.allEvents.clear();
+          FullScreenLoader.stopLoading(context: context);
+          Navigator.of(context).pushReplacementNamed(
+            LoginView.routeName,
+          );
         }
       },
       child: const Column(
