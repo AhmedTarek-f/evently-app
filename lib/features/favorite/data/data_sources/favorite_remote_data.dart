@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
@@ -21,6 +22,14 @@ abstract class FavoriteRemoteData {
     required List<String> favoriteEventsList,
   }) async {
     try {
+      final List<ConnectivityResult> connectivityResult =
+          await (Connectivity().checkConnectivity());
+
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        return left(const FirebaseErrors(
+          errorMessage: AppText.networkRequestFailed,
+        ));
+      }
       await _getUserCollection().doc(userId).update(
         {
           "FavoriteEvents": favoriteEventsList,
