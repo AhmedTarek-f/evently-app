@@ -30,4 +30,10 @@ class CreatedEventsCubit extends Cubit<CreatedEventsState> {
         )
         .toList();
   }
+
+  void resetCreatedEventsList() {
+    createdEventsList.clear();
+    createdEventsList.addAll(fetchCreatedEvents());
+    emit(CreatedEventsListChangeState());
+  }
 }
