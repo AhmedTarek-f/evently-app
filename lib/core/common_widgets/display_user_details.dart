@@ -111,13 +111,14 @@ class DisplayUserDetails extends StatelessWidget {
             child: CircleAvatar(
               radius: 24.r,
               backgroundColor: Theme.of(context).colorScheme.primaryFixed,
-              backgroundImage: userData.photoUrl != null
-                  ? NetworkImage(userData.photoUrl!)
-                  : AssetImage(
-                      userData.gender!.toLowerCase() == "male"
-                          ? AppImages.maleUser
-                          : AppImages.femaleUser,
-                    ),
+              backgroundImage:
+                  userData.photoUrl!.isNotEmpty && userData.gender!.isEmpty
+                      ? NetworkImage(userData.photoUrl!)
+                      : AssetImage(
+                          userData.gender!.toLowerCase() == "male"
+                              ? AppImages.maleUser
+                              : AppImages.femaleUser,
+                        ),
             ),
           ),
           const RSizedBox(height: 4),
