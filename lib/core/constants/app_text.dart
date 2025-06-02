@@ -172,6 +172,10 @@ abstract final class AppText {
   //Created Events
   static const String createdEventsEmpty = "There are no created events yet!";
 
+  //Events Participated In
+  static const String eventsParticipatedInEmpty =
+      "You have participated In no events yet!";
+
   // Firebase Exceptions
   static const String emailAlreadyInUse =
       'The email address is already registered. Please use a different email.';
