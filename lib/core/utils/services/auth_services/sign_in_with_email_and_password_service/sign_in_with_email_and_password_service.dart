@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
@@ -11,6 +12,14 @@ abstract class SignInWithEmailAndPasswordService {
     String password,
   ) async {
     try {
+      final List<ConnectivityResult> connectivityResult =
+          await (Connectivity().checkConnectivity());
+
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        return left(const FirebaseErrors(
+          errorMessage: AppText.networkRequestFailed,
+        ));
+      }
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,

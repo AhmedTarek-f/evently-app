@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
@@ -9,6 +10,14 @@ abstract class SignInWithGoogleService {
   static final _auth = FirebaseAuth.instance;
   static Future<Either<Failure, UserCredential>> signInWithGoogle() async {
     try {
+      final List<ConnectivityResult> connectivityResult =
+          await (Connectivity().checkConnectivity());
+
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        return left(const FirebaseErrors(
+          errorMessage: AppText.networkRequestFailed,
+        ));
+      }
       late final OAuthCredential credential;
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
