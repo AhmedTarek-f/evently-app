@@ -58,7 +58,8 @@ class HomeEventCardTitleAndFavoriteRow extends StatelessWidget {
             icon: BlocBuilder<HomeCubit, HomeState>(
               buildWhen: (previous, current) =>
                   current is ToggleFavoriteLoadingState ||
-                  current is ToggleFavoriteSuccessState,
+                  current is ToggleFavoriteSuccessState ||
+                  current is ToggleFavoriteFailureState,
               builder: (context, state) => state
                           is ToggleFavoriteLoadingState &&
                       eventData.eventId == state.eventId

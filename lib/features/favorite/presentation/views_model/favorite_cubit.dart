@@ -43,10 +43,12 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     required String eventId,
   }) async {
     emit(DeleteFavoriteEventLoadingState(eventId: eventId));
-    userData.favoriteEvents.removeWhere((event) => event == eventId);
+    List<String> copyOfFavoriteEvents = [];
+    copyOfFavoriteEvents.addAll(userData.favoriteEvents);
+    copyOfFavoriteEvents.removeWhere((event) => event == eventId);
     var result = await FavoriteRepository.updateFavoriteEvents(
       userId: userData.id,
-      favoriteEventsList: userData.favoriteEvents,
+      favoriteEventsList: copyOfFavoriteEvents,
     );
     result.fold(
       (failure) => emit(
@@ -55,6 +57,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         ),
       ),
       (success) {
+        userData.favoriteEvents.removeWhere((event) => event == eventId);
         if (searchFavoriteEventsList.any((event) => event.eventId == eventId)) {
           searchFavoriteEventsList
               .removeWhere((event) => event.eventId == eventId);

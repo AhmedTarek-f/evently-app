@@ -177,16 +177,18 @@ class HomeCubit extends Cubit<HomeState> {
     required String eventId,
   }) async {
     emit(ToggleFavoriteLoadingState(eventId: eventId));
-    if (userData.favoriteEvents.contains(eventId)) {
-      userData.favoriteEvents.removeWhere(
+    List<String> copyOfUserFavoriteEvents = [];
+    copyOfUserFavoriteEvents.addAll(userData.favoriteEvents);
+    if (copyOfUserFavoriteEvents.contains(eventId)) {
+      copyOfUserFavoriteEvents.removeWhere(
         (event) => event == eventId,
       );
     } else {
-      userData.favoriteEvents.add(eventId);
+      copyOfUserFavoriteEvents.add(eventId);
     }
     var result = await HomeRepository.updateFavoriteEvents(
       userId: userData.id,
-      favoriteEventsList: userData.favoriteEvents,
+      favoriteEventsList: copyOfUserFavoriteEvents,
     );
     result.fold(
       (failure) => emit(
@@ -194,7 +196,16 @@ class HomeCubit extends Cubit<HomeState> {
           errorMessage: failure.errorMessage,
         ),
       ),
-      (success) => emit(ToggleFavoriteSuccessState()),
+      (success) {
+        if (userData.favoriteEvents.contains(eventId)) {
+          userData.favoriteEvents.removeWhere(
+            (event) => event == eventId,
+          );
+        } else {
+          userData.favoriteEvents.add(eventId);
+        }
+        emit(ToggleFavoriteSuccessState());
+      },
     );
   }
 

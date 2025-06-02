@@ -59,7 +59,8 @@ class FavoriteEventCardTitleAndFavoriteRow extends StatelessWidget {
             icon: BlocBuilder<FavoriteCubit, FavoriteState>(
               buildWhen: (previous, current) =>
                   current is DeleteFavoriteEventLoadingState ||
-                  current is DeleteFavoriteEventSuccessState,
+                  current is DeleteFavoriteEventSuccessState ||
+                  current is DeleteFavoriteEventFailureState,
               builder: (context, state) => state
                           is DeleteFavoriteEventLoadingState &&
                       eventData.eventId == state.eventId
