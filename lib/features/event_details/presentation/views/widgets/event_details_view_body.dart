@@ -10,6 +10,7 @@ import 'package:evently_app/features/event_details/presentation/views/widgets/ev
 import 'package:evently_app/features/event_details/presentation/views/widgets/join_the_event_button.dart';
 import 'package:evently_app/features/event_details/presentation/views_model/event_details_cubit.dart';
 import 'package:evently_app/features/event_details/presentation/views_model/event_details_state.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,8 @@ class EventDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<EventDetailsCubit>(context);
+    final eventlyController =
+        BlocProvider.of<EventlyBottomNavigationCubit>(context);
     return BlocListener<EventDetailsCubit, EventDetailsState>(
       listener: (context, state) {
         if (state is FetchEventCreatorFailureState) {
@@ -44,6 +47,7 @@ class EventDetailsViewBody extends StatelessWidget {
             context: context,
           );
         } else if (state is DeleteEventSuccessState) {
+          eventlyController.deleteEvent(eventId: state.eventId);
           Navigator.of(context).pop();
           Navigator.of(context).pop();
           Loaders.showSuccessMessage(
@@ -51,6 +55,8 @@ class EventDetailsViewBody extends StatelessWidget {
             context: context,
             secondsDuration: 2,
           );
+        } else if (state is ChangeParticipateUsersState) {
+          eventlyController.changeParticipation();
         }
       },
       child: SingleChildScrollView(
