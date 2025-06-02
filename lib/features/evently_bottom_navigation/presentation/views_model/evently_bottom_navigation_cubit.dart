@@ -1,3 +1,4 @@
+import 'package:evently_app/core/utils/evently_methods_helper.dart';
 import 'package:evently_app/features/auth/register/data/models/user_model.dart';
 import 'package:evently_app/features/evently_bottom_navigation/data/repositories/evently_bottom_nav_repository.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_state.dart';
@@ -88,5 +89,16 @@ class EventlyBottomNavigationCubit extends Cubit<EventlyBottomNavigationState> {
         },
       );
     }
+  }
+
+  void deleteEvent({required String eventId}) {
+    EventlyMethodsHelper.allEvents.removeWhere(
+      (event) => event.eventId == eventId,
+    );
+    emit(DeleteEventState());
+  }
+
+  void changeParticipation() {
+    emit(ChangeParticipationState());
   }
 }
