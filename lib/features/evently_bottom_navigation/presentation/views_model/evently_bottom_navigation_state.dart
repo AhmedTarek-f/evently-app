@@ -29,3 +29,7 @@ final class GetLocationDataFailureState extends EventlyBottomNavigationInitial {
   GetLocationDataFailureState({required this.errorMessage});
   final String errorMessage;
 }
+
+final class DeleteEventState extends EventlyBottomNavigationState {}
+
+final class ChangeParticipationState extends EventlyBottomNavigationState {}
