@@ -5,6 +5,7 @@ import 'package:evently_app/core/constants/const_keys.dart';
 import 'package:evently_app/features/profile/data/repositories/profile_repository.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_state.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +24,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   ];
   late String currentTheme;
   late String currentLanguage;
+  final String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
 
   void onInit() {
     currentTheme = SharedPreferencesHelper.getBool(key: ConstKeys.isDarkTheme)
@@ -73,6 +75,33 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       ),
       (logoutSuccess) => emit(LogoutSuccessState()),
+    );
+  }
+
+  Future<void> deleteAccount() async {
+    emit(DeleteAccountLoadingState());
+    var deleteRelativeAccountDataResult =
+        await ProfileRepository.deleteUserRelatedEvents(userId: userId);
+    deleteRelativeAccountDataResult.fold(
+      (failure) => emit(
+        DeleteAccountFailureState(
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (relevantDataDeletedSuccessfully) async {
+        var deleteAccountDataResult =
+            await ProfileRepository.deleteUserAccount(userId: userId);
+        deleteAccountDataResult.fold(
+          (failure) => emit(
+            DeleteAccountFailureState(
+              errorMessage: failure.errorMessage,
+            ),
+          ),
+          (allDeletedSuccessfully) => emit(
+            DeleteAccountSuccessState(),
+          ),
+        );
+      },
     );
   }
 }
