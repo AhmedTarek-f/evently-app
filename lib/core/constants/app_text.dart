@@ -95,6 +95,9 @@ abstract final class AppText {
   static const String themeCapital = "Theme";
   static const String createdEvents = "Created Events";
   static const String eventsParticipatedIn = "Events Participated In";
+  static const String deleteAccountMessage =
+      "Are you sure that you want to delete your account ?!";
+  static const String processing = "Processing...";
 
   // Favorite
   static const String searchForEvent = "Search for Event";
