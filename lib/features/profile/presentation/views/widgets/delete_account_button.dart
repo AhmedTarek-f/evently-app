@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
+import 'package:evently_app/core/common_widgets/dialogs/dialogs.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
@@ -23,7 +24,36 @@ class DeleteAccountButton extends StatelessWidget {
       ),
       child: CustomElevatedButton(
         isText: false,
-        onPressed: () {},
+        onPressed: () {
+          Dialogs.showOptionDialog(
+            context: context,
+            firstButtonTitle: '',
+            secondButtonTitle: '',
+            optionDialogContent: AppText.deleteAccountMessage,
+            contentHorizontalPadding: 16,
+            dialogButton: BlocProvider.value(
+              value: controller,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CustomElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      buttonTitle: AppText.cancel,
+                    ),
+                  ),
+                  const RSizedBox(width: 16),
+                  Expanded(
+                    child: CustomElevatedButton(
+                      onPressed: () async => await controller.deleteAccount(),
+                      buttonTitle: AppText.delete,
+                      backgroundColor: AppColors.red,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
         backgroundColor: AppColors.red,
         buttonTitle: "",
         child: Row(
