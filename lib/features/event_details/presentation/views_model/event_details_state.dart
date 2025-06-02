@@ -39,7 +39,10 @@ final class ToggleParticipateInOutEventFailureState extends EventDetailsState {
 
 final class EventDetailsEditedState extends EventDetailsState {}
 
-final class DeleteEventSuccessState extends EventDetailsState {}
+final class DeleteEventSuccessState extends EventDetailsState {
+  DeleteEventSuccessState({required this.eventId});
+  final String eventId;
+}
 
 final class DeleteEventLoadingState extends EventDetailsState {}
 

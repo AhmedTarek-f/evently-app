@@ -207,7 +207,11 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
         ),
       ),
       (deleted) {
-        emit(DeleteEventSuccessState());
+        emit(
+          DeleteEventSuccessState(
+            eventId: eventData.eventId ?? "",
+          ),
+        );
       },
     );
   }
