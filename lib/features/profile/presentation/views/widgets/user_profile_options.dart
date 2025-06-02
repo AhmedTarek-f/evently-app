@@ -7,6 +7,8 @@ import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/created_events/presentation/views/created_events_view.dart';
 import 'package:evently_app/features/created_events/presentation/views_model/created_events_cubit.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
+import 'package:evently_app/features/events_participated_in/presentation/views/events_participated_in_view.dart';
+import 'package:evently_app/features/events_participated_in/presentation/views_model/events_participated_in_cubit.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +69,23 @@ class UserProfileOptions extends StatelessWidget {
           ),
           const RSizedBox(height: 8),
           CustomElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider<EventsParticipatedInCubit>(
+                        create: (context) => EventsParticipatedInCubit(),
+                      ),
+                      BlocProvider<EventlyBottomNavigationCubit>.value(
+                        value: eventlyController,
+                      ),
+                    ],
+                    child: const EventsParticipatedInView(),
+                  ),
+                ),
+              );
+            },
             buttonTitle: "",
             isText: false,
             child: Row(
