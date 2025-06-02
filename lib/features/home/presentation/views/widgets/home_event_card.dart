@@ -26,12 +26,19 @@ class HomeEventCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => BlocProvider<EventDetailsCubit>(
-            create: (context) => EventDetailsCubit(
-              context,
-              eventData,
-              eventlyController.currentUserData ?? UserModel.empty(),
-            ),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<EventlyBottomNavigationCubit>.value(
+                value: eventlyController,
+              ),
+              BlocProvider<EventDetailsCubit>(
+                create: (context) => EventDetailsCubit(
+                  context,
+                  eventData,
+                  eventlyController.currentUserData ?? UserModel.empty(),
+                ),
+              )
+            ],
             child: const EventDetailsView(),
           ),
         ),
