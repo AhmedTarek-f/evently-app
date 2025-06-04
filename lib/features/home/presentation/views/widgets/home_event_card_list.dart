@@ -1,5 +1,6 @@
 import 'package:evently_app/features/create_event/data/models/event_model.dart';
 import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_state.dart';
 import 'package:evently_app/features/home/presentation/views/widgets/home_event_card.dart';
 import 'package:evently_app/features/home/presentation/views_model/home_cubit.dart';
 import 'package:evently_app/features/home/presentation/views_model/home_state.dart';
@@ -17,16 +18,15 @@ class HomeEventCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     final eventlyController =
         BlocProvider.of<EventlyBottomNavigationCubit>(context);
-    final homeController = BlocProvider.of<HomeCubit>(context);
     return RPadding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: BlocBuilder<HomeCubit, HomeState>(
-        buildWhen: (previous, current) => current is ToggleFavoriteSuccessState,
-        builder: (context, state) => RefreshIndicator(
-          onRefresh: () async => await homeController.reloadEventTapsList(),
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-          child: ListView.separated(
+      child: BlocBuilder<EventlyBottomNavigationCubit,
+          EventlyBottomNavigationState>(
+        buildWhen: (previous, current) => current is FetchUserDataSuccessState,
+        builder: (context, state) => BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (previous, current) =>
+              current is ToggleFavoriteSuccessState,
+          builder: (context, state) => ListView.separated(
             padding: REdgeInsets.only(top: 16),
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
