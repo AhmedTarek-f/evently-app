@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:evently_app/core/common_widgets/shimmer/shimmer_effect.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
@@ -51,8 +53,14 @@ class ProfileAppBar extends StatelessWidget {
                             ""
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(1000.r),
-                        child: Image.network(
-                          eventlyController.currentUserData!.photoUrl!,
+                        child: CachedNetworkImage(
+                          progressIndicatorBuilder: (context, url, progress) =>
+                              ShimmerEffect(
+                            width: 92.r,
+                            height: 92.r,
+                          ),
+                          imageUrl:
+                              eventlyController.currentUserData!.photoUrl!,
                           width: 92.r,
                           fit: BoxFit.contain,
                         ),

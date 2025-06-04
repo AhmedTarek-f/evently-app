@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/common_widgets/dialogs/dialogs.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
@@ -113,7 +114,7 @@ class DisplayUserDetails extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.primaryFixed,
               backgroundImage:
                   userData.photoUrl!.isNotEmpty && userData.gender!.isEmpty
-                      ? NetworkImage(userData.photoUrl!)
+                      ? CachedNetworkImageProvider(userData.photoUrl!)
                       : AssetImage(
                           userData.gender!.toLowerCase() == "male"
                               ? AppImages.maleUser
