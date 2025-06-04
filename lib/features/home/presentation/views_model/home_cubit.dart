@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/core/utils/errors/failure.dart';
 import 'package:evently_app/core/utils/evently_methods_helper.dart';
 import 'package:evently_app/features/auth/register/data/models/user_model.dart';
 import 'package:evently_app/features/create_event/data/models/category_item_model.dart';
@@ -13,6 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial()) {
     onInit();
   }
+  StreamSubscription<Either<Failure, List<EventModel>>>? _eventsSubscription;
   late CategoryItemModel selectedCategoryItem;
   List<CategoryItemModel> eventCategoriesList = [];
   int currentCategoryIndex = 0;
@@ -28,7 +33,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<EventModel> bookClubEvents = [];
   void onInit() {
     initializeEventCategoriesList();
-    initializeEventTapsList();
+    getAllEvents();
   }
 
   void initializeEventCategoriesList() {
@@ -43,45 +48,27 @@ class HomeCubit extends Cubit<HomeState> {
     selectedCategoryItem = eventCategoriesList[0];
   }
 
-  Future<void> initializeEventTapsList() async {
-    bool isAlreadyCached = EventlyMethodsHelper.allEvents.isNotEmpty;
-    await getAllEvents();
-    for (var event in EventlyMethodsHelper.allEvents) {
-      switch (event.eventCategory) {
-        case "sport":
-          sportEvents.add(event);
-        case "birthday":
-          birthdayEvents.add(event);
-        case "meeting":
-          meetingEvents.add(event);
-        case "gaming":
-          gamingEvents.add(event);
-        case "eating":
-          eatingEvents.add(event);
-        case "holiday":
-          holidayEvents.add(event);
-        case "exhibition":
-          exhibitionEvents.add(event);
-        case "workShop":
-          workShopEvents.add(event);
-        case "bookClub":
-          bookClubEvents.add(event);
-      }
-    }
-    eventTapsList.add(EventlyMethodsHelper.allEvents);
-    eventTapsList.add(bookClubEvents);
-    eventTapsList.add(sportEvents);
-    eventTapsList.add(birthdayEvents);
-    eventTapsList.add(eatingEvents);
-    eventTapsList.add(gamingEvents);
-    eventTapsList.add(meetingEvents);
-    eventTapsList.add(holidayEvents);
-    eventTapsList.add(workShopEvents);
-    eventTapsList.add(exhibitionEvents);
-    if (isAlreadyCached) emit(FetchCachedEventsState());
+  void getAllEvents() {
+    emit(FetchEventsLoadingState());
+
+    _eventsSubscription?.cancel();
+    _eventsSubscription = HomeRepository.fetchAllEvents().listen((result) {
+      result.fold(
+        (failure) => emit(
+          FetchEventsFailureState(errorMessage: failure.errorMessage),
+        ),
+        (allEventsData) {
+          EventlyMethodsHelper.allEvents
+            ..clear()
+            ..addAll(allEventsData);
+          initializeEventTapsList();
+          emit(FetchEventsSuccessState());
+        },
+      );
+    });
   }
 
-  Future<void> reloadEventTapsList() async {
+  void initializeEventTapsList() {
     eventTapsList.clear();
     sportEvents.clear();
     birthdayEvents.clear();
@@ -92,7 +79,6 @@ class HomeCubit extends Cubit<HomeState> {
     exhibitionEvents.clear();
     workShopEvents.clear();
     bookClubEvents.clear();
-    await _reloadAllEvents();
     for (var event in EventlyMethodsHelper.allEvents) {
       switch (event.eventCategory) {
         case "sport":
@@ -125,43 +111,6 @@ class HomeCubit extends Cubit<HomeState> {
     eventTapsList.add(holidayEvents);
     eventTapsList.add(workShopEvents);
     eventTapsList.add(exhibitionEvents);
-  }
-
-  Future<void> getAllEvents() async {
-    if (EventlyMethodsHelper.allEvents.isNotEmpty) {
-      return;
-    } else {
-      emit(FetchEventsLoadingState());
-      var result = await HomeRepository.fetchAllEvents();
-      result.fold(
-        (failure) => emit(
-          FetchEventsFailureState(
-            errorMessage: failure.errorMessage,
-          ),
-        ),
-        (allEventsData) {
-          EventlyMethodsHelper.allEvents.addAll(allEventsData);
-          emit(FetchEventsSuccessState());
-        },
-      );
-    }
-  }
-
-  Future<void> _reloadAllEvents() async {
-    emit(FetchEventsLoadingState());
-    var result = await HomeRepository.fetchAllEvents();
-    result.fold(
-      (failure) => emit(
-        FetchEventsFailureState(
-          errorMessage: failure.errorMessage,
-        ),
-      ),
-      (allEventsData) {
-        EventlyMethodsHelper.allEvents.clear();
-        EventlyMethodsHelper.allEvents.addAll(allEventsData);
-        emit(FetchEventsSuccessState());
-      },
-    );
   }
 
   void getCurrentCategorySelectedTap({required int tapIndex}) {
@@ -213,5 +162,11 @@ class HomeCubit extends Cubit<HomeState> {
     String day = DateFormat("dd").format(date);
     String month = DateFormat("MMM").format(date).substring(0, 3);
     return <String>[day, month];
+  }
+
+  @override
+  Future<void> close() {
+    _eventsSubscription?.cancel();
+    return super.close();
   }
 }

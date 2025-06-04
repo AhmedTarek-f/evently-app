@@ -4,8 +4,8 @@ import 'package:evently_app/features/create_event/data/models/event_model.dart';
 import 'package:evently_app/features/home/data/data_sources/home_remote_data.dart';
 
 abstract class HomeRepository {
-  static Future<Either<Failure, List<EventModel>>> fetchAllEvents() async {
-    return await HomeRemoteData.fetchAllEvents();
+  static Stream<Either<Failure, List<EventModel>>> fetchAllEvents() async* {
+    yield* HomeRemoteData.fetchAllEvents();
   }
 
   static Future<Either<Failure, void>> updateFavoriteEvents({

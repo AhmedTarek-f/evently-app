@@ -25,18 +25,35 @@ abstract class HomeRemoteData {
         );
   }
 
-  static Future<Either<Failure, List<EventModel>>> fetchAllEvents() async {
+  static Stream<Either<Failure, List<EventModel>>> fetchAllEvents() async* {
     try {
-      var eventsDocument =
-          await _getEventsCollection().orderBy("EventDate").get();
-      return right(eventsDocument.docs.map((event) => event.data()).toList());
+      yield* _getEventsCollection()
+          .where(
+            "EventDate",
+            isGreaterThanOrEqualTo: Timestamp.now(),
+          )
+          .orderBy("EventDate")
+          .snapshots()
+          .map(
+            (snapshot) => right<Failure, List<EventModel>>(
+              snapshot.docs.map((e) => e.data()).toList(),
+            ),
+          );
     } catch (error) {
       if (error is FirebaseException) {
-        return left(FirebaseErrors.firebaseExceptions(error));
+        yield* Stream.value(
+          left(
+            FirebaseErrors.firebaseExceptions(
+              error,
+            ),
+          ),
+        );
       }
-      return left(
-        FirebaseErrors(
-          errorMessage: "${AppText.unknownErrorMessage} ${error.toString()}",
+      yield* Stream.value(
+        left(
+          FirebaseErrors(
+            errorMessage: "${AppText.unknownErrorMessage} ${error.toString()}",
+          ),
         ),
       );
     }
