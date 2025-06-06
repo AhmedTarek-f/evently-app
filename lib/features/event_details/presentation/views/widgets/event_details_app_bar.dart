@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/common_widgets/dialogs/dialogs.dart';
 import 'package:evently_app/core/common_widgets/loading_button.dart';
@@ -8,6 +9,7 @@ import 'package:evently_app/features/edit_event/presentation/views/edit_event_vi
 import 'package:evently_app/features/edit_event/presentation/views_model/edit_event_cubit.dart';
 import 'package:evently_app/features/event_details/presentation/views_model/event_details_cubit.dart';
 import 'package:evently_app/features/event_details/presentation/views_model/event_details_state.dart';
+import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +25,15 @@ class EventDetailsAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     final userId = FirebaseAuth.instance.currentUser?.uid;
     final controller = BlocProvider.of<EventDetailsCubit>(context);
+    final startController = BlocProvider.of<StartCubit>(context);
+    final currentLocale = startController.isArLanguage ? "ar" : "en";
     return AppBar(
       scrolledUnderElevation: 0,
       foregroundColor: Theme.of(context).colorScheme.primary,
       automaticallyImplyLeading: true,
-      title: const Text(AppText.eventDetails),
+      title: Text(
+        AppText.eventDetails.tr(),
+      ),
       centerTitle: true,
       actions: controller.eventData.eventCreatorId == userId
           ? [
@@ -36,7 +42,10 @@ class EventDetailsAppBar extends StatelessWidget
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => BlocProvider<EditEventCubit>(
-                        create: (context) => EditEventCubit(controller),
+                        create: (context) => EditEventCubit(
+                          controller,
+                          currentLocale,
+                        ),
                         child: const EditEventView(),
                       ),
                     ),
@@ -56,7 +65,7 @@ class EventDetailsAppBar extends StatelessWidget
                     firstButtonTitle: '',
                     secondButtonTitle: '',
                     optionDialogContent:
-                        "${AppText.deleteEventMessage} ${controller.eventData.eventTitle}",
+                        "${AppText.deleteEventMessage.tr()} ${controller.eventData.eventTitle}",
                     contentHorizontalPadding: 16,
                     dialogButton: BlocProvider.value(
                       value: controller,

@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/loaders/animation_loader_widget.dart';
@@ -30,8 +29,8 @@ class EventsParticipatedInList extends StatelessWidget {
         builder: (context, state) =>
             controller.eventsParticipatedInList.isNotEmpty
                 ? const EventsParticipatedInCardList()
-                : AnimationLoaderWidget(
-                    text: AppText.eventsParticipatedInEmpty.tr(),
+                : const AnimationLoaderWidget(
+                    text: AppText.eventsParticipatedInEmpty,
                     animation: AppImages.emptyEvents,
                   ),
       ),

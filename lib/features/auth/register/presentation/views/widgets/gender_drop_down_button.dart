@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/features/auth/register/presentation/views_model/register_cubit.dart';
@@ -72,7 +73,7 @@ class GenderDropDownButtonField extends StatelessWidget {
                   height: 20.r,
                 ),
               ),
-              Text(controller.genderList[0]),
+              Text(controller.genderList[0].tr()),
             ],
           ),
         ),
@@ -91,7 +92,7 @@ class GenderDropDownButtonField extends StatelessWidget {
                   height: 20.r,
                 ),
               ),
-              Text(controller.genderList[1]),
+              Text(controller.genderList[1].tr()),
             ],
           ),
         ),

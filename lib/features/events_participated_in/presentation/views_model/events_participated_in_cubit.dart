@@ -16,9 +16,9 @@ class EventsParticipatedInCubit extends Cubit<EventsParticipatedInState> {
     eventsParticipatedInList = fetchEventsParticipatedInList();
   }
 
-  List<String> getEventDate({required DateTime date}) {
-    String day = DateFormat("dd").format(date);
-    String month = DateFormat("MMM").format(date).substring(0, 3);
+  List<String> getEventDate({required DateTime date, required String locale}) {
+    String day = DateFormat("dd", locale).format(date);
+    String month = DateFormat("MMM", locale).format(date).substring(0, 3);
     return <String>[day, month];
   }
 

@@ -15,7 +15,7 @@ class LocationErrors extends Failure {
       case LocationPermissionNotGrantedException():
         return LocationErrors(errorMessage: AppText.locationException3.tr());
       case PlatformException():
-        return const LocationErrors(errorMessage: AppText.locationException5);
+        return LocationErrors(errorMessage: AppText.locationException5.tr());
       default:
         return LocationErrors(errorMessage: AppText.locationException4.tr());
     }

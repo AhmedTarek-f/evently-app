@@ -42,13 +42,16 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     }
   }
 
-  void formatDate({required DateTime date}) {
+  void formatDate({required DateTime date, required String locale}) {
     originalPickedDate = date;
-    pickedDate = DateFormat('dd/MM/yyyy').format(date);
+    pickedDate = DateFormat(
+      'dd/MM/yyyy',
+      locale,
+    ).format(date);
     emit(PickingDateState());
   }
 
-  void formatTime({required TimeOfDay time}) {
+  void formatTime({required TimeOfDay time, required String locale}) {
     final now = DateTime.now();
     final dateNow = DateTime(
       now.year,
@@ -57,7 +60,10 @@ class CreateEventCubit extends Cubit<CreateEventState> {
       time.hour,
       time.minute,
     );
-    pickedTime = DateFormat('hh:mma').format(dateNow);
+    pickedTime = DateFormat(
+      'hh:mma',
+      locale,
+    ).format(dateNow);
     emit(PickingTimeState());
   }
 

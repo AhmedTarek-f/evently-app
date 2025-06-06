@@ -36,12 +36,24 @@ class EventDetailsCubit extends Cubit<EventDetailsState> {
   List<UserModel> participatingMembersData = [];
   bool isJoinedIn = false;
 
-  String getFormatedDate({required DateTime? date}) {
-    return DateFormat('d MMMM y').format(date ?? DateTime.now());
+  String getFormatedDate({
+    required DateTime? date,
+    required String local,
+  }) {
+    return DateFormat(
+      'd MMMM y',
+      local,
+    ).format(date ?? DateTime.now());
   }
 
-  String getFormatedTime({required DateTime? time}) {
-    return DateFormat('h:mma').format(time ?? DateTime.now());
+  String getFormatedTime({
+    required DateTime? time,
+    required String local,
+  }) {
+    return DateFormat(
+      'h:mma',
+      local,
+    ).format(time ?? DateTime.now());
   }
 
   void onInit() async {

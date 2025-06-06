@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/shimmer/shimmer_effect.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
@@ -46,7 +47,7 @@ class HomeUserLocation extends StatelessWidget {
                     child: Text(
                       eventlyController.userCountry != null
                           ? "${eventlyController.userCountry} , ${eventlyController.userCity}"
-                          : AppText.unknownLocation,
+                          : AppText.unknownLocation.tr(),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: Theme.of(context)
                                 .colorScheme

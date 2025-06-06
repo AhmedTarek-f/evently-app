@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/display_user_details.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/event_details/presentation/views_model/event_details_cubit.dart';
@@ -20,7 +21,7 @@ class ParticipatingMembersList extends StatelessWidget {
         builder: (context, state) => controller.participatingMembersData.isEmpty
             ? Center(
                 child: Text(
-                  AppText.participatingMembersEmpty,
+                  AppText.participatingMembersEmpty.tr(),
                   style: Theme.of(context).textTheme.titleMedium,
                   textAlign: TextAlign.center,
                   maxLines: 2,

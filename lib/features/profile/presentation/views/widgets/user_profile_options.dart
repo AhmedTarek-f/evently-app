@@ -59,7 +59,7 @@ class UserProfileOptions extends StatelessWidget {
                 ),
                 const RSizedBox(width: 8),
                 Text(
-                  AppText.createdEvents,
+                  AppText.createdEvents.tr(),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.white,
                       ),
@@ -99,7 +99,7 @@ class UserProfileOptions extends StatelessWidget {
                 ),
                 const RSizedBox(width: 8),
                 Text(
-                  AppText.eventsParticipatedIn,
+                  AppText.eventsParticipatedIn.tr(),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.white,
                       ),

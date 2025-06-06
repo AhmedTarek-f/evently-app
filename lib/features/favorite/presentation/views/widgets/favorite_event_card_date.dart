@@ -1,4 +1,5 @@
 import 'package:evently_app/features/favorite/presentation/views_model/favorite_cubit.dart';
+import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,12 @@ class FavoriteEventCardDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final favoriteController = BlocProvider.of<FavoriteCubit>(context);
-    final List<String> date = favoriteController.getEventDate(date: eventDate);
+    final startController = BlocProvider.of<StartCubit>(context);
+    final currentLocale = startController.isArLanguage ? "ar" : "en";
+    final List<String> date = favoriteController.getEventDate(
+      date: eventDate,
+      locale: currentLocale,
+    );
     return Container(
       padding: REdgeInsets.symmetric(vertical: 4),
       width: 43.w,

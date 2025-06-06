@@ -1,4 +1,5 @@
 import 'package:evently_app/features/home/presentation/views_model/home_cubit.dart';
+import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,12 @@ class HomeEventCardDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeController = BlocProvider.of<HomeCubit>(context);
-    final List<String> date = homeController.getEventDate(date: eventDate);
+    final startController = BlocProvider.of<StartCubit>(context);
+    final currentLocale = startController.isArLanguage ? "ar" : "en";
+    final List<String> date = homeController.getEventDate(
+      date: eventDate,
+      locale: currentLocale,
+    );
     return Container(
       padding: REdgeInsets.symmetric(vertical: 4),
       width: 43.w,

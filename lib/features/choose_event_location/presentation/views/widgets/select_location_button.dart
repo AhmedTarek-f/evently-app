@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/choose_event_location/presentation/views_model/choose_event_location_cubit.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class SelectLocationButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          AppText.tapOnLocationToSelect,
+          AppText.tapOnLocationToSelect.tr(),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 fontWeight: FontWeight.w500,

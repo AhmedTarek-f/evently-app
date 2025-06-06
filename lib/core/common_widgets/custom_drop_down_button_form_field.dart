@@ -68,7 +68,7 @@ class CustomDropDownButtonFormField extends StatelessWidget {
           .map(
             (item) => DropdownMenuItem(
               value: item,
-              child: Text(item),
+              child: Text(item.tr()),
             ),
           )
           .toList(),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_images.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/choose_event_location/data/repositories/choose_event_location_repository.dart';
@@ -62,8 +63,8 @@ class ChooseEventLocationCubit extends Cubit<ChooseEventLocationState> {
         markerId: const MarkerId("event_marker"),
         position: eventLocation,
         icon: customIcon,
-        infoWindow: const InfoWindow(
-          title: AppText.eventLocation,
+        infoWindow: InfoWindow(
+          title: AppText.eventLocation.tr(),
         ),
       ),
     );

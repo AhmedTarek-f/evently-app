@@ -3,6 +3,7 @@ import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/features/create_event/presentation/views/widgets/date_and_time_row.dart';
 import 'package:evently_app/features/create_event/presentation/views_model/create_event_cubit.dart';
 import 'package:evently_app/features/create_event/presentation/views_model/create_event_state.dart';
+import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,8 @@ class DateAndTimeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<CreateEventCubit>(context);
+    final startController = BlocProvider.of<StartCubit>(context);
+    final String currentLocale = startController.isArLanguage ? "ar" : "en";
     return BlocBuilder<CreateEventCubit, CreateEventState>(
       buildWhen: (previous, current) =>
           current is PickingDateState || current is PickingTimeState,
@@ -34,7 +37,12 @@ class DateAndTimeSection extends StatelessWidget {
                     ? controller.parseDate(controller.pickedDate!)
                     : null,
               );
-              if (date != null) controller.formatDate(date: date);
+              if (date != null) {
+                controller.formatDate(
+                  date: date,
+                  locale: currentLocale,
+                );
+              }
             },
           ),
           const RSizedBox(height: 16),
@@ -51,7 +59,12 @@ class DateAndTimeSection extends StatelessWidget {
                     ? controller.parseTimeOfDay(controller.pickedTime!)
                     : TimeOfDay.now(),
               );
-              if (time != null) controller.formatTime(time: time);
+              if (time != null) {
+                controller.formatTime(
+                  time: time,
+                  locale: currentLocale,
+                );
+              }
             },
           ),
         ],

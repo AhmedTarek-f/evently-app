@@ -72,7 +72,7 @@ class FavoriteEventSearchField extends StatelessWidget {
                 children: [
                   const RSizedBox(height: 4),
                   Text(
-                    AppText.inValidEventSearch,
+                    AppText.inValidEventSearch.tr(),
                     style: Theme.of(context).textTheme.titleSmall,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

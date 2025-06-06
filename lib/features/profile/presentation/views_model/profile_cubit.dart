@@ -15,12 +15,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   final List<String> languages = [
-    AppText.arabic.tr(),
-    AppText.english.tr(),
+    AppText.arabic,
+    AppText.english,
   ];
   final List<String> theme = [
-    AppText.light.tr(),
-    AppText.dark.tr(),
+    AppText.light,
+    AppText.dark,
   ];
   late String currentTheme;
   late String currentLanguage;
@@ -57,10 +57,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     final controller = BlocProvider.of<StartCubit>(context);
     if (languageValue == languages[0] && currentLanguage != languages[0]) {
       currentLanguage = languages[0];
+      context.setLocale(const Locale("ar"));
       await controller.onLanguageIndexChanged(index: 1);
     } else if (languageValue == languages[1] &&
         currentLanguage != languages[1]) {
       currentLanguage = languages[1];
+      context.setLocale(const Locale("en"));
       await controller.onLanguageIndexChanged(index: 0);
     }
   }

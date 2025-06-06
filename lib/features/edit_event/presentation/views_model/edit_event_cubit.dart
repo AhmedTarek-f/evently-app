@@ -10,14 +10,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 class EditEventCubit extends Cubit<EditEventState> {
-  EditEventCubit(EventDetailsCubit eventDetailsCubit)
+  EditEventCubit(EventDetailsCubit eventDetailsCubit, String currentLocale)
       : eventDetailsController = eventDetailsCubit,
+        _locale = currentLocale,
         super(EditEventInitial()) {
     onInit();
   }
   final EventDetailsCubit eventDetailsController;
   CategoryItemModel selectedCategoryItem =
       EventlyMethodsHelper.eventCategoriesList[0];
+  final String _locale;
   late final TextEditingController eventTitleController;
   late final TextEditingController eventDescriptionController;
   late final GlobalKey<FormState> editEventFormKey;
@@ -55,13 +57,13 @@ class EditEventCubit extends Cubit<EditEventState> {
   }
 
   void initialFormatDate() {
-    pickedDate = DateFormat('dd/MM/yyyy').format(
+    pickedDate = DateFormat('dd/MM/yyyy', _locale).format(
       originalPickedDate ?? DateTime.now(),
     );
   }
 
   void initialFormatTime() {
-    pickedTime = DateFormat('hh:mma').format(
+    pickedTime = DateFormat('hh:mma', _locale).format(
       originalPickedDate ?? DateTime.now(),
     );
   }
@@ -80,7 +82,10 @@ class EditEventCubit extends Cubit<EditEventState> {
 
   void formatDate({required DateTime date}) {
     originalPickedDate = date;
-    pickedDate = DateFormat('dd/MM/yyyy').format(date);
+    pickedDate = DateFormat(
+      'dd/MM/yyyy',
+      _locale,
+    ).format(date);
     emit(PickingDateState());
   }
 
@@ -93,18 +98,21 @@ class EditEventCubit extends Cubit<EditEventState> {
       time.hour,
       time.minute,
     );
-    pickedTime = DateFormat('hh:mma').format(dateNow);
+    pickedTime = DateFormat(
+      'hh:mma',
+      _locale,
+    ).format(dateNow);
     emit(PickingTimeState());
   }
 
   TimeOfDay parseTimeOfDay(String timeString) {
-    final DateFormat format = DateFormat('hh:mma');
+    final DateFormat format = DateFormat('hh:mma', _locale);
     final DateTime dateTime = format.parse(timeString);
     return TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
   }
 
   DateTime parseDate(String dateString) {
-    final DateFormat format = DateFormat('dd/MM/yyyy');
+    final DateFormat format = DateFormat('dd/MM/yyyy', _locale);
     return format.parse(dateString);
   }
 

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/common_widgets/dialogs/dialogs.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
@@ -37,7 +38,7 @@ class DisplayUserDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${AppText.userName} ${userData.userName}",
+                "${AppText.userName.tr()} ${userData.userName}",
                 style: Theme.of(context).textTheme.titleMedium,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -47,7 +48,7 @@ class DisplayUserDetails extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      "${AppText.userEmail} ${userData.email}",
+                      "${AppText.userEmail.tr()} ${userData.email}",
                       style: Theme.of(context).textTheme.titleMedium,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
