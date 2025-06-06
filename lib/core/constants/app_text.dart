@@ -5,174 +5,223 @@ abstract final class AppText {
   static const String language = "language";
   static const String theme = "theme";
   static const String startButton = "startButton";
-  static const String onBoardingTitle1 = "Find Events That Inspire You";
-  static const String onBoardingTitle2 = "Effortless Event Planning";
-  static const String onBoardingTitle3 = "Connect with Friends & Share Moments";
-  static const String onBoardingSubTitle1 =
-      "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.";
-  static const String onBoardingSubTitle2 =
-      "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.";
-  static const String onBoardingSubTitle3 =
-      "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.";
-  static const String email = "Email";
-  static const String password = "Password";
-  static const String forgetPassword = "Forget Password?";
-  static const String login = "Login";
-  static const String dontHaveAccount = "Don’t Have Account ? ";
-  static const String createAccount = "Create Account";
-  static const String or = " Or";
-  static const String loginWithGoogle = "Login With Google";
-  static const String name = "Name";
-  static const String rePassword = "Re Password";
-  static const String alreadyHaveAccount = "Already Have Account ? ";
-  static const String resetPassword = "Reset Password";
-  static const String forgetPasswordTitle = "Forget Password";
-  static const String userNameValidation = "User name field is required";
-  static const String emailValidation1 = "Email field is required";
-  static const String emailValidation2 = "Enter a valid email";
-  static const String passwordValidation1 = "Password is required";
-  static const String passwordValidation2 = "Password cannot contain spaces";
-  static const String passwordValidation3 =
-      "Password must be at least 8 characters long";
-  static const String passwordValidation4 =
-      "Password must contain at least one number";
-  static const String passwordValidation5 =
-      "Password must not exceed 20 characters";
+
+  static const String onBoardingTitle1 = "onBoardingTitle1";
+  static const String onBoardingTitle2 = "onBoardingTitle2";
+  static const String onBoardingTitle3 = "onBoardingTitle3";
+  static const String onBoardingSubTitle1 = "onBoardingSubTitle1";
+  static const String onBoardingSubTitle2 = "onBoardingSubTitle2";
+  static const String onBoardingSubTitle3 = "onBoardingSubTitle3";
+  static const String email = "email";
+  static const String password = "password";
+  static const String forgetPassword = "forgetPassword";
+  static const String login = "login";
+  static const String dontHaveAccount = "dontHaveAccount";
+  static const String createAccount = "createAccount";
+  static const String or = "or";
+  static const String loginWithGoogle = "loginWithGoogle";
+  static const String name = "name";
+  static const String rePassword = "rePassword";
+  static const String alreadyHaveAccount = "alreadyHaveAccount";
+  static const String resetPassword = "resetPassword";
+  static const String forgetPasswordTitle = "forgetPasswordTitle";
+  static const String userNameValidation = "userNameValidation";
+  static const String emailValidation1 = "emailValidation1";
+  static const String emailValidation2 = "emailValidation2";
+  static const String passwordValidation1 = "passwordValidation1";
+  static const String passwordValidation2 = "passwordValidation2";
+  static const String passwordValidation3 = "passwordValidation3";
+  static const String passwordValidation4 = "passwordValidation4";
+  static const String passwordValidation5 = "passwordValidation5";
   static const String passwordConfirmationValidation1 =
-      "Password confirmation is required";
+      "passwordConfirmationValidation1";
   static const String passwordConfirmationValidation2 =
-      "Password cannot contain spaces";
-  static const String passwordConfirmationValidation3 = "Passwords don't match";
-  static const String emailSent = "Email Sent";
-  static const String emailSentMessage =
-      "Please check your inbox and verify your email.";
-  static const String verifyYourEmailAddress = "Verify your email address!";
-  static const String verifyEmailCongratulations =
-      "Congratulations! Your Account Awaits: Verify Your Email Now.";
-  static const String continueText = "Continue";
-  static const String resendEmail = "Resend Email";
+      "passwordConfirmationValidation2";
+  static const String passwordConfirmationValidation3 =
+      "passwordConfirmationValidation3";
+  static const String emailSent = "emailSent";
+  static const String emailSentMessage = "emailSentMessage";
+  static const String verifyYourEmailAddress = "verifyYourEmailAddress";
+  static const String verifyEmailCongratulations = "verifyEmailCongratulations";
+  static const String continueText = "continueText";
+  static const String resendEmail = "resendEmail";
   static const String yourAccountSuccessfullyCreated =
-      "Your account successfully created!";
+      "yourAccountSuccessfullyCreated";
   static const String yourAccountSuccessfullyCreatedMessage =
-      "Welcome to Your Ultimate Events Destination Your Account is Created";
-  static const String passwordResetMessage =
-      "A password reset has been sent to your email";
-  static const String loggingYouIn = "Logging you in...";
-  static const String processingYourInformation =
-      "We are processing your information...";
+      "yourAccountSuccessfullyCreatedMessage";
+  static const String passwordResetMessage = "passwordResetMessage";
+  static const String loggingYouIn = "loggingYouIn";
+  static const String processingYourInformation = "processingYourInformation";
+  static const String male = "male";
+  static const String female = "female";
 
   // Evently Bottom Navigation Bar
+  static const String home = "home";
+  static const String map = "map";
+  static const String favorite = "favorite";
+  static const String profile = "profile";
 
-  static const String home = "Home";
-  static const String map = "Map";
-  static const String favorite = "Favorite";
-  static const String profile = "Profile";
+  // Home
+  static const String welcomeBack = "welcomeBack";
+  static const String en = "en";
+  static const String ar = "ar";
+  static const String unknownLocation = "unknownLocation";
+  static const String all = "all";
+  static const String emptyEvents = "emptyEvents";
+  static const String noAvailable = "noAvailable";
+  static const String events = "events";
+  static const String yet = "yet";
 
   // Profile
-
-  static const String light = "Light";
-  static const String dark = "Dark";
-  static const String arabic = "Arabic";
-  static const String english = "English";
-  static const String loggingYouOut = "Logging you out...";
+  static const String light = "light";
+  static const String dark = "dark";
+  static const String arabic = "arabic";
+  static const String english = "english";
+  static const String loggingYouOut = "loggingYouOut";
   static const String logout = "logout";
-  static const String languageCapital = "Language";
-  static const String themeCapital = "Theme";
+  static const String deleteAccount = "deleteAccount";
+  static const String languageCapital = "languageCapital";
+  static const String themeCapital = "themeCapital";
+  static const String createdEvents = "createdEvents";
+  static const String eventsParticipatedIn = "eventsParticipatedIn";
+  static const String deleteAccountMessage = "deleteAccountMessage";
+  static const String processing = "processing";
+
+  // Favorite
+  static const String searchForEvent = "searchForEvent";
+  static const String favoriteEventsEmpty = "favoriteEventsEmpty";
+  static const String inValidEventSearch = "inValidEventSearch";
+
+  // Create Event
+  static const String createEvent = "createEvent";
+
+  static const String sport = "sport";
+  static const String birthday = "birthday";
+  static const String meeting = "meeting";
+  static const String gaming = "gaming";
+  static const String eating = "eating";
+  static const String holiday = "holiday";
+  static const String exhibition = "exhibition";
+  static const String workShop = "workShop";
+  static const String bookClub = "bookClub";
+
+  static const String title = "title";
+  static const String titleHint = "titleHint";
+  static const String description = "description";
+  static const String descriptionHint = "descriptionHint";
+  static const String eventDate = "eventDate";
+  static const String eventDateValidation = "eventDateValidation";
+  static const String eventTime = "eventTime";
+  static const String eventTimeValidation = "eventTimeValidation";
+  static const String eventLocationValidation = "eventLocationValidation";
+  static const String chooseDate = "chooseDate";
+  static const String chooseTime = "chooseTime";
+  static const String location = "location";
+  static const String chooseEventLocation = "chooseEventLocation";
+  static const String addEvent = "addEvent";
+  static const String eventTitleValidation = "eventTitleValidation";
+  static const String eventDescriptionValidation = "eventDescriptionValidation";
+  static const String addingEventSuccessMessage = "addingEventSuccessMessage";
+
+  // Map
+  static const String locationException1 = "locationException1";
+  static const String locationException2 = "locationException2";
+  static const String locationException3 = "locationException3";
+  static const String locationException4 = "locationException4";
+  static const String locationException5 = "locationException5";
+  static const String tapOnLocationToSelect = "tapOnLocationToSelect";
+  static const String eventLocation = "eventLocation";
+
+  // Event Details
+  static const String eventDetails = "eventDetails";
+  static const String eventCreator = "eventCreator";
+  static const String participatingMembers = "participatingMembers";
+  static const String participatingMembersEmpty = "participatingMembersEmpty";
+  static const String userName = "userName";
+  static const String userEmail = "userEmail";
+  static const String back = "back";
+  static const String emailCopiedToClipBoard = "emailCopiedToClipBoard";
+  static const String joinTheEvent = "joinTheEvent";
+  static const String cancelParticipation = "cancelParticipation";
+  static const String deleteEventMessage = "deleteEventMessage";
+  static const String cancel = "cancel";
+  static const String delete = "delete";
+  static const String deleteEventSuccessMessage = "deleteEventSuccessMessage";
+
+  // Edit Event
+  static const String editEvent = "editEvent";
+  static const String editingEventSuccessMessage = "editingEventSuccessMessage";
+  static const String updateEvent = "updateEvent";
+
+  // Created Events
+  static const String createdEventsEmpty = "createdEventsEmpty";
+
+  // Events Participated In
+  static const String eventsParticipatedInEmpty = "eventsParticipatedInEmpty";
 
   // Firebase Exceptions
-  static const String emailAlreadyInUse =
-      'The email address is already registered. Please use a different email.';
-  static const String invalidEmail =
-      'The email address provided is invalid. Please enter a valid email.';
-  static const String networkRequestFailed =
-      'There is a network problem, Please check your network connection and try again.';
-  static const String weakPassword =
-      'The password is too weak. Please choose a stronger password.';
-  static const String userDisabled =
-      'This user account has been disabled. Please contact support for assistance.';
-  static const String userNotFound = 'Invalid login details. User not found.';
-  static const String invalidVerificationCode =
-      'Invalid verification code. Please enter a valid code.';
-  static const String invalidVerificationId =
-      'Invalid verification ID. Please request a new verification code.';
-  static const String quotaExceeded = 'Quota exceeded. Please try again later.';
-  static const String emailAlreadyExists =
-      'The email address already exists. Please use a different email.';
-  static const String providerAlreadyLinked =
-      'The account is already linked with another provider.';
-  static const String requiresRecentLogin =
-      'This operation is sensitive and requires recent authentication. Please log in again.';
-  static const String credentialAlreadyInUse =
-      'This credential is already associated with a different user account.';
-  static const String userMismatch =
-      'The supplied credentials do not correspond to the previously signed in user.';
+  static const String emailAlreadyInUse = "emailAlreadyInUse";
+  static const String invalidEmail = "invalidEmail";
+  static const String networkRequestFailed = "networkRequestFailed";
+  static const String weakPassword = "weakPassword";
+  static const String userDisabled = "userDisabled";
+  static const String userNotFound = "userNotFound";
+  static const String invalidVerificationCode = "invalidVerificationCode";
+  static const String invalidVerificationId = "invalidVerificationId";
+  static const String quotaExceeded = "quotaExceeded";
+  static const String emailAlreadyExists = "emailAlreadyExists";
+  static const String providerAlreadyLinked = "providerAlreadyLinked";
+  static const String requiresRecentLogin = "requiresRecentLogin";
+  static const String credentialAlreadyInUse = "credentialAlreadyInUse";
+  static const String userMismatch = "userMismatch";
   static const String accountExistsWithDifferentCredential =
-      'An account already exists with the same email but different sign-in credentials.';
-  static const String operationNotAllowed =
-      'This operation is not allowed. Contact support for assistance.';
-  static const String expiredActionCode =
-      'The action code has expired. Please request a new action code.';
-  static const String invalidActionCode =
-      'The action code is invalid. Please check the code and try again.';
-  static const String missingActionCode =
-      'The action code is missing. Please provide a valid action code.';
-  static const String userTokenExpired =
-      'The user\'s token has expired, and authentication is required. Please sign in again.';
-  static const String wrongPassword =
-      'The password is invalid. Please check your password and try again.';
-  static const String userTokenRevoked =
-      'The user\'s token has been revoked. Please sign in again.';
-  static const String invalidMessagePayload =
-      'The email template verification message payload is invalid.';
-  static const String invalidSender =
-      'The email template sender is invalid. Please verify the sender\'s email.';
-  static const String invalidRecipientEmail =
-      'The recipient email address is invalid. Please provide a valid recipient email.';
-  static const String missingIframeStart =
-      'The email template is missing the iframe start tag.';
-  static const String missingIframeEnd =
-      'The email template is missing the iframe end tag.';
-  static const String missingIframeSrc =
-      'The email template is missing the iframe src attribute.';
-  static const String authDomainConfigRequired =
-      'The authDomain configuration is required for the action code verification link.';
-  static const String missingAppCredential =
-      'The app credential is missing. Please provide valid app credentials.';
-  static const String invalidAppCredential =
-      'The app credential is invalid. Please provide a valid app credential.';
-  static const String sessionCookieExpired =
-      'The Firebase session cookie has expired. Please sign in again.';
-  static const String uidAlreadyExists =
-      'The provided user ID is already in use by another user.';
+      "accountExistsWithDifferentCredential";
+  static const String operationNotAllowed = "operationNotAllowed";
+  static const String expiredActionCode = "expiredActionCode";
+  static const String invalidActionCode = "invalidActionCode";
+  static const String missingActionCode = "missingActionCode";
+  static const String userTokenExpired = "userTokenExpired";
+  static const String wrongPassword = "wrongPassword";
+  static const String userTokenRevoked = "userTokenRevoked";
+  static const String invalidMessagePayload = "invalidMessagePayload";
+  static const String invalidSender = "invalidSender";
+  static const String invalidRecipientEmail = "invalidRecipientEmail";
+  static const String missingIframeStart = "missingIframeStart";
+  static const String missingIframeEnd = "missingIframeEnd";
+  static const String missingIframeSrc = "missingIframeSrc";
+  static const String authDomainConfigRequired = "authDomainConfigRequired";
+  static const String missingAppCredential = "missingAppCredential";
+  static const String invalidAppCredential = "invalidAppCredential";
+  static const String sessionCookieExpired = "sessionCookieExpired";
+  static const String uidAlreadyExists = "uidAlreadyExists";
   static const String invalidCordovaConfiguration =
-      'The provided Cordova configuration is invalid.';
-  static const String appDeleted =
-      'This instance of FirebaseApp has been deleted.';
-  static const String userTokenMismatch =
-      'The provided user\'s token has a mismatch with the authenticated user\'s user ID.';
-  static const String webStorageUnsupported =
-      'Web storage is not supported or is disabled.';
-  static const String invalidCredential =
-      'The supplied credential is invalid. Please check the credential and try again.';
-  static const String appNotAuthorized =
-      'The app is not authorized to use Firebase Authentication with the provided API key.';
-  static const String keychainError =
-      'A keychain error occurred. Please check the keychain and try again.';
-  static const String internalError =
-      'An internal authentication error occurred. Please try again later.';
-  static const String invalidLoginCredentials = 'Invalid login credentials.';
-  static const String unknownAuthError =
-      'An unexpected authentication error occurred. Please try again.';
-  static const String unknownFirebaseError =
-      'An unknown Firebase error occurred. Please try again.';
-  static const String invalidCustomToken =
-      'The custom token format is incorrect. Please check your custom token.';
-  static const String customTokenMismatch =
-      'The custom token corresponds to a different audience.';
-  static const String captchaCheckFailed =
-      'The reCAPTCHA response is invalid. Please try again.';
-  static const String googleLoginCanceled =
-      "Login with google has been canceled";
-  static const String unknownErrorMessage =
-      "An unknown error has occurred with the following message:";
+      "invalidCordovaConfiguration";
+  static const String appDeleted = "appDeleted";
+  static const String userTokenMismatch = "userTokenMismatch";
+  static const String webStorageUnsupported = "webStorageUnsupported";
+  static const String invalidCredential = "invalidCredential";
+  static const String appNotAuthorized = "appNotAuthorized";
+  static const String keychainError = "keychainError";
+  static const String internalError = "internalError";
+  static const String invalidLoginCredentials = "invalidLoginCredentials";
+  static const String unknownAuthError = "unknownAuthError";
+  static const String unknownFirebaseError = "unknownFirebaseError";
+  static const String invalidCustomToken = "invalidCustomToken";
+  static const String customTokenMismatch = "customTokenMismatch";
+  static const String captchaCheckFailed = "captchaCheckFailed";
+  static const String googleLoginCanceled = "googleLoginCanceled";
+
+  // Firestore-related errors
+  static const String permissionDenied = "permissionDenied";
+  static const String unavailable = "unavailable";
+  static const String notFound = "notFound";
+  static const String alreadyExists = "alreadyExists";
+  static const String resourceExhausted = "resourceExhausted";
+  static const String cancelled = "cancelled";
+  static const String deadlineExceeded = "deadlineExceeded";
+  static const String dataLoss = "dataLoss";
+  static const String invalidArgument = "invalidArgument";
+  static const String aborted = "aborted";
+  static const String outOfRange = "outOfRange";
+  static const String unknownErrorMessage = "unknownErrorMessage";
 }

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});
@@ -27,7 +26,6 @@ class LogoutButton extends StatelessWidget {
         onPressed: () async {
           await controller.logout();
         },
-        backgroundColor: AppColors.red,
         buttonTitle: "",
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -40,11 +38,9 @@ class LogoutButton extends StatelessWidget {
             const RSizedBox(width: 8),
             Text(
               AppText.logout.tr(),
-              style: GoogleFonts.inter(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w400,
-                color: AppColors.white,
-              ),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: AppColors.white,
+                  ),
             )
           ],
         ),

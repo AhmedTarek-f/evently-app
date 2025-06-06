@@ -35,13 +35,13 @@ class StartCubit extends Cubit<StartState> {
       await SharedPreferencesHelper.saveBool(
           key: ConstKeys.isArLanguage, value: false);
       isArLanguage = false;
-      emit(const ChangeLanguageIndexState(selectedLang: "en"));
+      emit(ChangeLanguageIndexState(selectedLang: "en"));
     } else if (languageSelectedIndex != index && index == 1) {
       languageSelectedIndex = index;
       await SharedPreferencesHelper.saveBool(
           key: ConstKeys.isArLanguage, value: true);
       isArLanguage = true;
-      emit(const ChangeLanguageIndexState(selectedLang: "ar"));
+      emit(ChangeLanguageIndexState(selectedLang: "ar"));
     }
   }
 

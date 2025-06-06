@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
@@ -15,22 +16,33 @@ class CustomDropDownButtonFormField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.initialValue,
+    this.prefixIcon,
+    this.hintStyle,
+    this.hintText,
   });
   final List<String> dropDownItemsList;
   final EdgeInsetsGeometry? contentPadding;
   final void Function(String?)? onChanged;
   final String? Function(String?)? validator;
   final String? initialValue;
+  final Widget? prefixIcon;
+  final TextStyle? hintStyle;
+  final String? hintText;
   @override
   Widget build(BuildContext context) {
     final startController = BlocProvider.of<StartCubit>(context);
     return DropdownButtonFormField2<String>(
       value: initialValue,
       isExpanded: true,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: Theme.of(context).colorScheme.primary,
+            fontWeight: FontWeight.w700,
           ),
       decoration: InputDecoration(
+        prefixIconConstraints: BoxConstraints(
+          maxWidth: 56.r,
+          maxHeight: 56.r,
+        ),
         contentPadding: contentPadding ?? REdgeInsets.all(16),
         filled: true,
         fillColor: Theme.of(context).colorScheme.primaryFixed,
@@ -47,13 +59,16 @@ class CustomDropDownButtonFormField extends StatelessWidget {
           borderColor: AppColors.gray,
           context: context,
         ),
+        hintStyle: hintStyle ?? Theme.of(context).textTheme.labelSmall,
+        hintText: hintText?.tr(),
+        prefixIcon: prefixIcon,
         errorStyle: Theme.of(context).textTheme.titleSmall,
       ),
       items: dropDownItemsList
           .map(
             (item) => DropdownMenuItem(
               value: item,
-              child: Text(item),
+              child: Text(item.tr()),
             ),
           )
           .toList(),

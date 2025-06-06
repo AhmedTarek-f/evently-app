@@ -1,7 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:evently_app/core/common_widgets/shimmer/shimmer_effect.dart';
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:evently_app/core/constants/app_images.dart';
+import 'package:evently_app/core/constants/app_text.dart';
+import 'package:evently_app/features/evently_bottom_navigation/presentation/views_model/evently_bottom_navigation_cubit.dart';
 import 'package:evently_app/features/profile/presentation/views/widgets/user_profile_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -9,6 +14,9 @@ class ProfileAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final eventlyController =
+        BlocProvider.of<EventlyBottomNavigationCubit>(context);
+
     return Container(
       height: 204.h,
       width: ScreenUtil().screenWidth,
@@ -37,11 +45,38 @@ class ProfileAppBar extends StatelessWidget {
                   topLeft: Radius.circular(24.r),
                   topRight: Radius.circular(1000.r),
                 ),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    AppImages.routeLogo,
-                  ),
-                ),
+              ),
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: eventlyController.currentUserData?.photoUrl != null &&
+                        eventlyController.currentUserData?.photoUrl?.trim() !=
+                            ""
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(1000.r),
+                        child: CachedNetworkImage(
+                          progressIndicatorBuilder: (context, url, progress) =>
+                              ShimmerEffect(
+                            width: 92.r,
+                            height: 92.r,
+                          ),
+                          imageUrl:
+                              eventlyController.currentUserData!.photoUrl!,
+                          width: 92.r,
+                          fit: BoxFit.contain,
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(1000.r),
+                        child: Image.asset(
+                          eventlyController.currentUserData!.gender
+                                      ?.toLowerCase() ==
+                                  AppText.male.toLowerCase()
+                              ? AppImages.maleUser
+                              : AppImages.femaleUser,
+                          width: 92.r,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
               ),
             ),
             const RSizedBox(width: 16),

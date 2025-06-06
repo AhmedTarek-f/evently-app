@@ -16,10 +16,10 @@ abstract class Loaders {
       titleText: title,
       messageText: Text(
         message.tr(),
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(color: AppColors.white),
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: AppColors.white,
+            ),
+        textAlign: TextAlign.start,
       ),
       icon: Icon(
         Iconsax.warning_2_copy,
@@ -51,10 +51,10 @@ abstract class Loaders {
       titleText: title,
       messageText: Text(
         message.tr(),
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(color: AppColors.white),
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: AppColors.white,
+            ),
+        textAlign: TextAlign.start,
       ),
       icon: Icon(
         Iconsax.warning_2_copy,
@@ -86,10 +86,10 @@ abstract class Loaders {
       titleText: title,
       messageText: Text(
         message.tr(),
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(color: AppColors.white),
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: AppColors.white,
+            ),
+        textAlign: TextAlign.start,
       ),
       icon: Icon(
         Iconsax.warning_2_copy,

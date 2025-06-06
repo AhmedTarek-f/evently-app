@@ -1,21 +1,35 @@
-import 'package:equatable/equatable.dart';
-
-sealed class EventlyBottomNavigationState extends Equatable {
-  const EventlyBottomNavigationState({required this.tapIndex});
-  final int tapIndex;
-}
+sealed class EventlyBottomNavigationState {}
 
 final class EventlyBottomNavigationInitial
-    extends EventlyBottomNavigationState {
-  const EventlyBottomNavigationInitial({required super.tapIndex});
+    extends EventlyBottomNavigationState {}
 
-  @override
-  List<Object?> get props => [super.tapIndex];
+final class ChangeTapState extends EventlyBottomNavigationState {}
+
+final class FetchUserDataSuccessState extends EventlyBottomNavigationState {}
+
+final class FetchUserDataLoadingState extends EventlyBottomNavigationState {}
+
+final class FetchUserDataFailureState extends EventlyBottomNavigationState {
+  FetchUserDataFailureState({required this.errorMessage});
+  final String errorMessage;
 }
 
-final class ChangeTapState extends EventlyBottomNavigationState {
-  const ChangeTapState({required super.tapIndex});
+final class FetchUserLocationSuccessState
+    extends EventlyBottomNavigationState {}
 
-  @override
-  List<Object?> get props => [super.tapIndex];
+final class FetchUserLocationLoadingState
+    extends EventlyBottomNavigationState {}
+
+final class FetchUserLocationFailureState extends EventlyBottomNavigationState {
+  FetchUserLocationFailureState({required this.errorMessage});
+  final String errorMessage;
 }
+
+final class GetLocationDataFailureState extends EventlyBottomNavigationInitial {
+  GetLocationDataFailureState({required this.errorMessage});
+  final String errorMessage;
+}
+
+final class DeleteEventState extends EventlyBottomNavigationState {}
+
+final class ChangeParticipationState extends EventlyBottomNavigationState {}

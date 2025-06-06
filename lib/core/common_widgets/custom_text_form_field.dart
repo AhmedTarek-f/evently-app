@@ -41,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextStyle? style;
   final Widget? prefixIcon;
   final bool enabled;
-  final String labelText;
+  final String? labelText;
   final TextStyle? labelStyle;
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class CustomTextFormField extends StatelessWidget {
           maxHeight: 56.r,
         ),
         contentPadding: contentPadding ?? REdgeInsets.all(16),
-        labelText: labelText.tr(),
+        labelText: labelText?.tr(),
         labelStyle: labelStyle ?? Theme.of(context).textTheme.bodyLarge,
         filled: true,
         fillColor: Theme.of(context).colorScheme.primaryFixed,

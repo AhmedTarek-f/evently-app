@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/common_widgets/custom_elevated_button.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class SuccessScreen extends StatelessWidget {
               height: 32,
             ),
             Text(
-              title,
+              title.tr(),
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -49,7 +50,7 @@ class SuccessScreen extends StatelessWidget {
               height: 16,
             ),
             Text(
-              subTitle,
+              subTitle.tr(),
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),

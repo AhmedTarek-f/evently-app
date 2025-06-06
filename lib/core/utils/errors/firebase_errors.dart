@@ -194,6 +194,30 @@ class FirebaseErrors extends Failure {
       case 'credential-already-in-use':
         return FirebaseErrors(
             errorMessage: AppText.credentialAlreadyInUse.tr());
+      case 'permission-denied':
+        return FirebaseErrors(errorMessage: AppText.permissionDenied.tr());
+      case 'unavailable':
+        return FirebaseErrors(errorMessage: AppText.unavailable.tr());
+      case 'not-found':
+        return FirebaseErrors(errorMessage: AppText.notFound.tr());
+      case 'already-exists':
+        return FirebaseErrors(errorMessage: AppText.alreadyExists.tr());
+      case 'resource-exhausted':
+        return FirebaseErrors(errorMessage: AppText.resourceExhausted.tr());
+      case 'cancelled':
+        return FirebaseErrors(errorMessage: AppText.cancelled.tr());
+      case 'deadline-exceeded':
+        return FirebaseErrors(errorMessage: AppText.deadlineExceeded.tr());
+      case 'data-loss':
+        return FirebaseErrors(errorMessage: AppText.dataLoss.tr());
+      case 'invalid-argument':
+        return FirebaseErrors(errorMessage: AppText.invalidArgument.tr());
+      case 'internal':
+        return FirebaseErrors(errorMessage: AppText.internalError.tr());
+      case 'aborted':
+        return FirebaseErrors(errorMessage: AppText.aborted.tr());
+      case 'out-of-range':
+        return FirebaseErrors(errorMessage: AppText.outOfRange.tr());
       default:
         return FirebaseErrors(errorMessage: AppText.unknownAuthError.tr());
     }

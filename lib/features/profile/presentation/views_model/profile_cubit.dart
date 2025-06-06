@@ -5,6 +5,7 @@ import 'package:evently_app/core/constants/const_keys.dart';
 import 'package:evently_app/features/profile/data/repositories/profile_repository.dart';
 import 'package:evently_app/features/profile/presentation/views_model/profile_state.dart';
 import 'package:evently_app/features/start/presentation/views_model/start_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,15 +15,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   final List<String> languages = [
-    AppText.arabic.tr(),
-    AppText.english.tr(),
+    AppText.arabic,
+    AppText.english,
   ];
   final List<String> theme = [
-    AppText.light.tr(),
-    AppText.dark.tr(),
+    AppText.light,
+    AppText.dark,
   ];
   late String currentTheme;
   late String currentLanguage;
+  final String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
 
   void onInit() {
     currentTheme = SharedPreferencesHelper.getBool(key: ConstKeys.isDarkTheme)
@@ -55,10 +57,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     final controller = BlocProvider.of<StartCubit>(context);
     if (languageValue == languages[0] && currentLanguage != languages[0]) {
       currentLanguage = languages[0];
+      context.setLocale(const Locale("ar"));
       await controller.onLanguageIndexChanged(index: 1);
     } else if (languageValue == languages[1] &&
         currentLanguage != languages[1]) {
       currentLanguage = languages[1];
+      context.setLocale(const Locale("en"));
       await controller.onLanguageIndexChanged(index: 0);
     }
   }
@@ -73,6 +77,33 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       ),
       (logoutSuccess) => emit(LogoutSuccessState()),
+    );
+  }
+
+  Future<void> deleteAccount() async {
+    emit(DeleteAccountLoadingState());
+    var deleteRelativeAccountDataResult =
+        await ProfileRepository.deleteUserRelatedEvents(userId: userId);
+    deleteRelativeAccountDataResult.fold(
+      (failure) => emit(
+        DeleteAccountFailureState(
+          errorMessage: failure.errorMessage,
+        ),
+      ),
+      (relevantDataDeletedSuccessfully) async {
+        var deleteAccountDataResult =
+            await ProfileRepository.deleteUserAccount(userId: userId);
+        deleteAccountDataResult.fold(
+          (failure) => emit(
+            DeleteAccountFailureState(
+              errorMessage: failure.errorMessage,
+            ),
+          ),
+          (allDeletedSuccessfully) => emit(
+            DeleteAccountSuccessState(),
+          ),
+        );
+      },
     );
   }
 }

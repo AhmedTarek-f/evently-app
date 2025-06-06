@@ -1,3 +1,4 @@
+import 'package:evently_app/features/create_event/presentation/views/create_event_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +11,12 @@ class EventlyFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(
+          context,
+          CreateEventView.routeName,
+        );
+      },
       elevation: 0,
       shape: StadiumBorder(
         side: BorderSide(

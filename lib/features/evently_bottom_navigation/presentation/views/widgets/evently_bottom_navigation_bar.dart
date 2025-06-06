@@ -28,7 +28,7 @@ class EventlyBottomNavigationBar extends StatelessWidget {
           selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
           unselectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
           onTap: (value) => controller.changeIndex(index: value),
-          currentIndex: state.tapIndex,
+          currentIndex: controller.currentTapIndex,
           items: [
             BottomNavigationBarItem(
               icon: isDarkTheme

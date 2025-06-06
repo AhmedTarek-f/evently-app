@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:evently_app/core/utils/errors/failure.dart';
 import 'package:evently_app/features/auth/login/data/repositories/login_repository.dart';
 import 'package:evently_app/features/auth/login/presentation/views_model/login_state.dart';
+import 'package:evently_app/features/auth/register/data/models/user_model.dart';
+import 'package:evently_app/features/auth/register/data/repositories/register_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +49,9 @@ class LoginCubit extends Cubit<LoginState> {
             errorMessage: failure.errorMessage,
           ),
         ),
-        (loginSuccess) => emit(LoginSuccessState()),
+        (loginSuccess) async {
+          emit(LoginSuccessState());
+        },
       );
     } else {
       enableAutoValidateMode();
@@ -64,7 +68,31 @@ class LoginCubit extends Cubit<LoginState> {
           errorMessage: failure.errorMessage,
         ),
       ),
-      (loginSuccess) => emit(LoginSuccessState()),
+      (googleUserCredential) async {
+        bool isNewUser =
+            googleUserCredential.additionalUserInfo?.isNewUser ?? false;
+        if (isNewUser) {
+          var currentUserResult = await RegisterRepository.addUser(
+            userData: UserModel(
+              id: googleUserCredential.user?.uid ?? "",
+              userName: googleUserCredential.user?.displayName ?? "",
+              email: googleUserCredential.user?.email ?? "",
+              gender: "",
+              photoUrl: googleUserCredential.user?.photoURL,
+              favoriteEvents: [],
+            ),
+          );
+
+          currentUserResult.fold(
+            (failure) => LoginFailureState(
+              errorMessage: failure.errorMessage,
+            ),
+            (userData) => emit(LoginSuccessState()),
+          );
+        } else {
+          emit(LoginSuccessState());
+        }
+      },
     );
   }
 

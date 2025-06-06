@@ -13,6 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.isText = true,
     this.child,
     this.borderColor,
+    this.titleStyle,
   });
   final void Function()? onPressed;
   final String buttonTitle;
@@ -22,6 +23,7 @@ class CustomElevatedButton extends StatelessWidget {
   final bool isText;
   final Widget? child;
   final Color? borderColor;
+  final TextStyle? titleStyle;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -43,10 +45,11 @@ class CustomElevatedButton extends StatelessWidget {
       child: isText
           ? Text(
               buttonTitle.tr(),
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeight.w500,
-                  ),
+              style: titleStyle ??
+                  Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.w500,
+                      ),
             )
           : child,
     );

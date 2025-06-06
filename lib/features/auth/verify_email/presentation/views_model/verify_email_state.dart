@@ -19,3 +19,8 @@ final class LogoutFailureState extends VerifyEmailState {
   LogoutFailureState({required this.errorMessage});
   final String errorMessage;
 }
+
+final class FetchUserDataFailureState extends VerifyEmailState {
+  FetchUserDataFailureState({required this.errorMessage});
+  final String errorMessage;
+}

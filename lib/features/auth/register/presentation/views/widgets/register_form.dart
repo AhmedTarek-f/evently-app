@@ -2,6 +2,7 @@ import 'package:evently_app/core/common_widgets/custom_text_form_field.dart';
 import 'package:evently_app/core/constants/app_icons.dart';
 import 'package:evently_app/core/constants/app_text.dart';
 import 'package:evently_app/core/utils/validations.dart';
+import 'package:evently_app/features/auth/register/presentation/views/widgets/gender_drop_down_button.dart';
 import 'package:evently_app/features/auth/register/presentation/views_model/register_cubit.dart';
 import 'package:evently_app/features/auth/register/presentation/views_model/register_state.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,8 @@ class RegisterForm extends StatelessWidget {
               ),
               validator: (value) => Validations.emailValidation(value),
             ),
+            const RSizedBox(height: 16),
+            const GenderDropDownButtonField(),
             const RSizedBox(height: 16),
             BlocBuilder<RegisterCubit, RegisterState>(
               buildWhen: (previous, current) =>

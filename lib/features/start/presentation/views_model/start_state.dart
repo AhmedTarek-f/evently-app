@@ -1,11 +1,9 @@
-sealed class StartState {
-  const StartState();
-}
+sealed class StartState {}
 
 final class StartInitial extends StartState {}
 
 final class ChangeLanguageIndexState extends StartState {
-  const ChangeLanguageIndexState({required this.selectedLang});
+  ChangeLanguageIndexState({required this.selectedLang});
   final String selectedLang;
 }
 
