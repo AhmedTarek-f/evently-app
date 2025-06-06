@@ -1,12 +1,12 @@
 import 'package:evently_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.offWhiteBlue,
+    fontFamily: "Inter",
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.deepPurple,
       primary: AppColors.blue,
@@ -24,57 +24,58 @@ abstract class AppTheme {
       brightness: Brightness.light,
     ),
     textTheme: TextTheme(
-      displaySmall: GoogleFonts.jockeyOne(
+      displaySmall: TextStyle(
+        fontFamily: "Jockey One",
         fontSize: 36.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.blue,
       ),
-      titleLarge: GoogleFonts.inter(
+      titleLarge: TextStyle(
         fontSize: 20.sp,
         fontWeight: FontWeight.w700,
         color: AppColors.blue,
       ),
-      titleMedium: GoogleFonts.inter(
+      titleMedium: TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: AppColors.black,
       ),
-      bodyLarge: GoogleFonts.inter(
+      bodyLarge: TextStyle(
         fontSize: 16.sp,
         color: AppColors.gray,
         fontWeight: FontWeight.w500,
       ),
-      bodyMedium: GoogleFonts.inter(
+      bodyMedium: TextStyle(
         fontSize: 16.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w500,
       ),
-      titleSmall: GoogleFonts.inter(
+      titleSmall: TextStyle(
         fontSize: 14.sp,
         color: AppColors.red,
         fontWeight: FontWeight.w500,
       ),
-      labelSmall: GoogleFonts.inter(
+      labelSmall: TextStyle(
         fontSize: 14.sp,
         color: AppColors.gray.withValues(alpha: 0.6),
         fontWeight: FontWeight.w400,
       ),
-      headlineSmall: GoogleFonts.inter(
+      headlineSmall: TextStyle(
         fontSize: 22.sp,
         color: AppColors.black2,
         fontWeight: FontWeight.w400,
       ),
-      headlineMedium: GoogleFonts.inter(
+      headlineMedium: TextStyle(
         fontSize: 24.sp,
         color: AppColors.black,
         fontWeight: FontWeight.w400,
       ),
-      labelLarge: GoogleFonts.inter(
+      labelLarge: TextStyle(
         fontSize: 24.sp,
         color: AppColors.offWhiteBlue,
         fontWeight: FontWeight.w700,
       ),
-      labelMedium: GoogleFonts.inter(
+      labelMedium: TextStyle(
         fontSize: 24.sp,
         color: AppColors.blue,
         fontWeight: FontWeight.w500,
@@ -84,7 +85,7 @@ abstract class AppTheme {
       backgroundColor: AppColors.offWhiteBlue,
       centerTitle: true,
       scrolledUnderElevation: 0,
-      titleTextStyle: GoogleFonts.inter(
+      titleTextStyle: TextStyle(
         fontSize: 22.sp,
         color: AppColors.blue,
         fontWeight: FontWeight.w400,
@@ -95,11 +96,11 @@ abstract class AppTheme {
       backgroundColor: AppColors.blue,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      unselectedLabelStyle: GoogleFonts.inter(
+      unselectedLabelStyle: TextStyle(
         fontSize: 12.sp,
         fontWeight: FontWeight.w700,
       ),
-      selectedLabelStyle: GoogleFonts.inter(
+      selectedLabelStyle: TextStyle(
         fontSize: 12.sp,
         fontWeight: FontWeight.w700,
       ),
@@ -117,7 +118,7 @@ abstract class AppTheme {
       timeSelectorSeparatorColor: const WidgetStatePropertyAll(
         AppColors.white,
       ),
-      helpTextStyle: GoogleFonts.inter(
+      helpTextStyle: TextStyle(
         fontSize: 16.sp,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
@@ -125,7 +126,7 @@ abstract class AppTheme {
       confirmButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.white),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.white,
             fontWeight: FontWeight.w700,
@@ -135,7 +136,7 @@ abstract class AppTheme {
       cancelButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.white),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.white,
             fontWeight: FontWeight.w700,
@@ -145,7 +146,7 @@ abstract class AppTheme {
     ),
     datePickerTheme: DatePickerThemeData(
       backgroundColor: AppColors.black,
-      headerHelpStyle: GoogleFonts.inter(
+      headerHelpStyle: TextStyle(
         fontSize: 16.sp,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
@@ -159,7 +160,7 @@ abstract class AppTheme {
       confirmButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.white),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.white,
             fontWeight: FontWeight.w700,
@@ -169,7 +170,7 @@ abstract class AppTheme {
       cancelButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.white),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.white,
             fontWeight: FontWeight.w700,
@@ -182,6 +183,7 @@ abstract class AppTheme {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.overDarkBlue,
+    fontFamily: "Inter",
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.deepPurple,
       primary: AppColors.blue,
@@ -199,62 +201,63 @@ abstract class AppTheme {
       brightness: Brightness.dark,
     ),
     textTheme: TextTheme(
-      displaySmall: GoogleFonts.jockeyOne(
+      displaySmall: TextStyle(
+        fontFamily: "Jockey One",
         fontSize: 36.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.blue,
       ),
-      titleLarge: GoogleFonts.inter(
+      titleLarge: TextStyle(
         fontSize: 20.sp,
         fontWeight: FontWeight.w700,
         color: AppColors.blue,
       ),
-      titleMedium: GoogleFonts.inter(
+      titleMedium: TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: AppColors.whiteGray,
       ),
-      bodyLarge: GoogleFonts.inter(
+      bodyLarge: TextStyle(
         fontSize: 16.sp,
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w500,
       ),
-      bodyMedium: GoogleFonts.inter(
+      bodyMedium: TextStyle(
         fontSize: 16.sp,
         color: AppColors.white,
         fontWeight: FontWeight.w500,
       ),
-      titleSmall: GoogleFonts.inter(
+      titleSmall: TextStyle(
         fontSize: 14.sp,
         color: AppColors.red,
         fontWeight: FontWeight.w500,
       ),
-      labelSmall: GoogleFonts.inter(
+      labelSmall: TextStyle(
         fontSize: 14.sp,
         color: AppColors.whiteGray.withValues(alpha: 0.6),
         fontWeight: FontWeight.w400,
       ),
-      headlineSmall: GoogleFonts.inter(
+      headlineSmall: TextStyle(
         fontSize: 22.sp,
         color: AppColors.blue,
         fontWeight: FontWeight.w400,
       ),
-      headlineMedium: GoogleFonts.inter(
+      headlineMedium: TextStyle(
         fontSize: 24.sp,
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w400,
       ),
-      bodySmall: GoogleFonts.inter(
+      bodySmall: TextStyle(
         fontSize: 12.sp,
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
       ),
-      labelLarge: GoogleFonts.inter(
+      labelLarge: TextStyle(
         fontSize: 24.sp,
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
       ),
-      labelMedium: GoogleFonts.inter(
+      labelMedium: TextStyle(
         fontSize: 24.sp,
         color: AppColors.blue,
         fontWeight: FontWeight.w500,
@@ -264,7 +267,7 @@ abstract class AppTheme {
       backgroundColor: AppColors.overDarkBlue,
       centerTitle: true,
       scrolledUnderElevation: 0,
-      titleTextStyle: GoogleFonts.inter(
+      titleTextStyle: TextStyle(
         fontSize: 22.sp,
         color: AppColors.blue,
         fontWeight: FontWeight.w400,
@@ -275,11 +278,11 @@ abstract class AppTheme {
       backgroundColor: AppColors.overDarkBlue,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      unselectedLabelStyle: GoogleFonts.inter(
+      unselectedLabelStyle: TextStyle(
         fontSize: 12.sp,
         fontWeight: FontWeight.w700,
       ),
-      selectedLabelStyle: GoogleFonts.inter(
+      selectedLabelStyle: TextStyle(
         fontSize: 12.sp,
         fontWeight: FontWeight.w700,
       ),
@@ -297,7 +300,7 @@ abstract class AppTheme {
       timeSelectorSeparatorColor: const WidgetStatePropertyAll(
         AppColors.overDarkBlue,
       ),
-      helpTextStyle: GoogleFonts.inter(
+      helpTextStyle: TextStyle(
         fontSize: 16.sp,
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
@@ -305,7 +308,7 @@ abstract class AppTheme {
       confirmButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.whiteGray,
             fontWeight: FontWeight.w700,
@@ -315,7 +318,7 @@ abstract class AppTheme {
       cancelButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.whiteGray,
             fontWeight: FontWeight.w700,
@@ -325,7 +328,7 @@ abstract class AppTheme {
     ),
     datePickerTheme: DatePickerThemeData(
       backgroundColor: AppColors.overDarkBlue,
-      headerHelpStyle: GoogleFonts.inter(
+      headerHelpStyle: TextStyle(
         fontSize: 16.sp,
         color: AppColors.whiteGray,
         fontWeight: FontWeight.w700,
@@ -338,7 +341,7 @@ abstract class AppTheme {
       confirmButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.whiteGray,
             fontWeight: FontWeight.w700,
@@ -348,7 +351,7 @@ abstract class AppTheme {
       cancelButtonStyle: ButtonStyle(
         foregroundColor: const WidgetStatePropertyAll(AppColors.whiteGray),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.inter(
+          TextStyle(
             fontSize: 14.sp,
             color: AppColors.whiteGray,
             fontWeight: FontWeight.w700,
