@@ -19,8 +19,8 @@ Evently is a feature-rich event management and discovery application built with 
 - **Event Categories**: Browse a categorized list of upcoming and nearby events.  
 - **Event Details View**: Tap on any event to view full details, location, and a Participate button.
 - **Event Creator Privileges**:
--   **Edit Event**: Direct access to modify event details.
--   **Delete Event**: Remove event with one tap.
+  - **Edit Event**: Direct access to modify event details.
+  - **Delete Event**: Remove event with one tap.
 
 ### ➕ Create Event
 
