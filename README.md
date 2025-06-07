@@ -69,4 +69,4 @@ Evently is a feature-rich event management and discovery application built with 
 
 Get the Evently app on your device:
 
-- 
+- [Download for Android](https://drive.google.com/file/d/1teQheoAcV_tRLUdSiLVZixb93aiJyu55/view?usp=drive_link).
