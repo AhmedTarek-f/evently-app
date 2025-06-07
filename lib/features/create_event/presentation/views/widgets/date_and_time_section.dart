@@ -34,7 +34,10 @@ class DateAndTimeSection extends StatelessWidget {
                 firstDate: DateTime.now(),
                 lastDate: DateTime.now().add(const Duration(days: 365)),
                 initialDate: controller.pickedDate != null
-                    ? controller.parseDate(controller.pickedDate!)
+                    ? controller.parseDate(
+                        dateString: controller.pickedDate!,
+                        locale: currentLocale,
+                      )
                     : null,
               );
               if (date != null) {
@@ -56,7 +59,10 @@ class DateAndTimeSection extends StatelessWidget {
               final TimeOfDay? time = await showTimePicker(
                 context: context,
                 initialTime: controller.pickedTime != null
-                    ? controller.parseTimeOfDay(controller.pickedTime!)
+                    ? controller.parseTimeOfDay(
+                        timeString: controller.pickedTime!,
+                        locale: currentLocale,
+                      )
                     : TimeOfDay.now(),
               );
               if (time != null) {

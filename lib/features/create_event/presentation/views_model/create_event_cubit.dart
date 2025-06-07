@@ -67,14 +67,26 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     emit(PickingTimeState());
   }
 
-  TimeOfDay parseTimeOfDay(String timeString) {
-    final DateFormat format = DateFormat('hh:mma');
+  TimeOfDay parseTimeOfDay({
+    required String timeString,
+    required String locale,
+  }) {
+    final DateFormat format = DateFormat(
+      'hh:mma',
+      locale,
+    );
     final DateTime dateTime = format.parse(timeString);
     return TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
   }
 
-  DateTime parseDate(String dateString) {
-    final DateFormat format = DateFormat('dd/MM/yyyy');
+  DateTime parseDate({
+    required String dateString,
+    required String locale,
+  }) {
+    final DateFormat format = DateFormat(
+      'dd/MM/yyyy',
+      locale,
+    );
     return format.parse(dateString);
   }
 
@@ -106,7 +118,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     }
   }
 
-  Future<void> addEvent() async {
+  Future<void> addEvent({required String locale}) async {
     if (createEventFormKey.currentState!.validate()) {
       if (pickedDate == null) {
         emit(PickingDateValidationState());
@@ -119,7 +131,10 @@ class CreateEventCubit extends Cubit<CreateEventState> {
       } else {
         isLoading = true;
         emit(CreateEventLoadingState());
-        final originalPickedTime = parseTimeOfDay(pickedTime!);
+        final originalPickedTime = parseTimeOfDay(
+          timeString: pickedTime!,
+          locale: locale,
+        );
         final originalPickedDateWithTime = DateTime(
           originalPickedDate!.year,
           originalPickedDate!.month,
